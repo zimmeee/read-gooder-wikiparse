@@ -6,7 +6,11 @@ Parsing wikipedia content into plain text and creating small reading comprehensi
 
 Fetch some wikipedia data
 ```
+Single article
 wget http://en.wikipedia.org/wiki/Special:Export/Train -O Train.xml
+
+Chunk of articles (46MB)
+wget https://dumps.wikimedia.org/enwiki/latest/enwiki-latest-pages-articles1.xml-p000000010p000010000.bz2
 ```
 
 Convert the article to text using wikiextractor
