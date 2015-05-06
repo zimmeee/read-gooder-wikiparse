@@ -19,9 +19,6 @@ mkdir TextExtract
 python WikiExtractor.py Train.xml -s -o TextExtract
 ```
 
-
-
-
 Get a big chunk of wikipedia articles:
 ```
 wget https://dumps.wikimedia.org/enwiki/latest/enwiki-latest-pages-articles.xml.bz2
