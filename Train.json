@@ -1,0 +1,6107 @@
+{
+    "a_title": "Train", 
+    "num_sentences": 188, 
+    "num_words": 3949, 
+    "sentences": [
+        {
+            "H1": "Train", 
+            "H2": null, 
+            "H3": null, 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 26, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "A train is a"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "form of rail transport"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "consisting of a series"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "of vehicles that usually"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "runs along a rail"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "track to transport cargo"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "or passengers."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": null, 
+            "H3": null, 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 15, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "Motive power is provided"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "by a separate locomotive"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "or individual motors in"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "self-propelled multiple units."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": null, 
+            "H3": null, 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 24, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "Although historically steam propulsion"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "dominated, the most common"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "modern forms are diesel"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "and electric locomotives, the"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "latter supplied by overhead"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "wires or additional rails."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": null, 
+            "H3": null, 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 14, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "Other energy sources include"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "horses, rope or wire,"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "gravity, pneumatics, batteries, and"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "gas turbines."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": null, 
+            "H3": null, 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 24, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "Train tracks usually consists"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "of two, three or"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "four or five rails,"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "with a limited number"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "of monorails and maglev"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "guideways in the mix."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": null, 
+            "H3": null, 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 16, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "[1] The word 'train'"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "comes from the Old"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "French trahiner, from the"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "Latin trahere 'pull, draw'."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": null, 
+            "H3": null, 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 13, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "[2] There are various"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "types of trains that"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "are designed for particular"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "purposes."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": null, 
+            "H3": null, 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 32, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "A train may consist"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "of a combination of"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "one or more locomotives"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "and attached railroad cars,"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "or a self-propelled multiple"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "unit (or occasionally a"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "single or articulated powered"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "coach, called a railcar)."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": null, 
+            "H3": null, 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 11, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "The first trains were"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "rope-hauled, gravity powered or"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "pulled by horses."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": null, 
+            "H3": null, 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 12, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "From the early 19th"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "century almost all were"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "powered by steam locomotives."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": null, 
+            "H3": null, 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 47, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "From the 1910s onwards"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "the steam locomotives began"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "to be replaced by"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "less labor-intensive and cleaner"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "(but more complex and"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "expensive) diesel locomotives and"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "electric locomotives, while at"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "about the same time"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "self-propelled multiple unit vehicles"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "of either power system"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "became much more common"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "in passenger service."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": null, 
+            "H3": null, 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 17, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "A passenger train is"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "one which includes passenger-carrying"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "vehicles which can often"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "be very long and"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "fast."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": null, 
+            "H3": null, 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 10, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "One notable and growing"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "long-distance train category is"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "high-speed rail."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": null, 
+            "H3": null, 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 20, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "In order to achieve"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "much faster operation over"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "500 km/h (310 mph),"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "innovative Maglev technology has"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "been researched for years."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": null, 
+            "H3": null, 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 22, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "In most countries, such"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "as the United Kingdom,"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "the distinction between a"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "tramway and a railway"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "is precise and defined"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "in law."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": null, 
+            "H3": null, 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 37, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "The term light rail"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "is sometimes used for"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "a modern tram system,"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "but it may also"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "mean an intermediate form"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "between a tram and"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "a train, similar to"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "a subway except that"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "it may have level"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "crossings."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": null, 
+            "H3": null, 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 34, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "A freight train (also"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "known as goods train)"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "uses freight cars (also"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "known as wagons or"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "trucks) to transport goods"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "or materials (cargo) \u2013"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "essentially any train that"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "is not used for"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "carrying passengers."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Types", 
+            "H3": null, 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 12, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "There are various types"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "of trains that are"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "designed for particular purposes."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Types", 
+            "H3": null, 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 32, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "A train can consist"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "of a combination of"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "one or more locomotives"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "and attached railroad cars,"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "or a self-propelled multiple"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "unit (or occasionally a"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "single or articulated powered"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "coach, called a railcar)."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Types", 
+            "H3": null, 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 16, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "Trains can also be"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "hauled by horses, pulled"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "by a cable, or"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "run downhill by gravity."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Types", 
+            "H3": null, 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 22, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "Special kinds of trains"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "running on corresponding special"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "'railways' are atmospheric railways,"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "monorails, high-speed railways, maglev,"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "rubber-tired underground, funicular and"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "cog railways."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Types", 
+            "H3": null, 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 12, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "A passenger train may"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "consist of one or"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "several locomotives and coaches."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Types", 
+            "H3": null, 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 21, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "Alternatively, a train may"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "consist entirely of passenger"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "carrying coaches, some or"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "all of which are"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "powered as a \"multiple"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "unit\"."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Types", 
+            "H3": null, 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 20, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "In many parts of"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "the world, particularly the"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "Far East and Europe,"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "high-speed rail is used"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "extensively for passenger travel."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Types", 
+            "H3": null, 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 27, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "Freight trains are composed"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "of wagons or trucks"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "rather than carriages, though"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "some parcel and mail"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "trains (especially Travelling Post"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "Offices) are outwardly more"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "like passenger trains."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Types", 
+            "H3": null, 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 12, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "Trains can also be"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "'mixed', comprising both passenger"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "accommodation and freight vehicles."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Types", 
+            "H3": null, 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 37, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "Such mixed trains are"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "most likely to occur"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "where services are infrequent,"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "and running separate passenger"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "and freight trains is"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "not cost-effective, though the"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "differing needs of passengers"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "and freight usually means"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "this is avoided where"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "possible."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Types", 
+            "H3": null, 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 17, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "Special trains are also"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "used for track maintenance;"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "in some places, this"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "is called maintenance of"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "way."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Types", 
+            "H3": null, 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 39, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "In the United Kingdom,"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "a train hauled by"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "two locomotives is said"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "to be \"double-headed\", and"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "in Canada and the"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "United States it is"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "quite common for a"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "long freight train to"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "be headed by three"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "or more locomotives."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Types", 
+            "H3": null, 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 27, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "A train with a"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "locomotive attached at each"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "end is described as"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "'top and tailed', this"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "practice typically being used"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "when there are no"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "reversing facilities available."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Types", 
+            "H3": null, 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 38, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "Where a second locomotive"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "is attached temporarily to"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "assist a train up"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "steep banks or grades"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "(or down them by"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "providing braking power) it"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "is referred to as"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "'banking' in the UK,"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "or 'helper service' in"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "North America."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Types", 
+            "H3": null, 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 33, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "Recently, many loaded trains"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "in the United States"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "have been made up"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "with one or more"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "locomotives in the middle"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "or at the rear"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "of the train, operated"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "remotely from the lead"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "cab."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Types", 
+            "H3": null, 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 9, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "This is referred to"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "as \"DP\" or \"Distributed"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "Power.\""
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Types", 
+            "H3": "Terminology", 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 13, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "The railway terminology that"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "is used to describe"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "a 'train' varies between"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "countries."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Types", 
+            "H3": "Terminology", 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 30, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "In the United Kingdom,"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "the interchangeable terms set"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "and unit are used"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "to refer to a"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "group of permanently or"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "semi-permanently coupled vehicles, such"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "as those of a"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "multiple unit."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Types", 
+            "H3": "Terminology", 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 22, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "While when referring to"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "a train made up"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "of a variety of"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "vehicles, or of several"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "sets/units, the term formation"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "is used."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Types", 
+            "H3": "Terminology", 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 12, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "(Although the UK public"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "and media often forgo"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "'formation', for simply 'train'.)"
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Types", 
+            "H3": "Terminology", 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 13, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "The word rake is"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "also used for a"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "group of coaches or"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "wagons."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Types", 
+            "H3": "Terminology", 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 44, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "In the United Kingdom"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "Section 83(1) of the"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "Railways Act 1993 defines"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "\"train\" as follows: a)"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "two or more items"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "of rolling stock coupled"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "together, at least one"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "of which is a"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "locomotive; or b) a"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "locomotive not coupled to"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "any other rolling stock."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Types", 
+            "H3": "Terminology", 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 21, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "In the United States,"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "the term consist is"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "used to describe the"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "group of rail vehicles"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "which make up a"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "train."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Types", 
+            "H3": "Terminology", 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 15, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "When referring to motive"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "power, consist refers to"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "the group of locomotives"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "powering the train."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Types", 
+            "H3": "Terminology", 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 35, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "Similarly, the term trainset"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "refers to a group"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "of rolling stock that"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "is permanently or semi-permanently"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "coupled together to form"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "a unified set of"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "equipment (the term is"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "most often applied to"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "passenger train configurations)."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Types", 
+            "H3": "Terminology", 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 10, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "There are three types"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "of trains: Electric, Diesel"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "and Steam."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Types", 
+            "H3": "Terminology", 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 28, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "The Atchison, Topeka and"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "Santa Fe Railway's 1948"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "operating rules define a"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "train as: \"An engine"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "or more than one"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "engine coupled, with or"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "without cars, displaying markers."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Types", 
+            "H3": "Terminology", 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 1, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "\"[3]"
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Bogies", 
+            "H3": null, 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 10, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "A bogie (/\u02c8bo\u028a\u0261i/ BOH-ghee)"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "is a wheeled wagon"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "or trolley."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Bogies", 
+            "H3": null, 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 16, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "In mechanics terms, a"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "bogie is a chassis"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "or framework carrying wheels,"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "attached to a vehicle."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Bogies", 
+            "H3": null, 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 33, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "It can be fixed"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "in place, as on"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "a cargo truck, mounted"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "on a swivel, as"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "on a railway carriage"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "or locomotive, or sprung"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "as in the suspension"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "of a caterpillar tracked"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "vehicle."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Bogies", 
+            "H3": null, 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 15, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "Usually, two bogies are"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "fitted to each carriage,"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "wagon or locomotive, one"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "at each end."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Bogies", 
+            "H3": null, 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 24, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "An alternate configuration often"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "is used in articulated"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "vehicles, which places the"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "bogies (often jacobs bogies)"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "under the connection between"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "the carriages or wagons."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Bogies", 
+            "H3": null, 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 29, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "Most bogies have two"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "axles, as this is"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "the simplest design, but"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "some cars designed for"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "extremely heavy loads have"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "been built with up"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "to five axles per"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "bogie."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Bogies", 
+            "H3": null, 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 22, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "Heavy-duty cars may have"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "more than two bogies"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "using span bolsters to"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "equalize the load and"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "connect the bogies to"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "the cars."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Bogies", 
+            "H3": null, 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 44, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "Usually, the train floor"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "is at a level"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "above the bogies, but"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "the floor of the"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "car may be lower"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "between bogies, such as"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "for a double decker"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "train to increase interior"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "space while staying within"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "height restrictions, or in"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "easy-access, stepless-entry, low-floor trains."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Motive power", 
+            "H3": null, 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 11, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "The first trains were"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "rope-hauled, gravity powered or"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "pulled by horses."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Motive power", 
+            "H3": null, 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 12, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "From the early 19th"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "century almost all were"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "powered by steam locomotives."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Motive power", 
+            "H3": null, 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 47, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "From the 1910s onwards"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "the steam locomotives began"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "to be replaced by"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "less labor-intensive and cleaner"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "(but more complex and"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "expensive) diesel locomotives and"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "electric locomotives, while at"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "about the same time"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "self-propelled multiple unit vehicles"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "of either power system"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "became much more common"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "in passenger service."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Motive power", 
+            "H3": null, 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 14, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "In most countries dieselization"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "of locomotives in day-to-day"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "use was completed by"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "the 1970s."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Motive power", 
+            "H3": null, 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 22, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "Steam locomotives are still"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "used in a few"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "locales where coal and"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "labor are cheap, most"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "notably the People's Republic"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "of China."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Motive power", 
+            "H3": null, 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 15, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "Steam powered Heritage railways"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "are operated in many"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "countries for the leisure"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "and enthusiast market."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Motive power", 
+            "H3": null, 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 26, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "Electric traction offers a"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "lower cost per mile"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "of train operation but"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "at a higher initial"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "cost, which can only"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "be justified on high"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "traffic lines."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Motive power", 
+            "H3": null, 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 26, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "Since the cost per"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "mile of construction is"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "much higher, electric traction"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "is less viable for"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "long-distance lines with the"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "exception of long-distance high"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "speed lines."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Motive power", 
+            "H3": null, 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 15, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "Electric trains receive their"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "current via overhead lines"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "or through a third"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "rail electric system."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Motive power", 
+            "H3": null, 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 12, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "A recent variation of"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "the electric locomotive is"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "the fuel cell locomotive."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Motive power", 
+            "H3": null, 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 21, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "[4][5] Fuel cell locomotives"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "combine the advantage of"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "not needing an electrical"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "system in place, with"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "the advantage of emissionless"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "operation."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Motive power", 
+            "H3": null, 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 15, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "However, the initial cost"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "of such fuel cell"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "vehicles is still substantial"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "at the moment."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Passenger trains", 
+            "H3": null, 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 17, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "A passenger train is"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "one which includes passenger-carrying"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "vehicles which can often"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "be very long and"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "fast."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Passenger trains", 
+            "H3": null, 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 30, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "It may be a"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "self-powered multiple unit or"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "railcar, or else a"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "combination of one or"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "more locomotives and one"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "or more unpowered trailers"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "known as coaches, cars"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "or carriages."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Passenger trains", 
+            "H3": null, 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 14, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "Passenger trains travel between"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "stations or depots, at"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "which passengers may board"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "and disembark."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Passenger trains", 
+            "H3": null, 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 19, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "In most cases, passenger"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "trains operate on a"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "fixed schedule and have"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "superior track occupancy rights"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "over freight trains."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Passenger trains", 
+            "H3": null, 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 11, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "Oversight of a passenger"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "train is the responsibility"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "of the conductor."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Passenger trains", 
+            "H3": null, 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 16, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "He or she is"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "usually assisted by other"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "crew members, such as"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "service attendants or porters."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Passenger trains", 
+            "H3": null, 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 32, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "During the heyday of"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "North American passenger rail"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "travel, long distance trains"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "carried two conductors: the"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "aforementioned train conductor, and"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "a Pullman conductor, the"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "latter being in charge"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "of sleeping car personnel."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Passenger trains", 
+            "H3": null, 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 21, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "Many prestigious passenger train"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "services have been given"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "a specific name, some"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "of which have become"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "famous in literature and"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "fiction."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Passenger trains", 
+            "H3": null, 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 28, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "In past years, railroaders"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "often referred to passenger"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "trains as the \"varnish\","
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "alluding to the bygone"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "days of wooden-bodied coaches"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "with their lustrous exterior"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "finishes and fancy livery."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Passenger trains", 
+            "H3": null, 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 16, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "\"Blocking the varnish\" meant"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "a slow-moving freight train"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "was obstructing a fast"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "passenger train, causing delays."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Passenger trains", 
+            "H3": null, 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 20, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "Some passenger trains, both"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "long distance and short"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "distanced, may use bi-level"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "(double-decker) cars to carry"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "more passengers per train."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Passenger trains", 
+            "H3": null, 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 20, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "Car design and the"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "general safety of passenger"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "trains have dramatically evolved"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "over time, making travel"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "by rail remarkably safe."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Passenger trains", 
+            "H3": "High-speed rail", 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 10, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "One notable and growing"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "long-distance train category is"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "high-speed rail."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Passenger trains", 
+            "H3": "High-speed rail", 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 27, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "Generally, high speed rail"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "runs at speeds above"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "200 km/h (124 mph)"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "and often operates on"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "dedicated track that is"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "surveyed and prepared to"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "accommodate high speeds."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Passenger trains", 
+            "H3": "High-speed rail", 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 20, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "Japan's Shinkansen (\"bullet-train\") commenced"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "operation in 1964, and"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "was the first successful"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "example of a high"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "speed passenger rail system."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Passenger trains", 
+            "H3": "High-speed rail", 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 41, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "The fastest wheeled train"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "running on rails is"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "France's TGV (Train \u00e0"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "Grande Vitesse, literally \"high"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "speed train\"), which achieved"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "a speed of 574.8"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "km/h (357.2 mph), twice"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "the takeoff speed of"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "a Boeing 727 jetliner,"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "under test conditions in"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "2007."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Passenger trains", 
+            "H3": "High-speed rail", 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 26, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "The highest speed currently"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "attained in scheduled revenue"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "operation is 350 km/h"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "(217 mph) on the"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "Beijing\u2013Tianjin Intercity Rail and"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "Wuhan\u2013Guangzhou High-Speed Railway systems"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "in China."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Passenger trains", 
+            "H3": "High-speed rail", 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 24, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "The TGV runs at"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "a maximum revenue speed"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "of 300\u2013320 km/h (186\u2013199"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "mph), as does Germany's"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "Inter-City Express and Spain's"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "AVE (Alta Velocidad Espa\u00f1ola)."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Passenger trains", 
+            "H3": "High-speed rail", 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 44, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "In most cases, high-speed"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "rail travel is time-"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "and cost-competitive with air"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "travel when distances do"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "not exceed 500 to"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "600 km (311 to"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "373 mi), as airport"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "check-in and boarding procedures"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "may add as many"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "as two hours to"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "the actual transit time."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Passenger trains", 
+            "H3": "High-speed rail", 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 26, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "[6] Also, rail operating"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "costs over these distances"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "may be lower when"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "the amount of fuel"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "consumed by an airliner"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "during takeoff and climbout"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "is considered."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Passenger trains", 
+            "H3": "High-speed rail", 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 23, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "As travel distance increases,"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "the latter consideration becomes"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "less of the total"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "cost of operating an"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "airliner and air travel"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "becomes more cost-competitive."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Passenger trains", 
+            "H3": "High-speed rail", 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 13, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "Some high speed rail"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "equipment employs tilting technology"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "to improve stability in"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "curves."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Passenger trains", 
+            "H3": "High-speed rail", 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 22, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "Examples of such equipment"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "are the Advanced Passenger"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "Train (APT), the Pendolino,"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "the N700 Series Shinkansen,"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "Amtrak's Acela Express and"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "the Talgo."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Passenger trains", 
+            "H3": "High-speed rail", 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 33, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "Tilting is a dynamic"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "form of superelevation, allowing"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "both low- and high-speed"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "traffic to use the"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "same trackage (though not"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "simultaneously, of course), as"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "well as producing a"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "more comfortable ride for"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "passengers."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Passenger trains", 
+            "H3": "Maglev", 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 23, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "In order to achieve"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "much faster operation over"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "500 km/h (310 mph),"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "innovative Maglev technology has"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "been researched since the"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "early 20th century."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Passenger trains", 
+            "H3": "Maglev", 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 17, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "The technology uses magnets"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "to levitate the train"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "above the track, reducing"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "friction and allowing higher"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "speeds."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Passenger trains", 
+            "H3": "Maglev", 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 20, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "An early prototype was"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "demonstrated in 1913, and"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "the first commercial maglev"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "train was an airport"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "shuttle introduced in 1984."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Passenger trains", 
+            "H3": "Maglev", 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 26, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "The Shanghai Maglev Train,"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "opened in 2003, is"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "the fastest commercial train"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "service of any kind,"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "operating at speeds of"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "up to 430 km/h"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "(270 mph)."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Passenger trains", 
+            "H3": "Maglev", 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 11, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "Maglev has not yet"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "been used for inter-city"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "mass transit routes."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Passenger trains", 
+            "H3": "Inter-city trains", 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 20, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "Passenger trains can be"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "divided into three major"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "groups: The distinction between"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "the types can be"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "thin or even non-existent."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Passenger trains", 
+            "H3": "Inter-city trains", 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 28, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "Trains can run as"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "inter-city services between major"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "cities, then revert to"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "a fast or even"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "regional train service to"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "serve communities at the"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "extremity of their journey."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Passenger trains", 
+            "H3": "Inter-city trains", 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 29, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "This practice allows marginal"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "communities remaining to be"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "served while saving money"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "at the expense of"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "a longer journey time"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "for those wishing to"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "travel to the terminus"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "station."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Passenger trains", 
+            "H3": "Inter-city trains", 
+            "H4": "Regional trains", 
+            "H5": null, 
+            "num_words": 27, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "Regional trains usually connect"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "between towns and cities,"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "rather than purely linking"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "major population hubs like"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "inter-city trains, and serve"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "local traffic demand in"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "relatively rural area."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Passenger trains", 
+            "H3": "Inter-city trains", 
+            "H4": "Higher-speed rail", 
+            "H5": null, 
+            "num_words": 9, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "Higher-speed rail is a"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "special category of inter-city"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "trains."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Passenger trains", 
+            "H3": "Inter-city trains", 
+            "H4": "Higher-speed rail", 
+            "H5": null, 
+            "num_words": 32, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "The trains for higher-speed"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "rail services can operate"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "at top speeds that"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "are higher than conventional"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "inter-city trains but the"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "speeds are not as"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "high as those in"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "the high-speed rail services."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Passenger trains", 
+            "H3": "Inter-city trains", 
+            "H4": "Higher-speed rail", 
+            "H5": null, 
+            "num_words": 23, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "These services are provided"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "after improvements to the"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "conventional rail infrastructure in"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "order to support trains"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "that can operate safely"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "at higher speeds."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Passenger trains", 
+            "H3": "Short-distance trains", 
+            "H4": "Commuter trains", 
+            "H5": null, 
+            "num_words": 16, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "For shorter distances many"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "cities have networks of"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "commuter trains, serving the"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "city and its suburbs."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Passenger trains", 
+            "H3": "Short-distance trains", 
+            "H4": "Commuter trains", 
+            "H5": null, 
+            "num_words": 17, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "Trains are a very"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "efficient mode of transport"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "to cope with large"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "traffic demand in a"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "metropolis."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Passenger trains", 
+            "H3": "Short-distance trains", 
+            "H4": "Commuter trains", 
+            "H5": null, 
+            "num_words": 17, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "Compared with road transport,"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "it carries many people"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "with much smaller land"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "area and little air"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "pollution."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Passenger trains", 
+            "H3": "Short-distance trains", 
+            "H4": "Commuter trains", 
+            "H5": null, 
+            "num_words": 23, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "Some carriages may be"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "laid out to have"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "more standing room than"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "seats, or to facilitate"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "the carrying of prams,"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "cycles or wheelchairs."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Passenger trains", 
+            "H3": "Short-distance trains", 
+            "H4": "Commuter trains", 
+            "H5": null, 
+            "num_words": 10, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "Some countries have double-decked"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "passenger trains for use"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "in conurbations."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Passenger trains", 
+            "H3": "Short-distance trains", 
+            "H4": "Commuter trains", 
+            "H5": null, 
+            "num_words": 14, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "Double deck high speed"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "and sleeper trains are"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "becoming more common in"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "mainland Europe."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Passenger trains", 
+            "H3": "Short-distance trains", 
+            "H4": "Commuter trains", 
+            "H5": null, 
+            "num_words": 9, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "Sometimes extreme congestion of"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "commuter trains becomes a"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "problem."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Passenger trains", 
+            "H3": "Short-distance trains", 
+            "H4": "Commuter trains", 
+            "H5": null, 
+            "num_words": 20, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "For example, an estimated"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "3.5 million passengers ride"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "every day on Yamanote"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "Line in Tokyo, Japan,"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "with its 29 stations."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Passenger trains", 
+            "H3": "Short-distance trains", 
+            "H4": "Commuter trains", 
+            "H5": null, 
+            "num_words": 19, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "For comparison, the New"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "York City Subway carries"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "4.8 million passengers per"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "day on 24 services"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "serving 468 stations."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Passenger trains", 
+            "H3": "Short-distance trains", 
+            "H4": "Commuter trains", 
+            "H5": null, 
+            "num_words": 34, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "To cope with large"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "traffic, special cars in"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "which the bench seats"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "fold up to provide"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "standing room only during"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "the morning rush hour"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "(until 10 a.m.) are"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "operated in Tokyo (E231"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "series train)."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Passenger trains", 
+            "H3": "Short-distance trains", 
+            "H4": "Commuter trains", 
+            "H5": null, 
+            "num_words": 28, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "In the past this"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "train has included 2"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "cars with six doors"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "on each side to"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "shorten the time for"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "passengers to get on"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "and off at station."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Passenger trains", 
+            "H3": "Short-distance trains", 
+            "H4": "Commuter trains", 
+            "H5": null, 
+            "num_words": 16, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "Passenger trains usually have"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "emergency brake handles (or"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "a \"communication cord\") that"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "the public can operate."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Passenger trains", 
+            "H3": "Short-distance trains", 
+            "H4": "Commuter trains", 
+            "H5": null, 
+            "num_words": 7, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "Misuse is punished by"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "a heavy fine."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Passenger trains", 
+            "H3": "Long-distance trains", 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 16, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "Long-distance trains travel between"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "many cities and/or regions"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "of a country, and"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "sometimes cross several countries."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Passenger trains", 
+            "H3": "Long-distance trains", 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 22, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "They often have a"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "dining car or restaurant"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "car to allow passengers"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "to have a meal"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "during the course of"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "their journey."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Passenger trains", 
+            "H3": "Long-distance trains", 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 8, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "Trains travelling overnight may"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "also have sleeping cars."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Passenger trains", 
+            "H3": "Long-distance trains", 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 39, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "Currently much of travel"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "on these distances of"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "over 500 miles (800"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "km) is done by"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "air in many countries"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "but in others long-distance"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "travel by rail is"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "a popular or the"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "only cheap way to"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "travel long distances."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Passenger trains", 
+            "H3": "Within cities", 
+            "H4": "Rapid transit", 
+            "H5": null, 
+            "num_words": 13, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "Large cities often have"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "a metro system, also"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "called underground, subway or"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "tube."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Passenger trains", 
+            "H3": "Within cities", 
+            "H4": "Rapid transit", 
+            "H5": null, 
+            "num_words": 21, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "The trains are electrically"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "powered, usually by third"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "rail, and their railroads"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "are separate from other"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "traffic, usually without level"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "crossings."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Passenger trains", 
+            "H3": "Within cities", 
+            "H4": "Rapid transit", 
+            "H5": null, 
+            "num_words": 21, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "Usually they run in"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "tunnels in the city"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "center and sometimes on"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "elevated structures in the"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "outer parts of the"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "city."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Passenger trains", 
+            "H3": "Within cities", 
+            "H4": "Rapid transit", 
+            "H5": null, 
+            "num_words": 10, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "They can accelerate and"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "decelerate faster than heavier,"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "long-distance trains."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Passenger trains", 
+            "H3": "Within cities", 
+            "H4": "Rapid transit", 
+            "H5": null, 
+            "num_words": 17, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "The term rapid transit"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "is used for public"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "transport such as commuter"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "trains, metro and light"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "rail."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Passenger trains", 
+            "H3": "Within cities", 
+            "H4": "Rapid transit", 
+            "H5": null, 
+            "num_words": 18, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "However, in New York"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "City, services on the"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "New York City Subway"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "have been referred to"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "as \"trains\"."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Passenger trains", 
+            "H3": "Within cities", 
+            "H4": "Tram", 
+            "H5": null, 
+            "num_words": 18, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "In the United Kingdom,"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "the distinction between a"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "tramway and a railway"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "is precise and defined"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "in law."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Passenger trains", 
+            "H3": "Within cities", 
+            "H4": "Tram", 
+            "H5": null, 
+            "num_words": 15, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "In the U.S. and"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "Canada, such street railways"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "are referred to as"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "trolleys or streetcars."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Passenger trains", 
+            "H3": "Within cities", 
+            "H4": "Tram", 
+            "H5": null, 
+            "num_words": 30, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "The key physical difference"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "between a railroad and"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "a trolley system is"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "that the latter runs"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "primarily on public streets,"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "whereas trains have a"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "right-of-way separated from the"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "public streets."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Passenger trains", 
+            "H3": "Within cities", 
+            "H4": "Tram", 
+            "H5": null, 
+            "num_words": 27, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "Often the U.S.-style interurban"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "and modern light rail"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "are confused with a"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "trolley system, as it"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "too may run on"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "the street for short"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "or medium-length sections."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Passenger trains", 
+            "H3": "Within cities", 
+            "H4": "Tram", 
+            "H5": null, 
+            "num_words": 17, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "In some languages, the"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "word tram also refers"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "to interurban and light"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "rail-style networks, in particular"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "Dutch."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Passenger trains", 
+            "H3": "Within cities", 
+            "H4": "Tram", 
+            "H5": null, 
+            "num_words": 13, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "The length of a"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "tram or trolley may"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "be determined by national"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "regulations."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Passenger trains", 
+            "H3": "Within cities", 
+            "H4": "Tram", 
+            "H5": null, 
+            "num_words": 40, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "Germany has the so-called"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "Bo-Strab standard, restricting the"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "length of a tram"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "to 75 meters, while"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "in the U.S., vehicle"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "length is normally restricted"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "by local authorities, often"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "allowing only a single"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "type of vehicle to"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "operate on the network."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Passenger trains", 
+            "H3": "Within cities", 
+            "H4": "Light rail", 
+            "H5": null, 
+            "num_words": 37, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "The term light rail"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "is sometimes used for"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "a modern tram system,"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "but it may also"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "mean an intermediate form"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "between a tram and"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "a train, similar to"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "a subway except that"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "it may have level"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "crossings."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Passenger trains", 
+            "H3": "Within cities", 
+            "H4": "Light rail", 
+            "H5": null, 
+            "num_words": 8, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "These are then usually"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "protected with crossing gates."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Passenger trains", 
+            "H3": "Within cities", 
+            "H4": "Light rail", 
+            "H5": null, 
+            "num_words": 27, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "In U.S. terminology these"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "systems are often referred"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "to as interurban, as"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "they connect larger urban"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "areas in the vicinity"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "of a major city"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "to that city."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Passenger trains", 
+            "H3": "Within cities", 
+            "H4": "Light rail", 
+            "H5": null, 
+            "num_words": 13, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "Modern light rail systems"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "often use abandoned heavy"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "rail rights of way"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "(e.g."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Passenger trains", 
+            "H3": "Within cities", 
+            "H4": "Light rail", 
+            "H5": null, 
+            "num_words": 15, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "former railway lines) to"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "revitalize deprived areas and"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "redevelopment sites in and"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "around large agglomerations."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Passenger trains", 
+            "H3": "Within cities", 
+            "H4": "Monorail", 
+            "H5": null, 
+            "num_words": 22, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "Monorails were developed to"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "meet medium-demand traffic in"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "urban transit, and consist"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "of a train running"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "on a single rail,"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "typically elevated."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Passenger trains", 
+            "H3": "Within cities", 
+            "H4": "Monorail", 
+            "H5": null, 
+            "num_words": 11, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "Monorails represent a relatively"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "small part of the"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "overall railway field."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Passenger trains", 
+            "H3": "Named trains", 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 34, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "Railway companies often give"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "a name to a"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "train service as a"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "marketing exercise, to raise"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "the profile of the"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "service and hence attract"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "more passengers (and also"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "to gain kudos for"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "the company)."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Passenger trains", 
+            "H3": "Named trains", 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 21, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "Usually, naming is reserved"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "for the most prestigious"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "trains: the high-speed express"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "trains between major cities,"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "stopping at few intermediate"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "stations."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Passenger trains", 
+            "H3": "Named trains", 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 24, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "The names of services"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "such as the Orient"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "Express, the Flying Scotsman,"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "the Fl\u00e8che d'Or and"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "the Royal Scot have"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "passed into popular culture."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Passenger trains", 
+            "H3": "Named trains", 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 19, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "Some of the popular"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "specially named trains in"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "India are: Brindavan Express"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "(Madras - Bangalore), Deccan"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "Queen (Bombay V.T."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Passenger trains", 
+            "H3": "Named trains", 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 9, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "- Pune) and Flying"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "Ranee (Bombay Central -"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "Surat)."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Passenger trains", 
+            "H3": "Named trains", 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 27, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "Certain types of trains"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "also are named in"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "India, such as: A"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "somewhat less common practice"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "is the naming of"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "freight trains, for the"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "same commercial reasons."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Passenger trains", 
+            "H3": "Named trains", 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 19, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "The \"Condor\" was an"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "overnight London-Glasgow express goods"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "train, in the 1960s,"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "hauled by pairs of"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "\"Metrovick\" diesel locomotives."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Passenger trains", 
+            "H3": "Named trains", 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 23, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "In the mid-1960s, British"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "Rail introduced the \"Freightliner\""
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "brand, for the new"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "train services carrying containers"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "between dedicated terminals around"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "the rail network."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Passenger trains", 
+            "H3": "Named trains", 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 2, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "The Rev."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Passenger trains", 
+            "H3": "Named trains", 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 28, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "W. Awdry also named"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "freight trains, coining the"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "term The Flying Kipper"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "for the overnight express"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "fish train that appeared"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "in his stories in"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "The Railway Series books."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Passenger trains", 
+            "H3": "Railbus", 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 38, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "A railbus is a"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "very lightweight type passenger"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "rail vehicle that shares"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "many aspects of its"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "construction with a bus,"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "usually having a modified"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "bus body, and having"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "four wheels on a"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "fixed base, instead of"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "on bogies."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Passenger trains", 
+            "H3": "Railbus", 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 8, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "The are propelled by"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "gasoline or diesel engines."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Passenger trains", 
+            "H3": "Railbus", 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 20, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "The short distance between"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "the vehicle floor and"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "the ground allow railbuses"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "to not need a"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "special station to stop."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Passenger trains", 
+            "H3": "Railbus", 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 6, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "Railbus designs developed in"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "the 1930s."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Passenger trains", 
+            "H3": "Other types", 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 12, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "Heritage trains are operated"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "by volunteers, often railfans,"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "as a tourist attraction."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Passenger trains", 
+            "H3": "Other types", 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 12, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "Usually trains are formed"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "from historic vehicles retired"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "from national commercial operation."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Passenger trains", 
+            "H3": "Other types", 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 10, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "Airport trains transport people"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "between terminals within an"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "airport complex."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Passenger trains", 
+            "H3": "Other types", 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 13, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "Mine trains are operated"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "in large mines and"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "carry both workers and"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "goods."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Passenger trains", 
+            "H3": "Other types", 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 10, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "Overland trains are used"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "to carry cargo over"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "rough terrain."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Freight trains", 
+            "H3": null, 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 38, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "A freight train (also"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "known as goods train)"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "uses freight cars or"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "freight wagons (also known"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "as trucks or goods"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "wagons) to transport goods"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "or materials (cargo) \u2013"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "essentially any train that"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "is not used for"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "carrying passengers."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Freight trains", 
+            "H3": null, 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 25, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "Much of the world's"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "freight is transported by"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "train, and in the"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "United States the rail"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "system is used more"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "for transporting freight than"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "passengers."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Freight trains", 
+            "H3": null, 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 21, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "Under the right circumstances,"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "transporting freight by train"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "is highly economic, and"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "also more energy efficient"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "than transporting freight by"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "road."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Freight trains", 
+            "H3": null, 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 26, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "Rail freight is most"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "economic when freight is"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "being carried in bulk"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "and over long distances,"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "but is less suited"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "to short distances and"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "small loads."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Freight trains", 
+            "H3": null, 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 19, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "Bulk aggregate movements of"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "a mere twenty miles"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "(32 km) can be"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "cost effective even allowing"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "for trans-shipment costs."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Freight trains", 
+            "H3": null, 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 21, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "These trans-shipment costs dominate"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "in many cases and"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "many modern practices such"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "as Intermodal container freight"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "are aimed at minimizing"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "these."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Freight trains", 
+            "H3": null, 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 11, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "The main disadvantage of"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "rail freight is its"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "lack of flexibility."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Freight trains", 
+            "H3": null, 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 14, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "For this reason, rail"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "has lost much of"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "the freight business to"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "road competition."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Freight trains", 
+            "H3": null, 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 19, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "Many governments are now"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "trying to encourage more"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "freight onto trains, because"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "of the benefits that"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "it would bring."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Freight trains", 
+            "H3": null, 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 24, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "There are many different"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "types of freight trains,"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "which are used to"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "carry many different kinds"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "of freight, with many"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "different types of wagons."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Freight trains", 
+            "H3": null, 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 32, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "One of the most"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "common types on modern"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "railways are container trains,"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "where containers can be"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "lifted on and off"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "the train by cranes"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "and loaded off or"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "onto trucks or ships."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Freight trains", 
+            "H3": null, 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 30, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "In the U.S. this"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "type of freight train"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "has largely superseded the"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "traditional boxcar (wagon-load) type"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "of freight train, with"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "which the cargo has"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "to be loaded or"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "unloaded manually."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Freight trains", 
+            "H3": null, 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 15, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "In Europe the sliding"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "wall wagon has taken"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "over from the ordinary"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "covered goods wagon."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Freight trains", 
+            "H3": null, 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 31, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "In some countries \"piggy-back\""
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "trains or rolling highways"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "are used: In the"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "latter case trucks can"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "drive straight onto the"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "train and drive off"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "again when the end"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "destination is reached."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Freight trains", 
+            "H3": null, 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 30, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "A system like this"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "is used through the"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "Channel Tunnel between England"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "and France, and for"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "the trans-Alpine service between"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "France and Italy (this"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "service uses Modalohr road"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "trailer carriers)."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Freight trains", 
+            "H3": null, 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 26, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "\"Piggy-back\" trains are the"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "fastest growing type of"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "freight trains in the"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "United States, where they"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "are also known as"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "\"trailer on flatcar\" or"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "TOFC trains."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Freight trains", 
+            "H3": null, 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 11, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "Piggy-back trains require no"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "special modifications to the"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "vehicles being carried."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Freight trains", 
+            "H3": null, 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 19, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "An alternative type of"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "\"inter-modal\" vehicle, known as"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "a roadrailer, is designed"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "to be physically attached"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "to the train."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Freight trains", 
+            "H3": null, 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 44, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "The original trailers were"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "fitted with two sets"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "of wheels \u2014 one"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "set flanged, for the"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "trailer to run connected"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "to other such trailers"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "as a rail vehicle"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "in a train; and"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "one set tyred, for"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "use as the semi-trailer"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "of a road vehicle."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Freight trains", 
+            "H3": null, 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 22, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "More modern trailers have"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "only road wheels and"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "are designed to be"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "carried on specially adapted"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "bogies (trucks) when moving"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "on rails."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Freight trains", 
+            "H3": null, 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 20, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "There are also many"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "other types of wagon,"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "such as \"low loader\""
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "wagons or well wagons"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "for transporting road vehicles."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Freight trains", 
+            "H3": null, 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 11, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "There are refrigerator cars"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "for transporting foods such"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "as ice cream."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Freight trains", 
+            "H3": null, 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 23, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "There are simple types"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "of open-topped wagons for"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "transporting minerals and bulk"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "material such as coal,"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "and tankers for transporting"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "liquids and gases."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Freight trains", 
+            "H3": null, 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 25, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "Today, however, most coal"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "and aggregates are moved"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "in hopper wagons that"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "can be filled and"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "discharged rapidly, to enable"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "efficient handling of the"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "materials."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Freight trains", 
+            "H3": null, 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 26, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "Freight trains are sometimes"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "illegally boarded by passengers"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "who do not wish"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "to pay money, or"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "do not have the"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "money to travel by"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "ordinary means."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Freight trains", 
+            "H3": null, 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 13, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "This is referred to"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "as \"freighthopping\" and is"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "considered by some communities"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "[who?]"
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Freight trains", 
+            "H3": null, 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 7, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "to be a viable"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "form of transportation."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Freight trains", 
+            "H3": null, 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 45, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "A common way of"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "boarding the train illegally"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "is by sneaking into"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "a train yard and"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "stowing away in an"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "unattended boxcar; a more"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "dangerous practice is trying"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "to catch a train"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "\"on the fly\", that"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "is, as it is"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "moving, leading to occasional"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "fatalities."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Freight trains", 
+            "H3": null, 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 11, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "Railroads treat it as"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "trespassing and may prosecute"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "it as such."
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "Trains in popular culture", 
+            "H3": null, 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 1, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "See:"
+                }
+            ]
+        }, 
+        {
+            "H1": "Train", 
+            "H2": "External links", 
+            "H3": null, 
+            "H4": null, 
+            "H5": null, 
+            "num_words": 7, 
+            "sentence_parts": [
+                {
+                    "indent": 0, 
+                    "text": "Media related to Trains"
+                }, 
+                {
+                    "indent": 0, 
+                    "text": "at Wikimedia Commons"
+                }
+            ]
+        }
+    ]
+}

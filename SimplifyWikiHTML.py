@@ -21,6 +21,8 @@ from nltk import word_tokenize
 from nltk import sent_tokenize
 from nltk.tokenize import WhitespaceTokenizer
 
+from urllib2 import urlopen
+
 SECTION_HEADERS = ["h2", "h3", "h4", "h5"]
 SECTION = 'section'
 LEVEL = 'level'
@@ -132,28 +134,16 @@ def convert_to_json(simplified_html):
     print(json.dumps(document, indent=4, sort_keys=True))
 
 
-def main():
-
-    # parser = ElementTree.iterparse(open("css/GabrielTrain.html"), events=("start", "end"))
-    parser = ElementTree.iterparse(open("css/GabrielTrain.html"))
-
-    IN_BODY = False
+def add_outline_sections(source):
     outline_stack = []
-
     root_element = None
 
-    for action, elem in parser:
+    for action, elem in ElementTree.iterparse(source):
 
         if elem.tag == TITLE:
             root_element = ElementTree.Element(SECTION, {LEVEL: '0', TITLE: elem.text})
             outline_stack.append(root_element)
 
-        #if elem.tag == BODY:
-        #    IN_BODY = not IN_BODY
-        #    outline_stack.append(root_element)
-
-        # if IN_BODY:
-            # if action == "start":
         if elem.tag in SECTION_HEADERS:
             # Entered a new section
             parent_section = None
@@ -187,12 +177,21 @@ def main():
             current_section = outline_stack[-1]
             current_section.text = paragraph_text if current_section.text is None else current_section.text + paragraph_text
 
-    rough_string = ElementTree.tostring(root_element, 'utf-8')
-    soup = BeautifulSoup(rough_string)
-    # print(soup.prettify())
+    return root_element
 
-    make_outline(root_element)
+
+
+def main():
+    # Open from file
+    # source = open("css/GabrielTrain.html")
+    # Open from URL
+    source = urlopen("http://rest.wikimedia.org:80/en.wikipedia.org/v1/page/html/Train")
+
+    root_element = add_outline_sections(source)
+
     convert_to_json(root_element)
+
+    # make_outline(root_element)
 
 
 
