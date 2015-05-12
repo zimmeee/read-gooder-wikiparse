@@ -133,6 +133,8 @@ def convert_to_json(simplified_html):
 
     print(json.dumps(document, indent=4, sort_keys=True))
 
+    return document
+
 
 def add_outline_sections(source):
     outline_stack = []
@@ -180,6 +182,15 @@ def add_outline_sections(source):
     return root_element
 
 
+def test_function():
+    return "SimplifyWikiHTML return"
+
+
+def goodify_wiki(url):
+    source = urlopen(url)
+    root_element = add_outline_sections(source)
+    json_result = convert_to_json(root_element)
+    return json_result
 
 def main():
     # Open from file
