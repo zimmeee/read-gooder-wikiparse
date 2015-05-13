@@ -131,7 +131,9 @@ def convert_to_json(simplified_html):
     document["num_words"] = total_words
     document["num_sentences"] = total_sentences
 
-    print(json.dumps(document, indent=4, sort_keys=True))
+    print "Finished encoding article %s (%s sentences, %s words)" % (document["a_title"], total_sentences, total_words)
+
+    # print(json.dumps(document, indent=4, sort_keys=True))
 
     return document
 
