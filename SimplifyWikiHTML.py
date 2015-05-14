@@ -29,6 +29,10 @@ LEVEL = 'level'
 TITLE = 'title'
 BODY = 'body'
 
+# Detect wikipedia style citations
+# for example: "[2] There are various"
+citation_regex = re.compile('\s*\[\d\]\s*')
+
 def element_level(element):
     level = None
 
@@ -86,6 +90,15 @@ def outline_dict(outline_stack):
     return o_dict
 
 
+def tidy_text(text):
+    tidy = text
+
+    # Remove citations
+    tidy = citation_regex.sub("", tidy)
+
+    return tidy
+
+
 def convert_to_json(simplified_html):
     # make_outline(simplified_html)
 
@@ -119,7 +132,8 @@ def convert_to_json(simplified_html):
             jsentence = deepcopy(headers)
 
             for sentence in sentences:
-                jsentence_parts, num_words = line_length_tokenizer(sentence, 4)
+                # Clean the sentence
+                jsentence_parts, num_words = line_length_tokenizer(tidy_text(sentence), 4)
                 jsentence["sentence_parts"] = deepcopy(jsentence_parts)
                 jsentence["num_words"] = num_words
                 jsentences.append(deepcopy(jsentence))
@@ -191,20 +205,17 @@ def test_function():
 def goodify_wiki(url):
     source = urlopen(url)
     root_element = add_outline_sections(source)
+    # make_outline(root_element)
     json_result = convert_to_json(root_element)
     return json_result
+
 
 def main():
     # Open from file
     # source = open("css/GabrielTrain.html")
-    # Open from URL
-    source = urlopen("http://rest.wikimedia.org:80/en.wikipedia.org/v1/page/html/Train")
+    json_result = goodify_wiki("http://rest.wikimedia.org:80/en.wikipedia.org/v1/page/html/Train")
+    print(json.dumps(json_result, indent=4, sort_keys=True, ensure_ascii=False))
 
-    root_element = add_outline_sections(source)
-
-    convert_to_json(root_element)
-
-    # make_outline(root_element)
 
 
 
