@@ -53,8 +53,71 @@ I'll try to document this a couple ways to see which one makes more sense.
 	"text": STRING
 ```
 
-
-
+### English-like documentation
+```
+{
+    "header": "Train", 
+    "section": {
+        "paragraphs": [
+            {
+                "sentences": [
+                    {
+                        "num_words": 26, 
+                        "sentence_parts": [
+                            {
+                                "indent": 0, 
+                                "text": "A train is a"
+                            }, 
+                            {
+                                "indent": 0, 
+                                "text": "form of rail transport"
+                            }, 
+                            {
+                                "indent": 0, 
+                                "text": "consisting of a series"
+                            },
+                            .
+                            .
+                            .
+                        ] # End sentence_part
+                    } # End sentence
+                ] # End sentences
+            }, # End paragraph
+            .
+            .
+            .
+        ], # End paragraphs
+        "section": [
+            {
+                "header": "Types", 
+                "paragraphs": [
+                    {
+                        "sentences": [
+                            {
+                                "num_words": 12, 
+                                "sentence_parts": [
+                                    {
+                                        "indent": 0, 
+                                        "text": "There are various types"
+                                    }, 
+                                    {
+                                        "indent": 0, 
+                                        "text": "of trains that are"
+                                    }, 
+                                    {
+                                        "indent": 0, 
+                                        "text": "designed for particular purposes."
+                                    }
+                                ]
+                            }, 
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}
+```
 
 
 
