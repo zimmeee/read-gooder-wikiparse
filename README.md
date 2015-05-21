@@ -23,3 +23,38 @@ Get a big chunk of wikipedia articles:
 ```
 wget https://dumps.wikimedia.org/enwiki/latest/enwiki-latest-pages-articles.xml.bz2
 ```
+
+## JSON Format
+
+I'll try to document this a couple ways to see which one makes more sense.
+
+### Grammar-like documentation
+```
+<document> ::=
+	"header": STRING,
+	"sections": <sections> | <paragraphs>
+
+<section> ::=
+	?"header": STRING,
+	<paragraphs> | <section> | <paragraphs>,<section>
+
+<paragraphs> ::=
+	"sentences": [<sentences>]
+
+<sentences> ::=
+	[<sentence>]
+
+<sentence> ::=
+	"num_words": INT,
+	"sentence_parts": [<sentence_parts>]
+
+<sentence_parts> ::=
+	"indent": INT,
+	"text": STRING
+```
+
+
+
+
+
+
