@@ -26,7 +26,7 @@ wget https://dumps.wikimedia.org/enwiki/latest/enwiki-latest-pages-articles.xml.
 
 ## JSON Format
 
-I'll try to document this a couple ways to see which one makes more sense.
+I'll try to document this a couple ways to see which one makes more sense. 
 
 ### Grammar-like documentation
 ```
