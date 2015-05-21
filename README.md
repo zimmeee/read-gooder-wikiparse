@@ -58,8 +58,8 @@ I'll try to document this a couple ways to see which one makes more sense.
 {
     "header": "Train", # Title of document
     "section": { # Sections are made up of paragraphs or subsections or both
-        "paragraphs": [ # Paragraphs are an array of sentences
-            {
+        "paragraphs": [ # Paragraphs is a list of paragraph
+            { # A paragraph
                 "sentences": [ # Sentences is a list of sentence
                     { # sentence has num_words and a list of sentence_parts
                         "num_words": 26, 
