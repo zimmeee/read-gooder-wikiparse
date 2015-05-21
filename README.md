@@ -56,15 +56,15 @@ I'll try to document this a couple ways to see which one makes more sense.
 ### English-like documentation
 ```
 {
-    "header": "Train", 
-    "section": {
-        "paragraphs": [
+    "header": "Train", # Title of document
+    "section": { # Sections are made up of paragraphs or subsections or both
+        "paragraphs": [ # Paragraphs are an array of sentences
             {
-                "sentences": [
-                    {
+                "sentences": [ # Sentences is a list of sentence
+                    { # sentence has num_words and a list of sentence_parts
                         "num_words": 26, 
                         "sentence_parts": [
-                            {
+                            { # sentence_parts have an indent amount and text
                                 "indent": 0, 
                                 "text": "A train is a"
                             }, 
@@ -89,8 +89,8 @@ I'll try to document this a couple ways to see which one makes more sense.
         ], # End paragraphs
         "section": [
             {
-                "header": "Types", 
-                "paragraphs": [
+                "header": "Types", # Title of the section
+                "paragraphs": [ # Paragraphs in that section
                     {
                         "sentences": [
                             {
