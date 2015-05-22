@@ -2,11 +2,13 @@
 Parsing wikipedia content into plain text and creating small reading comprehension questions
 
 ## Dependencies
+
+### Wikimedia REST API
 This utility makes heavy use of the [Wikimedia REST API](http://rest.wikimedia.org/en.wikipedia.org/v1/?doc#!). In particular, we use the [HTML endpoint](http://rest.wikimedia.org/en.wikipedia.org/v1/?doc#!/Page_content/page_html__title__get) which allows you to retrieve the latest html for a wikipedia page title.
 
+### Stanford Parser
 You also need to install the [Stanford parser](https://github.com/nltk/nltk/wiki/Installing-Third-Party-Software) so you can use it from nltk
 
-https://github.com/nltk/nltk/wiki/Installing-Third-Party-Software
 
 ## JSON Format
 
