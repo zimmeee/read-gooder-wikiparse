@@ -3,7 +3,7 @@ Parsing wikipedia content into plain text and creating small reading comprehensi
 
 ## Dependencies
 
-Wikimedia REST API
+##### Wikimedia REST API
 This utility makes heavy use of the [Wikimedia REST API](http://rest.wikimedia.org/en.wikipedia.org/v1/?doc#!). In particular, we use the [HTML endpoint](http://rest.wikimedia.org/en.wikipedia.org/v1/?doc#!/Page_content/page_html__title__get) which allows you to retrieve the latest html for a wikipedia page title.
 
 #### Stanford Parser
