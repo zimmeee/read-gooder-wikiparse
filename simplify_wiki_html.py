@@ -60,7 +60,7 @@ def is_sibsection(element1, element2):
 
 def line_length_tokenizer(sentence, length):
     sentence_parts = list()
-    sentence_part  = dict()
+    sentence_part = dict()
     words = WhitespaceTokenizer().tokenize(sentence)
     num_words = len(words)
 
@@ -212,7 +212,6 @@ def test_function():
 
 
 def goodify_wiki(source):
-    # source = urlopen(url)
     root_element = convert_to_xml(source)
     json_result = elementtree_to_json(root_element)
     return json_result
@@ -223,8 +222,8 @@ def main():
 
     parser = argparse.ArgumentParser(description="Convert a wikipedia page into OpenMind JSON format")
     group = parser.add_mutually_exclusive_group()
-    group.add_argument("-t", "--title", help="title of the wikipedia article to process")
-    group.add_argument("-f", "--file", help="path to local HTML file")
+    group.add_argument("-t", "--title", help="fetch the wikipedia article with this title from the Wikimedia REST API")
+    group.add_argument("-f", "--file", help="convert the local HTML file at this path")
     args = parser.parse_args()
 
     source = None
