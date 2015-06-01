@@ -4,7 +4,6 @@ Parsing wikipedia content into plain text and creating small reading comprehensi
 ## Running
 
 ```
-python simplify_wiki_html.py 
 usage: simplify_wiki_html.py [-h] [-t TITLE | -f FILE]
 
 Convert a wikipedia page into OpenMind JSON format
