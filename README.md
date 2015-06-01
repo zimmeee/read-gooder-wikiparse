@@ -20,6 +20,9 @@ The `t` option fetches the HTML version of the wikipedia article from the Wikime
 
 ## Dependencies
 
+##### nltk
+Install [nltk](http://www.nltk.org/install.html) and [nltk data](http://www.nltk.org/data.html)
+
 ##### Stanford Parser
 Text is parsed using the [Stanford parser](http://nlp.stanford.edu/software/lex-parser.shtml). Follow instructions to install the Stanford parser and use the nltk interface [nltk interface](https://github.com/nltk/nltk/wiki/Installing-Third-Party-Software).
 
