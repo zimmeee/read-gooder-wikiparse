@@ -31,7 +31,7 @@ class HtmlSection:
 
         if first_digit:
             self.level = int(self.tag[first_digit.start()])
-        elif self.tag == 'html':
+        elif self.tag == 'static':
             self.level = ROOT_LEVEL
         else:
             self.level = MAX_LEVEL

@@ -3,10 +3,12 @@
 created by noah on 4/30/15
 """
 import sys
+import argparse
 
 from bs4 import BeautifulSoup
-
+from collections import OrderedDict
 from xml.etree import ElementTree
+from urllib2 import urlopen
 
 import re
 import json
@@ -21,9 +23,6 @@ from nltk import word_tokenize
 from nltk import sent_tokenize
 from nltk.tokenize import WhitespaceTokenizer
 
-from urllib2 import urlopen
-
-from collections import OrderedDict
 
 
 HTML_SECTION_HEADERS = ["h2", "h3", "h4", "h5"]
@@ -59,13 +58,6 @@ def is_sibsection(element1, element2):
     return int(element1.get(LEVEL)) == int(element2.get(LEVEL))
 
 
-def make_outline(simplified_html):
-    for section in simplified_html.iter():
-        section_title = section.get(HTML_TITLE)
-        section_level = int(section.get(LEVEL))
-        print '  ' * section_level + str(section_level) + section_title
-
-
 def line_length_tokenizer(sentence, length):
     sentence_parts = list()
     sentence_part  = dict()
@@ -85,16 +77,6 @@ def line_length_tokenizer(sentence, length):
     return sentence_parts, num_words
 
 
-def outline_dict(outline_stack):
-    o_dict = {}
-    max_depth = len(outline_stack)
-
-    for i in range(0, 5):
-        text = outline_stack[i] if i < max_depth else None
-        o_dict["H"+str(i+1)] = text
-
-    return o_dict
-
 
 def tidy_text(text):
     tidy = text
@@ -103,8 +85,6 @@ def tidy_text(text):
     tidy = citation_regex.sub("", tidy)
 
     return tidy
-
-
 
 
 def parse_paragraph(paragraph):
@@ -130,9 +110,7 @@ def parse_paragraph(paragraph):
     return jparagraph, total_words
 
 
-
 def process_section(element, d):
-
     for child in element:
         if child.tag == HTML_PARAGRAPH:
             sentences, num_words = parse_paragraph(child)
@@ -145,123 +123,39 @@ def process_section(element, d):
             new_section[HEADER] = section_title
             new_section = process_section(child, new_section)
 
-            if SECTIONS not in d:
-                d[SECTIONS] = list()
+            if SECTION not in d:
+                d[SECTION] = list()
 
-            d[SECTIONS].append(new_section)
+            d[SECTION].append(new_section)
 
     return d
 
 
-def convert_to_json3(root):
+def process_outline(element, depth):
+
+    for child in element:
+        if child.tag == HTML_PARAGRAPH:
+            continue
+        elif child.tag == SECTION:
+            print '  '*depth + child.get(HTML_TITLE)
+            process_outline(child, depth+1)
+
+    return depth
+
+
+
+def elementtree_to_json(root):
 
     document = dict()
     document[HEADER] = root.get(HTML_TITLE)
-    document[SECTIONS] = list()
-    document[SECTIONS] = process_section(root, OrderedDict())
+    document[SECTION] = list()
+    document[SECTION] = process_section(root, OrderedDict())
 
-    print(json.dumps(document, indent=4, sort_keys=True, ensure_ascii=False))
-
-    # print "Finished encoding article %s (%s sentences, %s words)" % (document["a_title"], total_sentences, total_words)
-
-    return document
-
-
-def traverse(data, level=1):
-    print ' ' * level + data['text']
-    for kid in data['kids']:
-        traverse(kid, level + 1)
-
-
-def convert_to_json2(xml):
-    document = dict()
-    paragraphs = list()
-    current_section = dict()
-    new_section = dict()
-
-    total_words = 0
-    total_sentences = 0
-
-    document[HEADER] = xml.get(HTML_TITLE)
-    document["sections"] = list()
-
-    current_section = None
-    parent_section = None
-
-    for section in xml.iter():
-        if section.tag == SECTION:
-            if paragraphs:
-                current_section["paragraphs"].append(deepcopy(paragraphs))
-
-            new_section = parse_section(section)
-            parent_section = current_section
-            current_section = new_section
-            paragraphs = list()
-        elif section.tag == HTML_PARAGRAPH:
-            sentences, num_words = parse_paragraph(section)
-            paragraphs.append(deepcopy(sentences))
-            total_words += num_words
-        else:
-            print 'Unrecognized section ' + section.tag
-
-    document["num_words"] = total_words
-    document["num_sentences"] = total_sentences
-
-    print "Finished encoding article %s (%s sentences, %s words)" % (document["a_title"], total_sentences, total_words)
+    # Print an outline from the ElementTree object
+    # process_outline(root, 0)
 
     return document
 
-
-
-def convert_to_json(simplified_html):
-    # make_outline(simplified_html)
-
-    document = dict()
-    jsentences = list()
-    jsentence = dict()
-    jsentence_parts = list()
-    jsentence_part = dict()
-    total_words = 0
-    total_sentences = 0
-
-    document["a_title"] = simplified_html.get(HTML_TITLE)
-
-    outline_stack = []
-    current_level = -1
-
-    for section in simplified_html.iter():
-        section_title = section.get(HTML_TITLE)
-        section_level = int(section.get(LEVEL))
-
-        while section_level <= current_level:
-            outline_stack.pop()
-            current_level -= 1
-
-        current_level = section_level
-        outline_stack.append(section_title)
-        headers = outline_dict(outline_stack)
-
-        if section.text is not None:
-            sentences = sent_tokenize(section.text)
-            jsentence = deepcopy(headers)
-
-            for sentence in sentences:
-                # Clean the sentence
-                jsentence_parts, num_words = line_length_tokenizer(tidy_text(sentence), 4)
-                jsentence["sentence_parts"] = deepcopy(jsentence_parts)
-                jsentence["num_words"] = num_words
-                jsentences.append(deepcopy(jsentence))
-                total_words += num_words
-
-            total_sentences += len(sentences)
-
-    document["sentences"] = jsentences
-    document["num_words"] = total_words
-    document["num_sentences"] = total_sentences
-
-    print "Finished encoding article %s (%s sentences, %s words)" % (document["a_title"], total_sentences, total_words)
-
-    return document
 
 
 def convert_to_xml(source):
@@ -310,8 +204,6 @@ def convert_to_xml(source):
             new_paragraph_section.text = paragraph_text
             current_section.append(new_paragraph_section)
 
-            # current_section.text = paragraph_text if current_section.text is None else current_section.text + paragraph_text
-
     return root_element
 
 
@@ -319,49 +211,38 @@ def test_function():
     return "SimplifyWikiHTML return"
 
 
-def indent(elem, level=0):
-    i = "\n" + level*"  "
-    if len(elem):
-        if not elem.text or not elem.text.strip():
-            elem.text = i + "  "
-        if not elem.tail or not elem.tail.strip():
-            elem.tail = i
-        for elem in elem:
-            indent(elem, level+1)
-        if not elem.tail or not elem.tail.strip():
-            elem.tail = i
-    else:
-        if level and (not elem.tail or not elem.tail.strip()):
-            elem.tail = i
-
-
-def goodify_wiki(url):
-    source = urlopen(url)
+def goodify_wiki(source):
+    # source = urlopen(url)
     root_element = convert_to_xml(source)
-
-    # indent(root_element)
-    # ElementTree.dump(root_element)
-
-    # make_outline(root_element)
-    # json_result = convert_to_json(root_element)
-
-    # json_result = convert_to_json2(root_element)
-
-    json_result = convert_to_json3(root_element)
-
-    print(json.dumps(json_result, indent=4, sort_keys=True, ensure_ascii=False))
-
+    json_result = elementtree_to_json(root_element)
     return json_result
 
 
 def main():
-    # Open from file
-    # source = open("css/GabrielTrain.html")
-    json_result = goodify_wiki("http://rest.wikimedia.org:80/en.wikipedia.org/v1/page/html/Train")
+    endpoint = "http://rest.wikimedia.org:80/en.wikipedia.org/v1/page/html/"
 
-    # print(json.dumps(json_result, indent=4, sort_keys=True, ensure_ascii=False))
+    parser = argparse.ArgumentParser(description="Convert a wikipedia page into OpenMind JSON format")
+    group = parser.add_mutually_exclusive_group()
+    group.add_argument("-t", "--title", help="title of the wikipedia article to process")
+    group.add_argument("-f", "--file", help="path to local HTML file")
+    args = parser.parse_args()
 
+    source = None
 
+    if not (args.title or args.file):
+        parser.print_help()
+        return
+
+    if args.title:
+        source = urlopen(endpoint + args.title)
+    elif args.file:
+        source = open(args.file)
+    else:
+        parser.error("hello world")
+
+    if source:
+        json_result = goodify_wiki(source)
+        print(json.dumps(json_result, indent=4, sort_keys=True, ensure_ascii=False))
 
 
 if __name__ == '__main__':
