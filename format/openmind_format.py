@@ -9,6 +9,8 @@ class SentenceFragment:
         self.tokens = list() if parts is None else parts
         self.indent = indent
 
+    # TODO: current JSON format has a single string instead of tokens, but I think we should have tokens
+
     def __repr__(self):
         str_val = self.tokens[0] if len(self.tokens) == 1 else ' '.join(self.tokens)
         return ' ' * self.indent + str_val
@@ -21,6 +23,10 @@ class SentenceFragment:
 
     def len(self):
         return len(self.tokens)
+
+    @staticmethod
+    def fromDict(dict_object):
+        return SentenceFragment(indent=dict_object["indent"], parts=dict_object["tokens"])
 
     def __eq__(self, other):
         if isinstance(other, self.__class__):
@@ -56,8 +62,7 @@ class Sentence:
     def fromDict(dict_object):
         return Sentence(H1=dict_object["H1"], H2=dict_object["H2"], H3=dict_object["H3"],
                         H4=dict_object["H4"], H5=dict_object["H5"], numwords=dict_object["numwords"],
-                        sentence_parts=[SentenceFragment(indent=part["indent"], parts=part["tokens"])
-                                        for part in dict_object["sentence_parts"]])
+                        sentence_parts=[SentenceFragment.fromDict(part) for part in dict_object["sentence_parts"]])
 
     def __eq__(self, other):
         if isinstance(other, self.__class__):
@@ -81,6 +86,21 @@ class Document:
 
     def __repr__(self):
         return "\n".join([str(sentence) for sentence in self.sentences])
+
+    @staticmethod
+    def fromDict(dict_object):
+        return Document(title=dict_object["a_title"], numsentences=dict_object["num_sentences"],
+                        numwords=dict_object["num_words"],
+                        sentences=[Sentence.fromDict(part) for part in dict_object["sentences"]])
+
+    def __eq__(self, other):
+        if isinstance(other, self.__class__):
+            return self.__dict__ == other.__dict__
+        else:
+            return False
+
+    def __ne__(self, other):
+        return not self.__eq__(other)
 
 
 # JSON encoding #######################################################################################################
