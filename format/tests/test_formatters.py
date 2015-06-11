@@ -1,8 +1,10 @@
+import json
 import unittest
 
 from nltk import Tree
 
 from formatters import StupidVstfFormatter
+from openmind_format import Sentence, SentenceEncoder
 
 
 __author__ = 'beth'
@@ -14,7 +16,6 @@ class StupidVstfFormatterTest(unittest.TestCase):
                                              Tree('NP', [Tree('PRP$', ['My']), Tree('NN', ['name'])]),
                                              Tree('VP', [Tree('VBZ', ['is']), Tree('ADJP', [Tree('JJ', ['Melroy'])])]),
                                              Tree('.', ['.'])])])
-        formatter = StupidVstfFormatter(4)
 
     def runTest(self):
         formatter = StupidVstfFormatter(4)
@@ -34,3 +35,7 @@ class StupidVstfFormatterTest(unittest.TestCase):
         for sentence_fragment in result:
             self.assertTrue(sentence_fragment.len() <= 1)
             print(sentence_fragment)
+
+        formatter = StupidVstfFormatter(4)
+        print(json.dumps(Sentence(H1="Sentence heading", sentence_parts=formatter.format(self.tree)),
+                         cls=SentenceEncoder, indent=4))

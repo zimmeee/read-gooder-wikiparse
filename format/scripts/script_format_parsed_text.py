@@ -2,14 +2,14 @@
 created by noah on 5/22/15
 edited by beth on 6/11/15
 """
-
+import json
 import sys
 import os
 
 from nltk.parse import stanford
 
 from formatters import StupidVstfFormatter
-from openmind_format import Sentence
+from openmind_format import Sentence, SentenceEncoder
 
 
 def demo_stanford_parser(formatter):
@@ -31,6 +31,7 @@ def demo_stanford_parser(formatter):
             result = formatter.format(sentence_tree)
             sentence = Sentence(H1="Headline", sentence_parts=result)
             print(sentence)
+            print(json.dumps(sentence, cls=SentenceEncoder, indent=4))
 
 
 def main():

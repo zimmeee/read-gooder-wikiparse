@@ -50,7 +50,7 @@ class StupidVstfFormatter(TreeFormatter):
             if string_token in string.punctuation:
                 part.append(string_token)
                 result.append(part)
-                depth += 1
+                depth = 1  # only the very first line in the sentence is flush left; the rest are at depth = 1
                 part = SentenceFragment(indent=depth * 2)
             elif part.len() >= self.max_words_per_part:
                 result.append(part)
