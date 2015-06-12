@@ -9,8 +9,6 @@ class SentenceFragment:
         self.tokens = list() if parts is None else parts
         self.indent = indent
 
-    # TODO: current JSON format has a single string instead of tokens, but I think we should have tokens
-
     def __repr__(self):
         str_val = self.tokens[0] if len(self.tokens) == 1 else ' '.join(self.tokens)
         return ' ' * self.indent + str_val
@@ -123,3 +121,13 @@ class SentenceEncoder(JSONEncoder):
         serialized_sentence["sentence_parts"] = [sf_encoder.default(fragment)
                                                  for fragment in obj.sentence_parts]
         return serialized_sentence
+
+
+class DocumentEncoder(JSONEncoder):
+    def default(self, obj):
+        if not isinstance(obj, Document):
+            raise Exception("Cannot use this encoder to encode non-Document class.")
+        serialized_document = {"title": obj.title, "numsentences": obj.numsentences, "numwords": obj.numwords}
+        sent_encoder = SentenceEncoder()  # for serializing individual sentences
+        serialized_document["sentences"] = [sent_encoder.default(sentence) for sentence in obj.sentences]
+        return serialized_document
