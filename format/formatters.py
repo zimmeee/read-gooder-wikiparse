@@ -35,7 +35,7 @@ class StringFormatter(Formatter):
 
 
 # naive implementation of vstf: trees are flattened and returned as lists of SentenceFragment objects
-class StupidVstfFormatter(TreeFormatter):
+class StupidVstfTreeFormatter(TreeFormatter):
     def __init__(self, max_words_per_part):
         self.max_words_per_part = max_words_per_part
 
@@ -59,5 +59,24 @@ class StupidVstfFormatter(TreeFormatter):
                 part.append(string_token)
             else:
                 part.append(string_token)
+
+        return result
+
+
+# every constituent in the parse is returned in order of size as a SentenceFragment
+class ConstituentTreeFormatter(TreeFormatter):
+    def format(self, inputTree):
+        # set max height
+        max_height = 0
+        for subtree in inputTree.subtrees():
+            if subtree.height() > max_height:
+                max_height = subtree.height()
+
+        # get constituents
+        result = []
+
+        for height in range(max_height):
+            for subtree in inputTree.subtrees(lambda t: t.height() == height):
+                result.append(SentenceFragment(indent=0, tokens=subtree.leaves()))
 
         return result

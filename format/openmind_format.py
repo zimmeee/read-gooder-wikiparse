@@ -5,8 +5,8 @@ __author__ = 'beth'
 
 
 class SentenceFragment:
-    def __init__(self, indent=0, parts=None):
-        self.tokens = list() if parts is None else parts
+    def __init__(self, indent=0, tokens=None):
+        self.tokens = list() if tokens is None else tokens
         self.indent = indent
 
     def __repr__(self):
@@ -24,7 +24,7 @@ class SentenceFragment:
 
     @staticmethod
     def fromDict(dict_object):
-        return SentenceFragment(indent=dict_object["indent"], parts=dict_object["tokens"])
+        return SentenceFragment(indent=dict_object["indent"], tokens=dict_object["tokens"])
 
     def __eq__(self, other):
         if isinstance(other, self.__class__):
@@ -79,7 +79,7 @@ class Document:
         self.numwords = numwords
         for sentence in sentences:
             if not isinstance(sentence, Sentence):
-                raise Exception("This thing is not a sentence, asshole: " + str(sentence))
+                raise Exception("This thing is not a sentence: " + str(sentence))
         self.sentences = sentences
 
     def __repr__(self):
@@ -103,7 +103,7 @@ class Document:
 
 # JSON encoding #######################################################################################################
 
-class SentenceFragmentEncoder(JSONEncoder):
+class SentenceFragmentJSONEncoder(JSONEncoder):
     def default(self, obj):
         if not isinstance(obj, SentenceFragment):
             raise Exception("Cannot use this encoder to encode non-SentenceFragment class.")
@@ -111,23 +111,23 @@ class SentenceFragmentEncoder(JSONEncoder):
         return serialized_fragment
 
 
-class SentenceEncoder(JSONEncoder):
+class SentenceJSONEncoder(JSONEncoder):
     def default(self, obj):
         if not isinstance(obj, Sentence):
             raise Exception("Cannot use this encoder to encode non-Sentence class.")
         serialized_sentence = {"H1": obj.H1, "H2": obj.H2, "H3": obj.H3, "H4": obj.H4, "H5": obj.H5,
                                "numwords": obj.numwords}
-        sf_encoder = SentenceFragmentEncoder()  # for serializing individual sentence fragments
+        sf_encoder = SentenceFragmentJSONEncoder()  # for serializing individual sentence fragments
         serialized_sentence["sentence_parts"] = [sf_encoder.default(fragment)
                                                  for fragment in obj.sentence_parts]
         return serialized_sentence
 
 
-class DocumentEncoder(JSONEncoder):
+class DocumentJSONEncoder(JSONEncoder):
     def default(self, obj):
         if not isinstance(obj, Document):
             raise Exception("Cannot use this encoder to encode non-Document class.")
         serialized_document = {"title": obj.title, "numsentences": obj.numsentences, "numwords": obj.numwords}
-        sent_encoder = SentenceEncoder()  # for serializing individual sentences
+        sent_encoder = SentenceJSONEncoder()  # for serializing individual sentences
         serialized_document["sentences"] = [sent_encoder.default(sentence) for sentence in obj.sentences]
         return serialized_document

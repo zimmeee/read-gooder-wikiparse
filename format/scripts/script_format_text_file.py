@@ -9,8 +9,8 @@ import os
 from nltk.parse import stanford
 from nltk.tokenize import sent_tokenize
 
-from formatters import StupidVstfFormatter
-from openmind_format import Sentence, Document, DocumentEncoder
+from formatters import ConstituentTreeFormatter
+from openmind_format import Sentence, Document, DocumentJSONEncoder
 
 
 if __name__ == '__main__':
@@ -27,7 +27,9 @@ if __name__ == '__main__':
 
     parsed_sentences = parser.raw_parse_sents(sentences)
 
-    formatter = StupidVstfFormatter(4)  # vstf formatter with max 4 words per line
+    # TODO: put this in config file
+    # formatter = StupidVstfTreeFormatter(4)  # vstf formatter with max 4 words per line
+    formatter = ConstituentTreeFormatter()
 
     # take all parsed sentences and format them according to the desired formatter
     sentence_list = []
@@ -43,6 +45,6 @@ if __name__ == '__main__':
     document = Document(title=text_file, numsentences=len(sentence_list), numwords=total_words, sentences=sentence_list)
 
     fout = open(sys.argv[2], "w")
-    fout.write(json.dumps(document, cls=DocumentEncoder, indent=4))
+    fout.write(json.dumps(document, cls=DocumentJSONEncoder, indent=4))
     fout.flush()
     fout.close()

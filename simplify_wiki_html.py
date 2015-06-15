@@ -23,7 +23,7 @@ from nltk import word_tokenize
 from nltk import sent_tokenize
 from nltk.tokenize import WhitespaceTokenizer
 
-
+# TODO: update to python 3
 
 HTML_SECTION_HEADERS = ["h2", "h3", "h4", "h5"]
 HTML_PARAGRAPH = 'p'

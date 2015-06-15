@@ -5,6 +5,9 @@ Process the text output of a wikipedia dump
 
 created by noah on 4/15/15
 """
+
+# TODO: update to python 3
+
 import sys
 import json
 

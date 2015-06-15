@@ -3,8 +3,8 @@ import unittest
 
 from nltk import Tree
 
-from formatters import StupidVstfFormatter
-from openmind_format import Sentence, SentenceEncoder
+from formatters import StupidVstfTreeFormatter
+from openmind_format import Sentence, SentenceJSONEncoder
 
 
 __author__ = 'beth'
@@ -18,24 +18,24 @@ class StupidVstfFormatterTest(unittest.TestCase):
                                              Tree('.', ['.'])])])
 
     def runTest(self):
-        formatter = StupidVstfFormatter(4)
+        formatter = StupidVstfTreeFormatter(4)
         result = formatter.format(self.tree)
         for sentence_fragment in result:
             self.assertTrue(sentence_fragment.len() <= 4)
             print(sentence_fragment)
 
-        formatter = StupidVstfFormatter(2)
+        formatter = StupidVstfTreeFormatter(2)
         result = formatter.format(self.tree)
         for sentence_fragment in result:
             self.assertTrue(sentence_fragment.len() <= 2)
             print(sentence_fragment)
 
-        formatter = StupidVstfFormatter(1)
+        formatter = StupidVstfTreeFormatter(1)
         result = formatter.format(self.tree)
         for sentence_fragment in result:
             self.assertTrue(sentence_fragment.len() <= 1)
             print(sentence_fragment)
 
-        formatter = StupidVstfFormatter(4)
+        formatter = StupidVstfTreeFormatter(4)
         print(json.dumps(Sentence(H1="Sentence heading", sentence_parts=formatter.format(self.tree)),
-                         cls=SentenceEncoder, indent=4))
+                         cls=SentenceJSONEncoder, indent=4))

@@ -8,8 +8,8 @@ import os
 
 from nltk.parse import stanford
 
-from formatters import StupidVstfFormatter
-from openmind_format import Sentence, SentenceEncoder
+from formatters import StupidVstfTreeFormatter
+from openmind_format import Sentence, SentenceJSONEncoder
 
 
 def demo_stanford_parser(formatter):
@@ -31,11 +31,11 @@ def demo_stanford_parser(formatter):
             result = formatter.format(sentence_tree)
             sentence = Sentence(H1="Headline", sentence_parts=result)
             print(sentence)
-            print(json.dumps(sentence, cls=SentenceEncoder, indent=4))
+            print(json.dumps(sentence, cls=SentenceJSONEncoder, indent=4))
 
 
 def main():
-    formatter = StupidVstfFormatter(4)  # vstf formatter with max 4 words per line
+    formatter = StupidVstfTreeFormatter(4)  # vstf formatter with max 4 words per line
     demo_stanford_parser(formatter)
 
 
