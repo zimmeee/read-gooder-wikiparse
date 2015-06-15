@@ -21,9 +21,8 @@ if __name__ == '__main__':
     os.environ['STANFORD_PARSER'] = '/Users/beth/Documents/openmind/stanford-parser-3.5.2'
     os.environ['STANFORD_MODELS'] = '/Users/beth/Documents/openmind/stanford-parser-3.5.2'
 
-    parser = stanford.StanfordParser(
-        model_path="/Users/beth/Documents/openmind/stanford-parser-3.5.2/models/edu/"
-                   "stanford/nlp/models/lexparser/englishPCFG.ser.gz")
+    parser = stanford.StanfordParser(model_path="/Users/beth/Documents/openmind/stanford-parser-3.5.2/models/edu/"
+                                                "stanford/nlp/models/lexparser/englishPCFG.ser.gz")
 
     parsed_sentences = parser.raw_parse_sents(sentences)
 
