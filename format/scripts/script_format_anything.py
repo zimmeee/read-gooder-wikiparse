@@ -9,7 +9,7 @@ import sys
 
 from nltk.parse import stanford
 
-from formatters import DefaultFormatter
+from formatters import LineLengthFormatter
 from openmind_format import DocumentJSONEncoder
 from raw_converters import WikiHtmlFileRawConverter
 
@@ -47,7 +47,8 @@ def main():
                    "stanford/nlp/models/lexparser/englishPCFG.ser.gz")
 
     # formatter = StupidVstfFormatter(4, stanfordParser)
-    formatter = DefaultFormatter()
+    # formatter = DefaultFormatter()
+    formatter = LineLengthFormatter(4)
     raw_converter = WikiHtmlFileRawConverter(formatter)
 
     if source:

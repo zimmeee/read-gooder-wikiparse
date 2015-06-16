@@ -4,6 +4,9 @@ created by beth on 6/11/15
 
 import string
 import abc
+from math import ceil
+
+from nltk import WhitespaceTokenizer
 
 from nltk.parse.stanford import StanfordParser
 
@@ -26,8 +29,30 @@ class DefaultFormatter(Formatter):
 
     def format(self, inputString):
         result = []
-        split_string = inputString.split()
-        result.append(SentenceFragment(indent=0, tokens=split_string, text=inputString))
+        tokens = WhitespaceTokenizer().tokenize(inputString)
+        result.append(SentenceFragment(indent=0, tokens=tokens, text=inputString))
+        return result
+
+
+# line length formatter
+# taken from Noah's original line_length_converter method in simplify_wiki_html
+class LineLengthFormatter(Formatter):
+    def __init__(self, line_length):
+        self.desired_line_length = line_length
+
+    def format(self, inputString):
+        result = []
+
+        words = WhitespaceTokenizer().tokenize(inputString)
+        num_words = len(words)
+
+        if num_words > 0:
+            num_sentence_parts = ceil(num_words / self.desired_line_length)
+
+            for i in range(0, num_sentence_parts):
+                start = i * self.desired_line_length
+                end = start + self.desired_line_length if start + self.desired_line_length < num_words else num_words
+                result.append(SentenceFragment(indent=0, text=' '.join(words[start:end]), tokens=words[start:end]))
         return result
 
 

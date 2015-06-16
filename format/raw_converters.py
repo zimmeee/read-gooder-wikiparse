@@ -5,11 +5,10 @@ import abc
 from copy import deepcopy
 from xml.etree import ElementTree
 import re
-from math import ceil
 
 from bs4 import BeautifulSoup
 from lxml import etree
-from nltk import sent_tokenize, WhitespaceTokenizer, OrderedDict
+from nltk import sent_tokenize, OrderedDict
 
 from formatters import Formatter
 from openmind_format import Document, Sentence, Paragraph, Section
@@ -21,7 +20,7 @@ class RawConverter:
             raise Exception("RawConverter: this is not a Formatter")
         self.formatter = sentence_formatter
 
-    def processRawSentences(self, raw_sentences, h1="", h2="", h3="", h4="", h5=""):
+    def processRawSentences(self, raw_sentences):
         sentences = []
         for raw_sentence in raw_sentences:
             sentence_fragments = self.formatter.format(raw_sentence)  # formatter can be of any recognized kind
@@ -157,25 +156,6 @@ class WikiHtmlFileRawConverter(RawConverter):
                 current_section.append(new_paragraph_section)
         return root_element
 
-    def line_length_tokenizer(self, sentence, length):
-        sentence_parts = list()
-        sentence_part = dict()
-        words = WhitespaceTokenizer().tokenize(sentence)
-        num_words = len(words)
-
-        if num_words > 0:
-            num_sentence_parts = ceil(num_words / length)
-
-            for i in range(0, num_sentence_parts):
-                start = i * length
-                end = start + length if start + length < num_words else num_words
-                sentence_part['indent'] = 0
-                sentence_part['text'] = ' '.join(words[start:end])
-                sentence_part['tokens'] = words[start:end]
-                sentence_parts.append(deepcopy(sentence_part))
-
-        return sentence_parts, num_words
-
     def tidy_text(self, text):
         tidy = text
 
@@ -187,6 +167,19 @@ class WikiHtmlFileRawConverter(RawConverter):
         tidy = citation_regex.sub("", tidy)
 
         return tidy
+
+    def apply_formatter(self, sentence):
+        sentence_part_list = self.formatter.format(sentence)
+        sentence_parts = list()
+        num_words = 0
+        for part in sentence_part_list:
+            sentence_part = dict()
+            sentence_part['indent'] = part.indent
+            sentence_part['tokens'] = part.tokens
+            sentence_part['text'] = part.text
+            sentence_parts.append(sentence_part)
+            num_words += len(part.tokens)
+        return sentence_parts, num_words
 
     def parse_paragraph(self, paragraph):
         jparagraph = dict()
@@ -201,7 +194,7 @@ class WikiHtmlFileRawConverter(RawConverter):
             for sentence in sentences:
                 # Clean the sentence
                 sentence = self.tidy_text(sentence)
-                jsentence_parts, num_words = self.line_length_tokenizer(sentence, 4)
+                jsentence_parts, num_words = self.apply_formatter(sentence)
                 jsentence["sentence_parts"] = deepcopy(jsentence_parts)
                 jsentence["num_words"] = num_words
                 jparagraph["sentences"].append(deepcopy(jsentence))
