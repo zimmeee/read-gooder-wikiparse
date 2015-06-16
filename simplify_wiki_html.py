@@ -4,26 +4,18 @@ created by noah on 4/30/15
 """
 import sys
 import argparse
-
-from bs4 import BeautifulSoup
 from collections import OrderedDict
+from urllib.request import urlopen
 from xml.etree import ElementTree
-from urllib2 import urlopen
-
 import re
 import json
-import string
-from pprint import pprint
-
 from copy import deepcopy
+from math import ceil
 
-import nltk
-import nltk.data
-from nltk import word_tokenize
+from bs4 import BeautifulSoup
 from nltk import sent_tokenize
 from nltk.tokenize import WhitespaceTokenizer
 
-# TODO: update to python 3
 
 HTML_SECTION_HEADERS = ["h2", "h3", "h4", "h5"]
 HTML_PARAGRAPH = 'p'
@@ -38,6 +30,7 @@ PARAGRAPHS = 'paragraphs'
 # Detect wikipedia style citations
 # for example: "[2] There are various"
 citation_regex = re.compile('\s*\[\d\]\s*')
+
 
 def element_level(element):
     level = None
@@ -65,7 +58,8 @@ def line_length_tokenizer(sentence, length):
     num_words = len(words)
 
     if num_words > 0:
-        num_sentence_parts = (num_words / length) if (num_words % length) == 0 else (num_words / length) + 1
+        num_sentence_parts = ceil(num_words / length)
+        print(num_sentence_parts)
 
         for i in range(0, num_sentence_parts):
             start = i * length
@@ -75,7 +69,6 @@ def line_length_tokenizer(sentence, length):
             sentence_parts.append(deepcopy(sentence_part))
 
     return sentence_parts, num_words
-
 
 
 def tidy_text(text):
@@ -132,20 +125,17 @@ def process_section(element, d):
 
 
 def process_outline(element, depth):
-
     for child in element:
         if child.tag == HTML_PARAGRAPH:
             continue
         elif child.tag == SECTION:
-            print '  '*depth + child.get(HTML_TITLE)
-            process_outline(child, depth+1)
+            print('  ' * depth + child.get(HTML_TITLE))
+            process_outline(child, depth + 1)
 
     return depth
 
 
-
 def elementtree_to_json(root):
-
     document = dict()
     document[HEADER] = root.get(HTML_TITLE)
     document[SECTION] = list()
@@ -155,7 +145,6 @@ def elementtree_to_json(root):
     # process_outline(root, 0)
 
     return document
-
 
 
 def convert_to_xml(source):

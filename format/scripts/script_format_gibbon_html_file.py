@@ -7,7 +7,7 @@ import os
 from lxml import etree
 from nltk import sent_tokenize
 from nltk.parse import stanford
-from formatters import ConstituentTreeFormatter
+from formatters import ConstituentFormatter
 from openmind_format import Sentence, Document, DocumentJSONEncoder
 
 
@@ -32,7 +32,7 @@ def parseFile(directory_name, file_name, htmlParser, my_sentence_list, my_total_
                                                 "stanford/nlp/models/lexparser/englishPCFG.ser.gz")
 
     parsed_sentences = parser.raw_parse_sents(sentences)
-    formatter = ConstituentTreeFormatter()
+    formatter = ConstituentFormatter()
 
     for line in parsed_sentences:
         for sentence_tree in line:
@@ -66,7 +66,7 @@ if __name__ == '__main__':
     output_file = open("/Users/beth/Documents/openmind/text-samples/gibbon-decline-and-fall/full-text-concatenated.txt",
                        "w")
 
-    document = Document(title="gibbon", numsentences=len(sentence_list), numwords=total_words, sentences=sentence_list)
+    document = Document(header="gibbon", numsentences=len(sentence_list), numwords=total_words, sentences=sentence_list)
 
     output_file.write(json.dumps(document, cls=DocumentJSONEncoder, indent=4))
     output_file.flush()

@@ -4,10 +4,76 @@ import string
 __author__ = 'beth'
 
 
+class Document:
+    def __init__(self, header=None, section=None):
+        self.header = header
+        self.section = section
+
+    def __repr__(self):
+        return "\n".join([str(s) for s in self.section])
+
+    @staticmethod
+    def fromDict(dict_object):
+        return Document(header=dict_object["header"] if "header" in dict_object else "",
+                        section=Section.fromDict(dict_object["section"]) if "section" in dict_object else None)
+
+    def __eq__(self, other):
+        if isinstance(other, self.__class__):
+            return self.__dict__ == other.__dict__
+        else:
+            return False
+
+    def __ne__(self, other):
+        return not self.__eq__(other)
+
+
+class Section:
+    def __init__(self, header=None, paragraphs=None, subsections=None):
+        self.header = header
+        self.paragraphs = paragraphs
+        self.subsections = subsections
+
+    @staticmethod
+    def fromDict(dict_object):
+        return Section(header=dict_object["header"] if "header" in dict_object else "",
+                       paragraphs=[Paragraph.fromDict(paragraph) for paragraph in dict_object["paragraphs"]]
+                       if "paragraphs" in dict_object else [],
+                       subsections=[Section.fromDict(s) for s in dict_object["section"]]
+                       if "section" in dict_object else None)
+
+    def __eq__(self, other):
+        if isinstance(other, self.__class__):
+            return self.__dict__ == other.__dict__
+        else:
+            return False
+
+    def __ne__(self, other):
+        return not self.__eq__(other)
+
+
+class Paragraph:
+    def __init__(self, sentences=None):
+        self.sentences = sentences
+
+    @staticmethod
+    def fromDict(dict_object):
+        return Paragraph(sentences=[Sentence.fromDict(sentence) for sentence in dict_object["sentences"]])
+
+    def __eq__(self, other):
+        if isinstance(other, self.__class__):
+            return self.__dict__ == other.__dict__
+        else:
+            return False
+
+    def __ne__(self, other):
+        return not self.__eq__(other)
+
+
 class SentenceFragment:
-    def __init__(self, indent=0, tokens=None):
+    def __init__(self, indent=0, tokens=None, text=None):
         self.tokens = list() if tokens is None else tokens
         self.indent = indent
+        self.text = text if text else None
 
     def __repr__(self):
         str_val = self.tokens[0] if len(self.tokens) == 1 else ' '.join(self.tokens)
@@ -24,7 +90,9 @@ class SentenceFragment:
 
     @staticmethod
     def fromDict(dict_object):
-        return SentenceFragment(indent=dict_object["indent"], tokens=dict_object["tokens"])
+        return SentenceFragment(indent=dict_object["indent"],
+                                tokens=dict_object["tokens"] if "tokens" in dict_object else None,
+                                text=dict_object["text"] if "text" in dict_object else None)
 
     def __eq__(self, other):
         if isinstance(other, self.__class__):
@@ -37,12 +105,7 @@ class SentenceFragment:
 
 
 class Sentence:
-    def __init__(self, H1="", H2="", H3="", H4="", H5="", numwords=0, sentence_parts=None):
-        self.H1 = H1
-        self.H2 = H2
-        self.H3 = H3
-        self.H4 = H4
-        self.H5 = H5
+    def __init__(self, numwords=0, sentence_parts=None):
         self.numwords = numwords
         if not sentence_parts:
             self.sentence_parts = []
@@ -52,44 +115,12 @@ class Sentence:
         self.sentence_parts = sentence_parts
 
     def __repr__(self):
-        headlines = "H1: " + self.H1 + "\n" + "H2: " + self.H2 + "\n" + "H3: " + self.H3 + "\n" + "H4: " + \
-                    self.H4 + "\n" + "H5: " + self.H5 + "\n"
-        return headlines + "\n".join([str(fragment) for fragment in self.sentence_parts]) + "\n"
+        return "Sentence: " + ",".join([str(fragment) for fragment in self.sentence_parts]) + "\n"
 
     @staticmethod
     def fromDict(dict_object):
-        return Sentence(H1=dict_object["H1"], H2=dict_object["H2"], H3=dict_object["H3"],
-                        H4=dict_object["H4"], H5=dict_object["H5"], numwords=dict_object["numwords"],
+        return Sentence(numwords=dict_object["num_words"],
                         sentence_parts=[SentenceFragment.fromDict(part) for part in dict_object["sentence_parts"]])
-
-    def __eq__(self, other):
-        if isinstance(other, self.__class__):
-            return self.__dict__ == other.__dict__
-        else:
-            return False
-
-    def __ne__(self, other):
-        return not self.__eq__(other)
-
-
-class Document:
-    def __init__(self, title=None, numsentences=None, numwords=None, sentences=None):
-        self.title = title
-        self.numsentences = numsentences
-        self.numwords = numwords
-        for sentence in sentences:
-            if not isinstance(sentence, Sentence):
-                raise Exception("This thing is not a sentence: " + str(sentence))
-        self.sentences = sentences
-
-    def __repr__(self):
-        return "\n".join([str(sentence) for sentence in self.sentences])
-
-    @staticmethod
-    def fromDict(dict_object):
-        return Document(title=dict_object["a_title"], numsentences=dict_object["num_sentences"],
-                        numwords=dict_object["num_words"],
-                        sentences=[Sentence.fromDict(part) for part in dict_object["sentences"]])
 
     def __eq__(self, other):
         if isinstance(other, self.__class__):
@@ -107,7 +138,7 @@ class SentenceFragmentJSONEncoder(JSONEncoder):
     def default(self, obj):
         if not isinstance(obj, SentenceFragment):
             raise Exception("Cannot use this encoder to encode non-SentenceFragment class.")
-        serialized_fragment = {"tokens": obj.tokens, "indent": obj.indent}
+        serialized_fragment = {"tokens": obj.tokens, "indent": obj.indent, "text": obj.text}
         return serialized_fragment
 
 
@@ -115,19 +146,43 @@ class SentenceJSONEncoder(JSONEncoder):
     def default(self, obj):
         if not isinstance(obj, Sentence):
             raise Exception("Cannot use this encoder to encode non-Sentence class.")
-        serialized_sentence = {"H1": obj.H1, "H2": obj.H2, "H3": obj.H3, "H4": obj.H4, "H5": obj.H5,
-                               "numwords": obj.numwords}
+        serialized_sentence = {"numwords": obj.numwords}
         sf_encoder = SentenceFragmentJSONEncoder()  # for serializing individual sentence fragments
         serialized_sentence["sentence_parts"] = [sf_encoder.default(fragment)
                                                  for fragment in obj.sentence_parts]
         return serialized_sentence
 
 
+class ParagraphJSONEncoder(JSONEncoder):
+    def default(self, obj):
+        if not isinstance(obj, Paragraph):
+            raise Exception("Cannot use this encoder to encode non-Paragraph class.")
+        serialized_paragraph = {}
+        sentence_encoder = SentenceJSONEncoder()  # for serializing individual sentences
+        serialized_paragraph["sentences"] = [sentence_encoder.default(fragment)
+                                             for fragment in obj.sentences]
+        return serialized_paragraph
+
+
+class SectionJSONEncoder(JSONEncoder):
+    def default(self, obj):
+        if not isinstance(obj, Section):
+            raise Exception("Cannot use this encoder to encode non-Section class.")
+        serialized_section = {"header": obj.header}
+        paragraph_encoder = ParagraphJSONEncoder()
+        subsection_encoder = SectionJSONEncoder()
+        serialized_section["paragraphs"] = [paragraph_encoder.default(fragment) for fragment in obj.paragraphs] \
+            if obj.paragraphs else None
+        serialized_section["section"] = [subsection_encoder.default(s) for s in
+                                         obj.subsections] if obj.subsections else None
+        return serialized_section
+
+
 class DocumentJSONEncoder(JSONEncoder):
     def default(self, obj):
         if not isinstance(obj, Document):
             raise Exception("Cannot use this encoder to encode non-Document class.")
-        serialized_document = {"title": obj.title, "numsentences": obj.numsentences, "numwords": obj.numwords}
-        sent_encoder = SentenceJSONEncoder()  # for serializing individual sentences
-        serialized_document["sentences"] = [sent_encoder.default(sentence) for sentence in obj.sentences]
+        serialized_document = {"header": obj.header}
+        sect_encoder = SectionJSONEncoder()  # for serializing individual sections
+        serialized_document["section"] = sect_encoder.default(obj.section)
         return serialized_document

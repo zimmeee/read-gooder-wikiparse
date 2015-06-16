@@ -3,7 +3,7 @@ import unittest
 
 from nltk import Tree
 
-from formatters import StupidVstfTreeFormatter
+from formatters import StupidVstfFormatter
 from openmind_format import Sentence, SentenceJSONEncoder
 
 
@@ -18,24 +18,24 @@ class StupidVstfFormatterTest(unittest.TestCase):
                                              Tree('.', ['.'])])])
 
     def runTest(self):
-        formatter = StupidVstfTreeFormatter(4)
+        formatter = StupidVstfFormatter(4)
         result = formatter.format(self.tree)
         for sentence_fragment in result:
             self.assertTrue(sentence_fragment.len() <= 4)
             print(sentence_fragment)
 
-        formatter = StupidVstfTreeFormatter(2)
+        formatter = StupidVstfFormatter(2)
         result = formatter.format(self.tree)
         for sentence_fragment in result:
             self.assertTrue(sentence_fragment.len() <= 2)
             print(sentence_fragment)
 
-        formatter = StupidVstfTreeFormatter(1)
+        formatter = StupidVstfFormatter(1)
         result = formatter.format(self.tree)
         for sentence_fragment in result:
             self.assertTrue(sentence_fragment.len() <= 1)
             print(sentence_fragment)
 
-        formatter = StupidVstfTreeFormatter(4)
+        formatter = StupidVstfFormatter(4)
         print(json.dumps(Sentence(H1="Sentence heading", sentence_parts=formatter.format(self.tree)),
                          cls=SentenceJSONEncoder, indent=4))

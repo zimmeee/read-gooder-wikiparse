@@ -3,7 +3,7 @@ import unittest
 
 from nltk import Tree
 
-from formatters import StupidVstfTreeFormatter
+from formatters import StupidVstfFormatter
 from openmind_format import Sentence, SentenceJSONEncoder
 
 
@@ -18,7 +18,7 @@ class StupidVstfFormatterEncodeDecodeTest(unittest.TestCase):
                                              Tree('.', ['.'])])])
 
     def runTest(self):
-        formatter = StupidVstfTreeFormatter(4)
+        formatter = StupidVstfFormatter(4)
         original_sentence = Sentence(H1="Sentence heading", sentence_parts=formatter.format(self.tree))
         original_as_string = json.dumps(original_sentence, cls=SentenceJSONEncoder, indent=4)
         retrieved_object = Sentence.fromDict(dict_object=json.loads(original_as_string))
