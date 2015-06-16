@@ -202,6 +202,16 @@ class WikiHtmlFileRawConverter(RawConverter):
 
         return jparagraph, total_words
 
+    def parseParagraph(self, paragraph_element):
+        paragraph = Paragraph()
+        paragraph.sentences = list()
+
+        if paragraph_element.text is not None:
+            sentences = sent_tokenize(paragraph_element.text)
+            paragraph.sentences = self.processRawSentences(sentences)  # uses formatter to process sentences
+
+        return paragraph
+
     def process_section(self, element, d):
         for child in element:
             if child.tag == self.HTML_PARAGRAPH:
@@ -222,6 +232,26 @@ class WikiHtmlFileRawConverter(RawConverter):
 
         return d
 
+    def processSection(self, element, section):
+        for child in element:
+            if child.tag == self.HTML_PARAGRAPH:
+                paragraph = self.parseParagraph(child)
+                if not section.paragraphs:
+                    section.paragraphs = list()
+                section.paragraphs.append(paragraph)
+            elif child.tag == self.SECTION:
+                section_title = child.get(self.HTML_TITLE)
+                new_section = Section()
+                new_section.header = section_title
+                new_section = self.processSection(child, new_section)
+
+                if not section.subsections:
+                    section.subsections = list()
+
+                section.subsections.append(new_section)
+
+        return section
+
     def elementtree_to_json(self, root):
         document = dict()
         document[self.HEADER] = root.get(self.HTML_TITLE)
@@ -230,7 +260,16 @@ class WikiHtmlFileRawConverter(RawConverter):
 
         return document
 
+    def elementTreeToDocument(self, root):
+        document = Document()
+        document.header = root.get(self.HTML_TITLE)
+        document.section = self.processSection(root, Section())
+
+        return document
+
     def convertToDocument(self, rawHtml, doc_title):
         root_element = self.convert_to_xml(rawHtml)
-        doc = Document.fromDict(self.elementtree_to_json(root_element))
+        doc = Document.fromDict(self.elementtree_to_json(root_element))  # ignore this
+        # TODO: want to convert directly to Document
+        doc = self.elementTreeToDocument(root_element)
         return doc
