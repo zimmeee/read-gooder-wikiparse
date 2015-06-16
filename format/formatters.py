@@ -96,26 +96,53 @@ class StupidVstfSentenceFormatter(SentenceFormatter):
 
 
 # every constituent in the parse is returned in order of size as a SentenceFragment
-class ConstituentSentenceFormatter(SentenceFormatter):
-    def __init__(self, parser):
+class ConstituentHeightSentenceFormatter(SentenceFormatter):
+    def __init__(self, parser, constituent_height=None):
         if not isinstance(parser, StanfordParser):
-            raise Exception("StupidVstfFormatter: Argument for parser is not a StanfordParser object.")
+            raise Exception("ConstituentSentenceFormatter: Argument for parser is not a StanfordParser object.")
         self.parser = parser  # converts string to tree
+        self.constituent_height = constituent_height
 
     def format(self, inputString):
-        inputTree = self.parser.parse(inputString)
-
-        # set max height
-        max_height = 0
-        for subtree in inputTree.subtrees():
-            if subtree.height() > max_height:
-                max_height = subtree.height()
-
-        # get constituents
+        # parse the sentence into a tree
+        inputTrees = self.parser.raw_parse(inputString)
         result = []
 
-        for height in range(max_height):
-            for subtree in inputTree.subtrees(lambda t: t.height() == height):
-                result.append(SentenceFragment(indent=0, tokens=subtree.leaves()))
+        for treeSet in inputTrees:
+            for tree in treeSet:
+                # if no constituent height set, take all constituents in order of height
+                if not self.constituent_height:
+                    max_height = 0
+                    for subtree in tree.subtrees():
+                        if subtree.height() > max_height:
+                            max_height = subtree.height()
+                    for height in range(max_height):
+                        for subtree in tree.subtrees(lambda t: t.height() == height):
+                            result.append(SentenceFragment(indent=subtree.height(), tokens=subtree.leaves(),
+                                                           text=' '.join(subtree.leaves())))
+                else:
+                    for subtree in tree.subtrees(lambda t: t.height() == self.constituent_height):
+                        result.append(SentenceFragment(indent=subtree.height(), tokens=subtree.leaves(),
+                                                       text=' '.join(subtree.leaves())))
+        return result
 
+
+# only constituents of a certain length in tokens are returned
+class ConstituentTokenLengthSentenceFormatter(SentenceFormatter):
+    def __init__(self, parser, min_length=0, max_length=20):
+        if not isinstance(parser, StanfordParser):
+            raise Exception("ConstituentSentenceFormatter: Argument for parser is not a StanfordParser object.")
+        self.parser = parser  # converts string to tree
+        self.min_length = min_length
+        self.max_length = max_length
+
+    def format(self, inputString):
+        inputTrees = self.parser.raw_parse(inputString)
+        result = []
+
+        for treeSet in inputTrees:
+            for tree in treeSet:
+                for subtree in tree.subtrees(lambda t: self.min_length <= len(t.leaves()) <= self.max_length):
+                    result.append(SentenceFragment(indent=len(subtree.leaves()), tokens=subtree.leaves(),
+                                                   text=' '.join(subtree.leaves())))
         return result

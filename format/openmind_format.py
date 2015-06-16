@@ -144,7 +144,12 @@ class SentenceFragmentJSONEncoder(JSONEncoder):
     def default(self, obj):
         if not isinstance(obj, SentenceFragment):
             raise Exception("Cannot use this encoder to encode non-SentenceFragment class.")
-        serialized_fragment = {"tokens": obj.tokens, "indent": obj.indent, "text": obj.text}
+        serialized_fragment = {}
+        if obj.tokens:
+            serialized_fragment["tokens"] = obj.tokens
+        serialized_fragment["indent"] = obj.indent
+        if obj.text:
+            serialized_fragment["text"] = obj.text
         return serialized_fragment
 
 
@@ -152,10 +157,11 @@ class SentenceJSONEncoder(JSONEncoder):
     def default(self, obj):
         if not isinstance(obj, Sentence):
             raise Exception("Cannot use this encoder to encode non-Sentence class.")
-        serialized_sentence = {"numwords": obj.numwords}
-        sf_encoder = SentenceFragmentJSONEncoder()  # for serializing individual sentence fragments
-        serialized_sentence["sentence_parts"] = [sf_encoder.default(fragment)
-                                                 for fragment in obj.sentence_parts]
+        serialized_sentence = {}
+        if obj.sentence_parts:
+            sf_encoder = SentenceFragmentJSONEncoder()  # for serializing individual sentence fragments
+            serialized_sentence["sentence_parts"] = [sf_encoder.default(fragment) for fragment in obj.sentence_parts]
+        serialized_sentence["numwords"] = obj.numwords
         return serialized_sentence
 
 
@@ -164,9 +170,9 @@ class ParagraphJSONEncoder(JSONEncoder):
         if not isinstance(obj, Paragraph):
             raise Exception("Cannot use this encoder to encode non-Paragraph class.")
         serialized_paragraph = {}
-        sentence_encoder = SentenceJSONEncoder()  # for serializing individual sentences
-        serialized_paragraph["sentences"] = [sentence_encoder.default(fragment)
-                                             for fragment in obj.sentences]
+        if obj.sentences:
+            sentence_encoder = SentenceJSONEncoder()  # for serializing individual sentences
+            serialized_paragraph["sentences"] = [sentence_encoder.default(sentence) for sentence in obj.sentences]
         return serialized_paragraph
 
 
@@ -174,13 +180,15 @@ class SectionJSONEncoder(JSONEncoder):
     def default(self, obj):
         if not isinstance(obj, Section):
             raise Exception("Cannot use this encoder to encode non-Section class.")
-        serialized_section = {"header": obj.header}
-        paragraph_encoder = ParagraphJSONEncoder()
-        subsection_encoder = SectionJSONEncoder()
-        serialized_section["paragraphs"] = [paragraph_encoder.default(fragment) for fragment in obj.paragraphs] \
-            if obj.paragraphs else None
-        serialized_section["section"] = [subsection_encoder.default(s) for s in
-                                         obj.subsections] if obj.subsections else None
+        serialized_section = {}
+        if obj.header:
+            serialized_section["header"] = obj.header
+        if obj.paragraphs:
+            paragraph_encoder = ParagraphJSONEncoder()
+            serialized_section["paragraphs"] = [paragraph_encoder.default(paragraph) for paragraph in obj.paragraphs]
+        if obj.subsections:
+            subsection_encoder = SectionJSONEncoder()
+            serialized_section["section"] = [subsection_encoder.default(subsection) for subsection in obj.subsections]
         return serialized_section
 
 
@@ -188,7 +196,10 @@ class DocumentJSONEncoder(JSONEncoder):
     def default(self, obj):
         if not isinstance(obj, Document):
             raise Exception("Cannot use this encoder to encode non-Document class.")
-        serialized_document = {"header": obj.header}
-        sect_encoder = SectionJSONEncoder()  # for serializing individual sections
-        serialized_document["section"] = sect_encoder.default(obj.section)
+        serialized_document = {}
+        if obj.header:
+            serialized_document["header"] = obj.header
+        if obj.section:
+            sect_encoder = SectionJSONEncoder()  # for serializing individual sections
+            serialized_document["section"] = sect_encoder.default(obj.section)
         return serialized_document
