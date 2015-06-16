@@ -1,4 +1,5 @@
 from json import JSONEncoder
+import json
 import string
 
 __author__ = 'beth'
@@ -10,7 +11,7 @@ class Document:
         self.section = section
 
     def __repr__(self):
-        return "\n".join([str(s) for s in self.section])
+        return json.dumps(self, cls=DocumentJSONEncoder, indent=4)
 
     @staticmethod
     def fromDict(dict_object):
@@ -32,6 +33,9 @@ class Section:
         self.header = header
         self.paragraphs = paragraphs
         self.subsections = subsections
+
+    def __repr__(self):
+        return json.dumps(self, cls=SectionJSONEncoder, indent=4)
 
     @staticmethod
     def fromDict(dict_object):
@@ -55,6 +59,9 @@ class Paragraph:
     def __init__(self, sentences=None):
         self.sentences = sentences
 
+    def __repr__(self):
+        return json.dumps(self, cls=ParagraphJSONEncoder, indent=4)
+
     @staticmethod
     def fromDict(dict_object):
         return Paragraph(sentences=[Sentence.fromDict(sentence) for sentence in dict_object["sentences"]])
@@ -76,8 +83,7 @@ class SentenceFragment:
         self.text = text if text else None
 
     def __repr__(self):
-        str_val = self.tokens[0] if len(self.tokens) == 1 else ' '.join(self.tokens)
-        return ' ' * self.indent + str_val
+        return json.dumps(self, cls=SentenceFragmentJSONEncoder, indent=4)
 
     def append(self, token):
         if token in string.punctuation and self.len() > 0:
@@ -115,7 +121,7 @@ class Sentence:
         self.sentence_parts = sentence_parts
 
     def __repr__(self):
-        return "Sentence: " + ",".join([str(fragment) for fragment in self.sentence_parts]) + "\n"
+        return json.dumps(self, cls=SentenceJSONEncoder, indent=4)
 
     @staticmethod
     def fromDict(dict_object):

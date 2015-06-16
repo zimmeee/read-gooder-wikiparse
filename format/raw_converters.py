@@ -191,7 +191,6 @@ class WikiHtmlFileRawConverter(RawConverter):
     def parse_paragraph(self, paragraph):
         jparagraph = dict()
         jparagraph["sentences"] = list()
-        jsentences = list()
         jsentence = dict()
 
         total_words = 0
@@ -241,5 +240,4 @@ class WikiHtmlFileRawConverter(RawConverter):
     def convertToDocument(self, rawHtml, doc_title):
         root_element = self.convert_to_xml(rawHtml)
         doc = Document.fromDict(self.elementtree_to_json(root_element))
-        doc.header = root_element.get(self.HTML_TITLE)
         return doc
