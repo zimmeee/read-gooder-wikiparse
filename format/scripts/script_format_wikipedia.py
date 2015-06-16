@@ -32,6 +32,8 @@ def main():
 
     arg_parser.add_argument("-p", "--stanford_parser_directory", help="directory of stanford parser jar")
     arg_parser.add_argument("-m", "--stanford_parser_models", help="directory for stanford parser model files")
+
+    arg_parser.add_argument("-o", "--output_file", help="output file for OpenMind JSON")
     args = arg_parser.parse_args()
 
     source = None
@@ -78,7 +80,10 @@ def main():
 
     if source:
         document = raw_converter.convertToDocument(source, doc_title)
-        print(json.dumps(document, cls=DocumentJSONEncoder, indent=4, sort_keys=True, ensure_ascii=False))
+        fout = open(args.output_file, "w")
+        fout.write(json.dumps(document, cls=DocumentJSONEncoder, indent=4, sort_keys=True, ensure_ascii=False))
+        fout.flush()
+        fout.close()
 
 
 if __name__ == '__main__':

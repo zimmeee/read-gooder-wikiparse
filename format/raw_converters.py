@@ -22,6 +22,9 @@ class RawConverter:
     def processRawSentences(self, raw_sentences):
         sentences = []
         for raw_sentence in raw_sentences:
+            print(raw_sentence)
+            if len(raw_sentence) <= 1:
+                continue  # mistake - empty sentence
             sentence_fragments = self.formatter.format(raw_sentence)  # formatter can be of any recognized kind
             total_words_this_sentence = 0
             for fragment in sentence_fragments:
