@@ -2,13 +2,12 @@
 created by beth on 6/15/15
 """
 import abc
-from copy import deepcopy
 from xml.etree import ElementTree
 import re
 
 from bs4 import BeautifulSoup
 from lxml import etree
-from nltk import sent_tokenize, OrderedDict
+from nltk import sent_tokenize
 
 from formatters import Formatter
 from openmind_format import Document, Sentence, Paragraph, Section
@@ -60,6 +59,7 @@ class GibbonHtmlFileRawConverter(RawConverter):
 
         text = []
         for child in root.iter('p', 'i', 'h2'):
+            # TODO: this is extremely ghetto - need to make better, like wiki file converter
             if not child.text:
                 continue
             text.append(child.text)
@@ -92,7 +92,7 @@ class WikiHtmlFileRawConverter(RawConverter):
         self.citation_regex = re.compile('\s*\[\d\]\s*')
 
     @staticmethod
-    def element_level(element):
+    def elementLevel(element):
         level = None
         try:
             level = element.tag[re.search('\d', element.tag).start()]
@@ -100,13 +100,13 @@ class WikiHtmlFileRawConverter(RawConverter):
             pass
         return level
 
-    def is_subsection(self, element1, element2):
+    def isSubSection(self, element1, element2):
         return int(element1.get(self.LEVEL)) > int(element2.get(self.LEVEL))
 
-    def is_sibsection(self, element1, element2):
+    def isSibSection(self, element1, element2):
         return int(element1.get(self.LEVEL)) == int(element2.get(self.LEVEL))
 
-    def convert_to_xml(self, source):
+    def convertToXml(self, source):
         outline_stack = []
         root_element = None
 
@@ -120,17 +120,17 @@ class WikiHtmlFileRawConverter(RawConverter):
                 # Entered a new section
                 parent_section = None
                 current_section = outline_stack.pop()
-                new_section = ElementTree.Element(self.SECTION, {self.LEVEL: self.element_level(elem),
+                new_section = ElementTree.Element(self.SECTION, {self.LEVEL: self.elementLevel(elem),
                                                                  self.HTML_TITLE: elem.text.strip()})
 
-                if self.is_subsection(new_section, current_section):
+                if self.isSubSection(new_section, current_section):
                     parent_section = current_section
                 else:
                     while outline_stack:
                         parent_section = outline_stack.pop()
 
-                        if self.is_sibsection(parent_section, new_section) or \
-                                self.is_subsection(parent_section, new_section):
+                        if self.isSibSection(parent_section, new_section) or \
+                                self.isSubSection(parent_section, new_section):
                             continue
                         else:
                             break
@@ -156,7 +156,7 @@ class WikiHtmlFileRawConverter(RawConverter):
                 current_section.append(new_paragraph_section)
         return root_element
 
-    def tidy_text(self, text):
+    def tidyText(self, text):
         tidy = text
 
         # Detect wikipedia style citations
@@ -168,40 +168,6 @@ class WikiHtmlFileRawConverter(RawConverter):
 
         return tidy
 
-    def apply_formatter(self, sentence):
-        sentence_part_list = self.formatter.format(sentence)
-        sentence_parts = list()
-        num_words = 0
-        for part in sentence_part_list:
-            sentence_part = dict()
-            sentence_part['indent'] = part.indent
-            sentence_part['tokens'] = part.tokens
-            sentence_part['text'] = part.text
-            sentence_parts.append(sentence_part)
-            num_words += len(part.tokens)
-        return sentence_parts, num_words
-
-    def parse_paragraph(self, paragraph):
-        jparagraph = dict()
-        jparagraph["sentences"] = list()
-        jsentence = dict()
-
-        total_words = 0
-
-        if paragraph.text is not None:
-            sentences = sent_tokenize(paragraph.text)
-
-            for sentence in sentences:
-                # Clean the sentence
-                sentence = self.tidy_text(sentence)
-                jsentence_parts, num_words = self.apply_formatter(sentence)
-                jsentence["sentence_parts"] = deepcopy(jsentence_parts)
-                jsentence["num_words"] = num_words
-                jparagraph["sentences"].append(deepcopy(jsentence))
-                total_words += num_words
-
-        return jparagraph, total_words
-
     def parseParagraph(self, paragraph_element):
         paragraph = Paragraph()
         paragraph.sentences = list()
@@ -211,26 +177,6 @@ class WikiHtmlFileRawConverter(RawConverter):
             paragraph.sentences = self.processRawSentences(sentences)  # uses formatter to process sentences
 
         return paragraph
-
-    def process_section(self, element, d):
-        for child in element:
-            if child.tag == self.HTML_PARAGRAPH:
-                sentences, num_words = self.parse_paragraph(child)
-                if self.PARAGRAPHS not in d:
-                    d[self.PARAGRAPHS] = list()
-                d[self.PARAGRAPHS].append(sentences)
-            elif child.tag == self.SECTION:
-                section_title = child.get(self.HTML_TITLE)
-                new_section = OrderedDict()
-                new_section[self.HEADER] = section_title
-                new_section = self.process_section(child, new_section)
-
-                if self.SECTION not in d:
-                    d[self.SECTION] = list()
-
-                d[self.SECTION].append(new_section)
-
-        return d
 
     def processSection(self, element, section):
         for child in element:
@@ -252,24 +198,6 @@ class WikiHtmlFileRawConverter(RawConverter):
 
         return section
 
-    def elementtree_to_json(self, root):
-        document = dict()
-        document[self.HEADER] = root.get(self.HTML_TITLE)
-        document[self.SECTION] = list()
-        document[self.SECTION] = self.process_section(root, OrderedDict())
-
-        return document
-
-    def elementTreeToDocument(self, root):
-        document = Document()
-        document.header = root.get(self.HTML_TITLE)
-        document.section = self.processSection(root, Section())
-
-        return document
-
     def convertToDocument(self, rawHtml, doc_title):
-        root_element = self.convert_to_xml(rawHtml)
-        doc = Document.fromDict(self.elementtree_to_json(root_element))  # ignore this
-        # TODO: want to convert directly to Document
-        doc = self.elementTreeToDocument(root_element)
-        return doc
+        root_element = self.convertToXml(rawHtml)
+        return Document(header=root_element.get(self.HTML_TITLE), section=self.processSection(root_element, Section()))
