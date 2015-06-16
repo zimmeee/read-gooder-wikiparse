@@ -9,13 +9,13 @@ from bs4 import BeautifulSoup
 from lxml import etree
 from nltk import sent_tokenize
 
-from formatters import Formatter
+from formatters import SentenceFormatter
 from openmind_format import Document, Sentence, Paragraph, Section
 
 
 class RawConverter:
     def __init__(self, sentence_formatter):
-        if not isinstance(sentence_formatter, Formatter):
+        if not isinstance(sentence_formatter, SentenceFormatter):
             raise Exception("RawConverter: this is not a Formatter")
         self.formatter = sentence_formatter
 
@@ -31,9 +31,7 @@ class RawConverter:
         return sentences
 
     @abc.abstractmethod
-    def convertToDocument(self, rawTextOrHtml, doc_title):
-        if not isinstance(rawTextOrHtml, str):
-            raise Exception("This is not raw document text or html: " + str(rawTextOrHtml))
+    def convertToDocument(self, source, doc_title):
         return
 
 

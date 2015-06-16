@@ -13,7 +13,7 @@ from nltk.parse.stanford import StanfordParser
 from openmind_format import SentenceFragment
 
 
-class Formatter(object):
+class SentenceFormatter(object):
     @abc.abstractmethod
     # returns a list of SentenceFragment objects
     def format(self, inputString):
@@ -22,8 +22,8 @@ class Formatter(object):
         return
 
 
-# most basic formatter
-class DefaultFormatter(Formatter):
+# most basic formatter - there is just one part, and it is the entire sentence
+class DefaultSentenceFormatter(SentenceFormatter):
     def __init__(self):
         return
 
@@ -36,7 +36,7 @@ class DefaultFormatter(Formatter):
 
 # line length formatter
 # taken from Noah's original line_length_converter method in simplify_wiki_html
-class LineLengthFormatter(Formatter):
+class LineLengthSentenceFormatter(SentenceFormatter):
     def __init__(self, line_length):
         self.desired_line_length = line_length
 
@@ -57,7 +57,7 @@ class LineLengthFormatter(Formatter):
 
 
 # naive implementation of vstf: trees are flattened and returned as lists of SentenceFragment objects
-class StupidVstfFormatter(Formatter):
+class StupidVstfSentenceFormatter(SentenceFormatter):
     def __init__(self, max_words_per_part, parser):
         self.max_words_per_part = max_words_per_part
         if not isinstance(parser, StanfordParser):
@@ -79,10 +79,12 @@ class StupidVstfFormatter(Formatter):
                 for string_token in tree.flatten():
                     if string_token in string.punctuation:
                         part.append(string_token)
+                        part.text = ' '.join(part.tokens)
                         result.append(part)
                         depth = 1  # only the very first line in the sentence is flush left; the rest are at depth = 1
                         part = SentenceFragment(indent=depth * 2)
                     elif part.len() >= self.max_words_per_part:
+                        part.text = ' '.join(part.tokens)
                         result.append(part)
                         depth += 1
                         part = SentenceFragment(indent=depth * 2)
@@ -94,7 +96,7 @@ class StupidVstfFormatter(Formatter):
 
 
 # every constituent in the parse is returned in order of size as a SentenceFragment
-class ConstituentFormatter(Formatter):
+class ConstituentSentenceFormatter(SentenceFormatter):
     def __init__(self, parser):
         if not isinstance(parser, StanfordParser):
             raise Exception("StupidVstfFormatter: Argument for parser is not a StanfordParser object.")

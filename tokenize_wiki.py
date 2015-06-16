@@ -4,22 +4,20 @@ Process the text output of a wikipedia dump
 - Generate automated reading comprehension questions
 
 created by noah on 4/15/15
+updated by beth on 6/15/15 (to python 3)
 """
-
-# TODO: update to python 3
 
 import sys
 import json
+import re
 
 from lxml import html
 from lxml import etree
 
-import json
-
-import re
 
 ROOT_LEVEL = 0
 MAX_LEVEL = 5
+
 
 class HtmlSection:
     tag = ''
@@ -38,14 +36,6 @@ class HtmlSection:
             self.level = ROOT_LEVEL
         else:
             self.level = MAX_LEVEL
-
-    def __cmp__(self, other):
-        """
-        This has the OPPOSITE meaning than you might think:
-        h2 is LOWER than h1 because it is a more minor section
-        """
-        # return cmp(other.level, self.level)
-        return cmp(self.level, other.level)
 
     def __str__(self):
         return '%s' % self.tag
@@ -69,6 +59,7 @@ H4_ELEMENT = HtmlSection(html.fromstring(H4))
 LI_ELEMENT = HtmlSection(html.fromstring(LI))
 SENT_ELEMENT = HtmlSection(html.fromstring(SENT))
 
+
 def clear_sections(section_headers, current_section):
     for key in section_headers:
         if key >= current_section:
@@ -80,7 +71,7 @@ def update_section(line, previous_section, section_headers):
     Update the section headers.
     When you enter a new section, the subsection headers below you in the outline
     should be set to None
-    :param section_header:
+    :param section_headers:
     :return:
     """
     try:
@@ -88,15 +79,15 @@ def update_section(line, previous_section, section_headers):
 
         new_section = HtmlSection(element)
 
-        if previous_section >= new_section:
+        if previous_section.level >= new_section.level:
             clear_sections(section_headers, new_section)
-            print 'Cleared sections below', new_section
+            print('Cleared sections below', new_section)
 
         section_headers[new_section] = new_section.text
 
     except etree.ParserError as e:
         # Generally this means we have reached the end of an article </doc>
-        print e
+        print(e)
         return None
 
     return new_section
@@ -119,7 +110,7 @@ def parse_article(input_file):
 
     with open(input_file) as file:
         # Skip the document information for now
-        file.next()
+        next(file)
         for line in file:
             line = line.strip()
 
@@ -127,18 +118,19 @@ def parse_article(input_file):
                 if line.startswith('<'):
                     current_section = update_section(line, current_section, section_headers)
                     if current_section is None:
-                        print 'Finished processing article'
+                        print('Finished processing article')
                         break
                 else:
                     encoded = build_json(section_headers, line)
-                    print encoded
+                    print(encoded)
+
 
 def create_article_outline(doc):
     """
     :param doc: An etree object containing the wikipedia article
     :return: A json object containing the article outline
     """
-    print "Creating article outline..."
+    print("Creating article outline...")
     root = doc.getroot()
 
     outline = []

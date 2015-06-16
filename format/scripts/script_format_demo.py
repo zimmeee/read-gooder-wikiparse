@@ -8,7 +8,7 @@ import os
 
 from nltk.parse import stanford
 
-from formatters import StupidVstfFormatter
+from formatters import StupidVstfSentenceFormatter
 from openmind_format import Sentence, SentenceJSONEncoder
 
 
@@ -33,7 +33,7 @@ def main():
         model_path="/Users/beth/Documents/openmind/stanford-parser-3.5.2/models/edu/"
                    "stanford/nlp/models/lexparser/englishPCFG.ser.gz")
 
-    formatter = StupidVstfFormatter(max_words_per_part=4, parser=parser)  # vstf formatter with max 4 words per line
+    formatter = StupidVstfSentenceFormatter(max_words_per_part=4, parser=parser)  # vstf formatter with max 4 words per line
     demo_stanford_parser(formatter)
 
 
