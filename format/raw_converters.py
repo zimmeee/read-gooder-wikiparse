@@ -157,6 +157,7 @@ class WikiHtmlFileRawConverter(RawConverter):
                 current_section.append(new_paragraph_section)
         return root_element
 
+    # TODO: need to call this somewhere
     def tidyText(self, text):
         tidy = text
 
