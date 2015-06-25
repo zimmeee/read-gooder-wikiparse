@@ -1,0 +1,38 @@
+Unity:
+	convert_class: [Basic|Fragment|Kindle]
+	x_pos: 0
+	y_pos: 0
+	z_pos: 100
+	font_size: 100
+	line_spacing: 0
+	text_container_width: 100
+	text_container_height: 100
+	buffer_size: 5000
+	auto_advance_speed: 0.2
+	alignment: [TopLeft|Baseline|BaselineJustified|BaselineLeft|BaselineRight|BottomJustified|BottomLeft|BottomRight|Center|Justified|Left|Midline|MidlineJustified|MidlineLeft|MidlineRight|Right|Top|TopJustified|TopLeft|TopRight]
+	color: white
+	kerning: true
+	font_name: ARIAL SDF
+	font_style: Normal
+	outline_color: gray
+	outline_width: 0.2
+	overflow_mode: [Overflow|Ellipsis|Masking|Page|ScrollRect|Truncate]
+	rotation_x: 0.0
+	rotation_y: 0.0
+	rotation_z: 0.0
+	rotation_w: 1.0
+	word_wrapping: true
+
+Document:
+	raw_converter: [Basic|Gibbon|Wiki]
+	sentence_formatter: [linelength|stupidvstf|constituentheight|constituentlength|default]
+	file: 
+	wiki_rest_endpoint: http://rest.wikimedia.org:80/en.wikipedia.org/v1/page/html/
+	wiki_article_title: Taylor_Swift
+	ntokens: 4
+	ntokensmin: 2
+	ntokensmax: 5
+	stanford_parser_directory: 
+	stanford_parser_models:
+	output_file: 
+
