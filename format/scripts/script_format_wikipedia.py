@@ -12,7 +12,7 @@ from nltk.parse import stanford
 from formatters import LineLengthSentenceFormatter, StupidVstfSentenceFormatter, DefaultSentenceFormatter, \
     ConstituentHeightSentenceFormatter, ConstituentTokenLengthSentenceFormatter
 from openmind_format import DocumentJSONEncoder
-from raw_converters import WikiHtmlFileRawConverter
+from raw_converters import WikiHtmlFileRawConverter, BasicTextFileRawConverter
 
 
 def main():
@@ -47,7 +47,7 @@ def main():
         source = urlopen(endpoint + args.title)
     elif args.file:
         doc_title = args.file
-        source = open(args.file)
+        source = open(args.file, 'r')
     else:
         arg_parser.error("hello world")
         doc_title = None
@@ -76,10 +76,13 @@ def main():
         formatter = DefaultSentenceFormatter()
 
     # get raw converter for wiki file
-    raw_converter = WikiHtmlFileRawConverter(formatter)
+    # raw_converter = WikiHtmlFileRawConverter(formatter)
+    raw_converter = BasicTextFileRawConverter(formatter)
 
     if source:
-        document = raw_converter.convertToDocument(source, doc_title)
+        text = source.read()
+        document = raw_converter.convertToDocument(text, doc_title)
+        # document = raw_converter.convertToDocument(source, doc_title)
         fout = open(args.output_file, "w")
         fout.write(json.dumps(document, cls=DocumentJSONEncoder, indent=4, sort_keys=True, ensure_ascii=False))
         fout.flush()
