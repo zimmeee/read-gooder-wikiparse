@@ -2,13 +2,13 @@
 
 created by noah on 6/29/15
 """
-import sys, os
+import sys
+import os
 import argparse
-import yaml
 import json
-
 from urllib.request import urlopen
 
+import yaml
 from nltk.parse import stanford
 
 from formatters import LineLengthSentenceFormatter, StupidVstfSentenceFormatter, DefaultSentenceFormatter, \
@@ -41,6 +41,7 @@ def sentenceformatter_factory(config, parser):
 
     return formatter
 
+
 def converter_factory(type, formatter):
     raw_converter = None
 
@@ -52,6 +53,7 @@ def converter_factory(type, formatter):
         raw_converter = WikiHtmlFileRawConverter(formatter)
 
     return raw_converter
+
 
 def main():
     arg_parser = argparse.ArgumentParser(description="Convert a text document into OpenMind JSON format")
@@ -67,13 +69,10 @@ def main():
 
         # Setup the Stanford parser
         if os.path.exists(config['stanford_parser_directory']) and \
-                os.path.exists(config['stanford_parser_models_directory']) and \
-                os.path.exists(os.path.join(config['stanford_parser_models_directory'],
-                                             config['stanford_parser_model'])):
+                os.path.exists(config['stanford_parser_models_directory']):
             os.environ['STANFORD_PARSER'] = config['stanford_parser_directory']
             os.environ['STANFORD_MODELS'] = config['stanford_parser_models_directory']
-            model_path = os.path.join(config['stanford_parser_models_directory'], config['stanford_parser_model'])
-            stanfordParser = stanford.StanfordParser(model_path=model_path)
+            stanfordParser = stanford.StanfordParser()
         else:
             print("Couldn't find Stanford parser")
             return

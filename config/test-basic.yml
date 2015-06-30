@@ -26,14 +26,13 @@ Unity:
 Document:
   raw_converter: Basic
   sentence_formatter: stupidvstf
-  file: ../../static/mcat-beth-pt7-1.txt
+  file: ../static/mcat-beth-pt7-1.txt
   wiki_rest_endpoint:
   wiki_article_title:
   ntokens: 4
   ntokensmin: 2
   ntokensmax: 5
-  stanford_parser_directory: /Applications/stanford-parser
-  stanford_parser_models_directory: /Applications/stanford-parser
-  stanford_parser_model: stanford-parser-3.5.2-models/edu/stanford/nlp/models/lexparser/englishPCFG.ser.gz
-  output_file: ../../output/mcat-beth-pt7-1.json
+  stanford_parser_directory: ../resources
+  stanford_parser_models_directory: ../resources
+  output_file: ../output/mcat-beth-pt7-1.json
 
