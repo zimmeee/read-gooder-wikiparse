@@ -23,6 +23,7 @@ class RawConverter:
         sentences = []
         for raw_sentence in raw_sentences:
             print(raw_sentence)
+
             if len(raw_sentence) <= 1:
                 continue  # mistake - empty sentence
             sentence_fragments = self.formatter.format(raw_sentence)  # formatter can be of any recognized kind
@@ -163,7 +164,7 @@ class WikiHtmlFileRawConverter(RawConverter):
 
         # Detect wikipedia style citations
         # for example: "[2] There are various"
-        citation_regex = re.compile('\s*\[\d\]\s*')
+        citation_regex = re.compile('\s*\[\d*\]\s*')
 
         # Remove citations
         tidy = citation_regex.sub("", tidy)
@@ -175,7 +176,9 @@ class WikiHtmlFileRawConverter(RawConverter):
         paragraph.sentences = list()
 
         if paragraph_element.text is not None:
-            sentences = sent_tokenize(paragraph_element.text)
+            # sentences = sent_tokenize(paragraph_element.text)
+            # Tidy up the wikipedia sentences
+            sentences = [self.tidyText(sentence) for sentence in sent_tokenize(paragraph_element.text)]
             paragraph.sentences = self.processRawSentences(sentences)  # uses formatter to process sentences
 
         return paragraph

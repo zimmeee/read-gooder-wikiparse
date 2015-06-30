@@ -26,12 +26,10 @@ def demo_stanford_parser(formatter):
 
 
 def main():
-    os.environ['STANFORD_PARSER'] = '/Users/beth/Documents/openmind/stanford-parser-3.5.2'
-    os.environ['STANFORD_MODELS'] = '/Users/beth/Documents/openmind/stanford-parser-3.5.2'
+    os.environ['STANFORD_PARSER'] = '/Applications/stanford-parser'
+    os.environ['STANFORD_MODELS'] = '/Applications/stanford-parser'
 
-    parser = stanford.StanfordParser(
-        model_path="/Users/beth/Documents/openmind/stanford-parser-3.5.2/models/edu/"
-                   "stanford/nlp/models/lexparser/englishPCFG.ser.gz")
+    parser = stanford.StanfordParser(model_path="/Applications/stanford-parser/stanford-parser-3.5.2-models/edu/stanford/nlp/models/lexparser/englishPCFG.ser.gz")
 
     formatter = StupidVstfSentenceFormatter(max_words_per_part=4, parser=parser)  # vstf formatter with max 4 words per line
     demo_stanford_parser(formatter)

@@ -1,0 +1,39 @@
+Unity:
+  convert_class: Basic
+  x_pos: 0
+  y_pos: 0
+  z_pos: 100
+  font_size: 100
+  line_spacing: 0
+  text_container_width: 100
+  text_container_height: 100
+  buffer_size: 5000
+  auto_advance_speed: 0.2
+  alignment: TopLeft
+  color: white
+  kerning: true
+  font_name: ARIAL SDF
+  font_style: Normal
+  outline_color: gray
+  outline_width: 0.2
+  overflow_mode: Overflow
+  rotation_x: 0.0
+  rotation_y: 0.0
+  rotation_z: 0.0
+  rotation_w: 1.0
+  word_wrapping: true
+
+Document:
+  raw_converter: Basic
+  sentence_formatter: stupidvstf
+  file: ../../static/mcat-beth-pt7-1.txt
+  wiki_rest_endpoint:
+  wiki_article_title:
+  ntokens: 4
+  ntokensmin: 2
+  ntokensmax: 5
+  stanford_parser_directory: /Applications/stanford-parser
+  stanford_parser_models_directory: /Applications/stanford-parser
+  stanford_parser_model: stanford-parser-3.5.2-models/edu/stanford/nlp/models/lexparser/englishPCFG.ser.gz
+  output_file: ../../output/mcat-beth-pt7-1.json
+
