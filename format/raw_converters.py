@@ -12,6 +12,7 @@ from nltk import sent_tokenize
 from formatters import SentenceFormatter
 from openmind_format import Document, Sentence, Paragraph, Section
 
+import logging
 
 class RawConverter:
     def __init__(self, sentence_formatter):
@@ -22,7 +23,8 @@ class RawConverter:
     def processRawSentences(self, raw_sentences):
         sentences = []
         for raw_sentence in raw_sentences:
-            print(raw_sentence)
+            logging.debug(raw_sentence)
+            # print(raw_sentence)
 
             if len(raw_sentence) <= 1:
                 continue  # mistake - empty sentence

@@ -64,7 +64,7 @@ class Paragraph:
 
     @staticmethod
     def fromDict(dict_object):
-        return Paragraph(sentences=[Sentence.fromDict(sentence) for sentence in dict_object["sentences"]])
+        return Paragraph(sentences=[Sentence.from_dict(sentence) for sentence in dict_object["sentences"]])
 
     def __eq__(self, other):
         if isinstance(other, self.__class__):
@@ -124,7 +124,7 @@ class Sentence:
         return json.dumps(self, cls=SentenceJSONEncoder, indent=4)
 
     @staticmethod
-    def fromDict(dict_object):
+    def from_dict(dict_object):
         return Sentence(numwords=dict_object["num_words"],
                         sentence_parts=[SentenceFragment.fromDict(part) for part in dict_object["sentence_parts"]])
 
