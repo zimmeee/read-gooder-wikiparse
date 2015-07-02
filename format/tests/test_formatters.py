@@ -3,7 +3,7 @@ import unittest
 
 from nltk.parse import stanford
 
-from formatters import ConstituentHeightSentenceFormatter, VstfSentenceFormatter
+from formatters import ConstituentHeightSentenceFormatter, StanfordParserSentenceFormatter
 
 
 __author__ = 'beth'
@@ -33,7 +33,7 @@ class VSTFFormatterTestCase(unittest.TestCase):
         self.stanfordParser = stanford.StanfordParser()
 
     def runTest(self):
-        formatter = VstfSentenceFormatter(4, self.stanfordParser)
+        formatter = StanfordParserSentenceFormatter(4, self.stanfordParser)
         sentence_fragments = formatter.format("Nearly a century ago, biologists found that if they separated an "
                                               "invertebrate animal embryo into two parts at an early stage of its "
                                               "life, it would survive and develop as two normal embryos.")
