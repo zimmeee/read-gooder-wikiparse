@@ -109,12 +109,26 @@ class StanfordParserSentenceFormatter(SentenceFormatter):
 
         for treeSet in inputTrees:
             formatted_string = self.pformat(treeSet[0], margin=70, indent=0, nodesep='', parens='()')
-            split_string = formatted_string.split('\n')
-            for string_frag in split_string:
-                if len(string_frag.strip()) == 0:
+            string_fragments = formatted_string.split('\n')
+            clean_fragments = []
+            for string_fragment in string_fragments:
+                if len(string_fragment.strip()) == 0:
                     continue
-                frag = SentenceFragment(indent=self.getIndent(string_frag), tokens=self.getTokens(string_frag),
-                                        text=" ".join(self.getTokens(string_frag)))
+                clean_fragments.append(string_fragment)
+
+            clean_fragments2 = []
+            for i in range(len(clean_fragments)):
+                string_fragment = clean_fragments[i]
+                last_fragment_index = len(clean_fragments2) - 1
+                if string_fragment.lstrip()[0] in string.punctuation and last_fragment_index >= 0:
+                    clean_fragments2[last_fragment_index] += string_fragment.lstrip()
+                else:
+                    clean_fragments2.append(string_fragment)
+
+            for string_fragment in clean_fragments2:
+                frag = SentenceFragment(indent=self.getIndent(string_fragment),
+                                        tokens=self.getTokens(string_fragment),
+                                        text=" ".join(self.getTokens(string_fragment)))
                 result.append(frag)
 
         return result

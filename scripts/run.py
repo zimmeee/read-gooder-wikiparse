@@ -14,7 +14,7 @@ import yaml
 from nltk.parse import stanford
 
 from formatters import LineLengthSentenceFormatter, StupidVstfSentenceFormatter, DefaultSentenceFormatter, \
-    ConstituentHeightSentenceFormatter, ConstituentTokenLengthSentenceFormatter
+    ConstituentHeightSentenceFormatter, ConstituentTokenLengthSentenceFormatter, StanfordParserSentenceFormatter
 from openmind_format import DocumentJSONEncoder
 from raw_converters import WikiHtmlFileRawConverter, BasicTextFileRawConverter, GibbonHtmlFileRawConverter
 
@@ -44,6 +44,9 @@ def sentenceformatter_factory(config, parser):
                                                             int(config["ntokensmax"]))
         logging.info("Using ConstituentTokenLengthSentenceFormatter sentence formatter with ntokensmin=" +
                      config["ntokensmin"] + " and ntokensmax=" + config["ntokensmax"])
+    elif config["sentence_formatter"] == "stanfordparser":
+        formatter = StanfordParserSentenceFormatter(ntokens, parser)
+        logging.info("Using StanfordParserSentenceFormatter sentence formatter with " + str(ntokens) + " tokens")
     else:
         formatter = DefaultSentenceFormatter()
         logging.info("Using DefaultSentenceFormatter sentence formatter")
