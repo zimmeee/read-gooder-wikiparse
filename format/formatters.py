@@ -104,13 +104,26 @@ class StanfordParserSentenceFormatter(SentenceFormatter):
 
     def format(self, inputString):
         inputTrees = self.parser.raw_parse(inputString)
+
         result = []
 
         for treeSet in inputTrees:
-            for tree in treeSet:
-                print(self.pformat(tree, margin=70, indent=0, nodesep='', parens='()'))
+            formatted_string = self.pformat(treeSet[0], margin=70, indent=0, nodesep='', parens='()')
+            split_string = formatted_string.split('\n')
+            for string_frag in split_string:
+                if len(string_frag.strip()) == 0:
+                    continue
+                frag = SentenceFragment(indent=self.getIndent(string_frag), tokens=self.getTokens(string_frag),
+                                        text=" ".join(self.getTokens(string_frag)))
+                result.append(frag)
 
         return result
+
+    def getIndent(self, a):
+        return len(a) - len(a.lstrip(' '))
+
+    def getTokens(self, a):
+        return [e for e in a.split()]
 
     # stolen from NLTK tree pformat
     def pformat(self, tree, margin=70, indent=0, nodesep='', parens='()'):
@@ -120,16 +133,12 @@ class StanfordParserSentenceFormatter(SentenceFormatter):
 
         # If it doesn't fit on one line, then write it on multi-lines.
         s_lines = []
-        # s = '%s' % nodesep
         for child in tree:
             if isinstance(child, Tree):
-                # s += '\n' + ' ' * (indent + 2) + self.pformat(child, margin, indent + 2, nodesep, parens)
                 s_lines.append('\n' + ' ' * (indent + 2) + self.pformat(child, margin, indent + 2, nodesep, parens))
             elif isinstance(child, tuple):
-                # s += '\n' + ' ' * (indent + 2) + "/".join(child)
                 s_lines.append('\n' + ' ' * (indent + 2) + "/".join(child))
             else:
-                # s += '\n' + ' ' * (indent + 2) + '%s' % child
                 s_lines.append('\n' + ' ' * (indent + 2) + '%s' % child)
         return "".join(s_lines)
 
