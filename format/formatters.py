@@ -6,8 +6,8 @@ import string
 import abc
 from math import ceil
 
-from nltk import WhitespaceTokenizer
-
+from nltk import WhitespaceTokenizer, Tree
+from nltk.compat import string_types, unicode_repr
 from nltk.parse.stanford import StanfordParser
 
 from openmind_format import SentenceFragment
@@ -93,6 +93,66 @@ class StupidVstfSentenceFormatter(SentenceFormatter):
                         part.append(string_token)
 
         return result
+
+
+# regular VSTF sentence formatter
+class VstfSentenceFormatter(SentenceFormatter):
+    def __init__(self, max_words_per_part, parser):
+        self.max_words_per_part = max_words_per_part
+        if not isinstance(parser, StanfordParser):
+            raise Exception("VstfSentenceFormatter: Argument for parser is not a StanfordParser object.")
+        self.parser = parser  # converts string to tree
+
+    def format(self, inputString):
+        inputTrees = self.parser.raw_parse(inputString)
+        result = []
+
+        for treeSet in inputTrees:
+            for tree in treeSet:
+                print(self.pformat(tree, margin=70, indent=0, nodesep='', parens='()', quotes=False))
+        return result
+
+    # stolen from NLTK tree pformat
+    def pformat(self, tree, margin=70, indent=0, nodesep='', parens='()', quotes=False):
+        s = self._pformat_flat(tree, nodesep, parens, quotes)
+        if len(s) + indent < margin:
+            return s
+
+        # If it doesn't fit on one line, then write it on multi-lines.
+        if isinstance(tree.label(), string_types):
+            s = '%s%s%s' % (parens[0], tree.label(), nodesep)
+        else:
+            s = '%s%s%s' % (parens[0], unicode_repr(tree.label()), nodesep)
+        for child in tree:
+            if isinstance(child, Tree):
+                s += '\n' + ' ' * (indent + 2) + child.pformat(margin, indent + 2,
+                                                               nodesep, parens, quotes)
+            elif isinstance(child, tuple):
+                s += '\n' + ' ' * (indent + 2) + "/".join(child)
+            elif isinstance(child, string_types) and not quotes:
+                s += '\n' + ' ' * (indent + 2) + '%s' % child
+            else:
+                s += '\n' + ' ' * (indent + 2) + unicode_repr(child)
+        return s + parens[1]
+
+    # stolen from NLTK tree _pformat_flat
+    def _pformat_flat(self, tree, nodesep, parens, quotes):
+        childstrs = []
+        for child in tree:
+            if isinstance(child, Tree):
+                childstrs.append(self._pformat_flat(child, nodesep, parens, quotes))
+            elif isinstance(child, tuple):
+                childstrs.append("/".join(child))
+            elif isinstance(child, string_types) and not quotes:
+                childstrs.append('%s' % child)
+            else:
+                childstrs.append(unicode_repr(child))
+        if isinstance(tree.label(), string_types):
+            return '%s%s%s %s%s' % (parens[0], tree.label(), nodesep,
+                                    " ".join(childstrs), parens[1])
+        else:
+            return '%s%s%s %s%s' % (parens[0], unicode_repr(tree.label()), nodesep,
+                                    " ".join(childstrs), parens[1])
 
 
 # every constituent in the parse is returned in order of size as a SentenceFragment
