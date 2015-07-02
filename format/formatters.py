@@ -7,7 +7,7 @@ import abc
 from math import ceil
 
 from nltk import WhitespaceTokenizer, Tree
-from nltk.compat import string_types, unicode_repr
+from nltk.compat import string_types
 from nltk.parse.stanford import StanfordParser
 
 from openmind_format import SentenceFragment
@@ -122,7 +122,7 @@ class VstfSentenceFormatter(SentenceFormatter):
         if isinstance(tree.label(), string_types):
             s = '%s%s%s' % (parens[0], tree.label(), nodesep)
         else:
-            s = '%s%s%s' % (parens[0], unicode_repr(tree.label()), nodesep)
+            s = '%s%s%s' % (parens[0], self.unicode_repr_new(tree.label()), nodesep)
         for child in tree:
             if isinstance(child, Tree):
                 s += '\n' + ' ' * (indent + 2) + child.pformat(margin, indent + 2,
@@ -132,7 +132,7 @@ class VstfSentenceFormatter(SentenceFormatter):
             elif isinstance(child, string_types) and not quotes:
                 s += '\n' + ' ' * (indent + 2) + '%s' % child
             else:
-                s += '\n' + ' ' * (indent + 2) + unicode_repr(child)
+                s += '\n' + ' ' * (indent + 2) + self.unicode_repr_new(child)
         return s + parens[1]
 
     # stolen from NLTK tree _pformat_flat
@@ -146,13 +146,18 @@ class VstfSentenceFormatter(SentenceFormatter):
             elif isinstance(child, string_types) and not quotes:
                 childstrs.append('%s' % child)
             else:
-                childstrs.append(unicode_repr(child))
+                childstrs.append(self.unicode_repr_new(child))
         if isinstance(tree.label(), string_types):
             return '%s%s%s %s%s' % (parens[0], tree.label(), nodesep,
                                     " ".join(childstrs), parens[1])
         else:
-            return '%s%s%s %s%s' % (parens[0], unicode_repr(tree.label()), nodesep,
+            return '%s%s%s %s%s' % (parens[0], self.unicode_repr_new(tree.label()), nodesep,
                                     " ".join(childstrs), parens[1])
+
+    # replacement for unicode_repr function from NLTK
+    def unicode_repr_new(self, tree):
+        childstr = ", ".join(self.unicode_repr_new(c) for c in tree)
+        return '%s(%s, [%s])' % (type(tree).__name__, self.unicode_repr_new(tree.label()), childstr)
 
 
 # every constituent in the parse is returned in order of size as a SentenceFragment
