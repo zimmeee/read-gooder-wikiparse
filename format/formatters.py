@@ -5,6 +5,7 @@ created by beth on 6/11/15
 import string
 import abc
 from math import ceil
+import re
 
 from nltk import WhitespaceTokenizer, Tree
 from nltk.parse.stanford import StanfordParser
@@ -120,15 +121,18 @@ class StanfordParserSentenceFormatter(SentenceFormatter):
             for i in range(len(clean_fragments)):
                 string_fragment = clean_fragments[i]
                 last_fragment_index = len(clean_fragments2) - 1
-                if string_fragment.lstrip()[0] in string.punctuation and last_fragment_index >= 0:
+                if re.match("^[.,]", string_fragment.lstrip()) and last_fragment_index >= 0:
                     clean_fragments2[last_fragment_index] += string_fragment.lstrip()
                 else:
                     clean_fragments2.append(string_fragment)
 
             for string_fragment in clean_fragments2:
+                text = " ".join(self.getTokens(string_fragment))
+                newtext = text.replace("-LRB-", "(").replace("-RRB-", ")")
+                newtext = re.sub(r'\s([?.!",\'](?:\s|$))', r'\1', newtext)  # eliminates spaces before punctuation
+                newtext = re.sub("\\s+(?=[^()]*\\))", "", newtext)  # removes spaces within parentheses
                 frag = SentenceFragment(indent=self.getIndent(string_fragment),
-                                        tokens=self.getTokens(string_fragment),
-                                        text=" ".join(self.getTokens(string_fragment)))
+                                        tokens=self.getTokens(string_fragment), text=newtext)
                 result.append(frag)
 
         return result

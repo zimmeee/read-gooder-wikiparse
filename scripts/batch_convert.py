@@ -24,5 +24,6 @@ if __name__ == "__main__":
             document_text = transcript["passageText"]
             file_identifier = transcript["fileIdentifier"]
             output_file = os.path.join(output_directory,
-                                       os.path.splitext(file_identifier)[0] + "-" + formatter_name + ".txt")
+                                       os.path.splitext(file_identifier)[0] + "-" + formatter_name + ".json")
+            print(output_file)
             do_conversion(formatter, "Basic", document_text, file_identifier, output_file)
