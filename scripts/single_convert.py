@@ -2,12 +2,12 @@
 
 created by noah on 6/29/15
 """
+import json
 import sys
 import os
 import argparse
 import logging
 import logging.config
-import json
 from urllib.request import urlopen
 
 import yaml
@@ -19,38 +19,30 @@ from openmind_format import DocumentJSONEncoder
 from raw_converters import WikiHtmlFileRawConverter, BasicTextFileRawConverter, GibbonHtmlFileRawConverter
 
 
-def sentenceformatter_factory(config, parser):
-    try:
-        ntokens = int(config["ntokens"])
-    except:
-        ntokens = None
-
-    # set sentence formatter class
-    if config["sentence_formatter"] == "linelength":
+def sentenceformatter_factory(formatter_name, parser, ntokens=None, ntokensmin=None, ntokensmax=None):
+    if formatter_name == "linelength":
         formatter = LineLengthSentenceFormatter(ntokens)
         logging.info("Using LineLengthSentenceFormatter sentence formatter with " + str(ntokens) + " tokens")
-    elif config["sentence_formatter"] == "stupidvstf":
+    elif formatter_name == "stupidvstf":
         formatter = StupidVstfSentenceFormatter(ntokens, parser)
         logging.info("Using StupidVstfSentenceFormatter sentence formatter with " + str(ntokens) + " tokens")
-    elif config["sentence_formatter"] == "constituentheight":
+    elif formatter_name == "constituentheight":
         if ntokens:
             formatter = ConstituentHeightSentenceFormatter(parser, constituent_height=ntokens)
             logging.info("Using ConstituentHeightSentenceFormatter sentence formatter with " + str(ntokens) + " tokens")
         else:
             formatter = ConstituentHeightSentenceFormatter(parser)
             logging.info("Using ConstituentHeightSentenceFormatter sentence formatter")
-    elif config["sentence_formatter"] == "constituentlength":
-        formatter = ConstituentTokenLengthSentenceFormatter(parser, int(config["ntokensmin"]),
-                                                            int(config["ntokensmax"]))
+    elif formatter_name == "constituentlength":
+        formatter = ConstituentTokenLengthSentenceFormatter(parser, ntokensmin, ntokensmax)
         logging.info("Using ConstituentTokenLengthSentenceFormatter sentence formatter with ntokensmin=" +
-                     config["ntokensmin"] + " and ntokensmax=" + config["ntokensmax"])
-    elif config["sentence_formatter"] == "stanfordparser":
+                     str(ntokensmin) + " and ntokensmax=" + str(ntokensmax))
+    elif formatter_name == "stanfordparser":
         formatter = StanfordParserSentenceFormatter(ntokens, parser)
         logging.info("Using StanfordParserSentenceFormatter sentence formatter with " + str(ntokens) + " tokens")
     else:
         formatter = DefaultSentenceFormatter()
         logging.info("Using DefaultSentenceFormatter sentence formatter")
-
     return formatter
 
 
@@ -60,7 +52,7 @@ def converter_factory(converter_type, formatter):
     if converter_type == "Basic":
         raw_converter = BasicTextFileRawConverter(formatter)
     elif converter_type == "Gibbon":
-        raw_converter = GibbonHtmlFileRawConverter(formatter)
+        raw_converter = GibbonHtmlFileRawConverter(formatter, htmlParser=None)  # TODO: fix
     elif converter_type == "Wiki":
         raw_converter = WikiHtmlFileRawConverter(formatter)
     else:
@@ -70,20 +62,20 @@ def converter_factory(converter_type, formatter):
     return raw_converter
 
 
-def stanfordparser_factory(config):
+def stanfordparser_factory(stanford_parser_directory, stanford_parser_models_directory):
     stanfordParser = None
 
     # Setup the Stanford parser
-    if os.path.exists(config['stanford_parser_directory']) and \
-            os.path.exists(config['stanford_parser_models_directory']):
-        os.environ['STANFORD_PARSER'] = config['stanford_parser_directory']
-        os.environ['STANFORD_MODELS'] = config['stanford_parser_models_directory']
+    if os.path.exists(stanford_parser_directory) and os.path.exists(stanford_parser_models_directory):
+        os.environ['STANFORD_PARSER'] = stanford_parser_directory
+        os.environ['STANFORD_MODELS'] = stanford_parser_models_directory
         stanfordParser = stanford.StanfordParser()
     else:
         logging.error("Could not find files required for the Stanford parser in: " +
-                      config['stanford_parser_directory'] + " or " + config['stanford_parser_models_directory'])
+                      stanford_parser_directory + " or " + stanford_parser_models_directory)
 
     return stanfordParser
+
 
 def setup_logging(logging_conf):
     if logging_conf:
@@ -93,6 +85,19 @@ def setup_logging(logging_conf):
     else:
         print("No logging configuration specified. Using defaults")
         logging.basicConfig(level=logging.INFO)
+
+
+def do_conversion(formatter, raw_converter_type, document_source, document_title, output_file):
+    raw_converter = converter_factory(raw_converter_type, formatter)
+    document = raw_converter.convertToDocument(document_source, document_title)
+
+    if not document:  # if document could not be converted
+        return
+
+    with open(output_file, "w") as output:
+        output.write(
+            json.dumps(document, cls=DocumentJSONEncoder, indent=4, sort_keys=True, ensure_ascii=False))
+        logging.info("Wrote output to: " + os.path.abspath(output_file))
 
 
 def main():
@@ -107,39 +112,36 @@ def main():
     logging.info("Starting conversion with " + str(vars(args)))
 
     with open(args.config, 'r') as config_file:
-        document = None
         config = yaml.load(config_file)["Document"]
 
-        # Get a parser instance
-        stanfordParser = stanfordparser_factory(config)
+        # get text document
+        if config["wiki_rest_endpoint"] and config["wiki_article_title"]:
+            source_url = config["wiki_rest_endpoint"] + config["wiki_article_title"]
+            logging.info("Processing URL: " + source_url)
+            document_source = urlopen(source_url)
+            document_title = config["wiki_article_title"]
+        elif config["file"]:
+            document_title = os.path.basename(config["file"])
+            logging.info("Processing file: " + os.path.abspath(config["file"]))
+            document_source = open(config["file"], "r").read()
+        else:
+            raise Exception("No input document source provided.")
 
-        if stanfordParser:
-            # Get a sentence formatter
-            formatter = sentenceformatter_factory(config, stanfordParser)
+        # get parser
+        stanfordParser = stanfordparser_factory(config['stanford_parser_directory'],
+                                                config['stanford_parser_models_directory'])
+        if not stanfordParser:
+            raise Exception("Stanford Parser instance needed for document conversion.")
 
-            # Get a document converter
-            raw_converter = converter_factory(config["raw_converter"], formatter)
+        # get formatter
+        formatter = sentenceformatter_factory(config["sentence_formatter"], stanfordParser,
+                                              ntokens=int(config["ntokens"]) if "ntokens" in config else 0,
+                                              ntokensmin=int(config["ntokensmin"]) if "ntokensmin" in config else 0,
+                                              ntokensmax=int(config["ntokensmax"]) if "ntokensmax" in config else 0)
 
-            # If there is a information to pull article from a wiki, do that first
-            if config["wiki_rest_endpoint"] and config["wiki_article_title"] and config["raw_converter"] == 'Wiki':
-                source_url = config["wiki_rest_endpoint"] + config["wiki_article_title"]
-                source = urlopen(source_url)
-                logging.info("Processing URL: " + source_url)
-                document = raw_converter.convertToDocument(source, config["wiki_article_title"])
-            # Otherwise try to read from file
-            elif config["file"] is not None:
-                with open(config["file"]) as input:
-                    title = os.path.basename(config["file"])
-                    logging.info("Processing file: " + os.path.abspath(config["file"]))
-                    text = input.read()
-                    document = raw_converter.convertToDocument(text, title)
-
-        if document:
-            # Write out results
-            with open(config["output_file"], "w") as output:
-                output.write(
-                    json.dumps(document, cls=DocumentJSONEncoder, indent=4, sort_keys=True, ensure_ascii=False))
-                logging.info("Wrote output to: " + os.path.abspath(config["output_file"]))
+        # convert the document
+        do_conversion(formatter, config["raw_converter"], document_source, document_title,
+                      os.path.abspath(config["output_file"]))
 
 
 if __name__ == '__main__':

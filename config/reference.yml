@@ -1,6 +1,6 @@
 Document:
 	raw_converter: [Basic|Gibbon|Wiki]
-	sentence_formatter: [linelength|stupidvstf|constituentheight|constituentlength|default]
+	sentence_formatter: [linelength|stupidvstf|constituentheight|constituentlength|stanfordparser|default]
 	file: 
 	wiki_rest_endpoint: http://rest.wikimedia.org:80/en.wikipedia.org/v1/page/html/
 	wiki_article_title: Taylor_Swift

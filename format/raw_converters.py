@@ -4,6 +4,7 @@ created by beth on 6/15/15
 import abc
 from xml.etree import ElementTree
 import re
+import logging
 
 from bs4 import BeautifulSoup
 from lxml import etree
@@ -12,7 +13,6 @@ from nltk import sent_tokenize
 from formatters import SentenceFormatter
 from openmind_format import Document, Sentence, Paragraph, Section
 
-import logging
 
 class RawConverter:
     def __init__(self, sentence_formatter):
@@ -205,6 +205,6 @@ class WikiHtmlFileRawConverter(RawConverter):
 
         return section
 
-    def convertToDocument(self, rawHtml, doc_title):
+    def convertToDocument(self, rawHtml=None, doc_title=None):
         root_element = self.convertToXml(rawHtml)
         return Document(header=root_element.get(self.HTML_TITLE), section=self.processSection(root_element, Section()))
