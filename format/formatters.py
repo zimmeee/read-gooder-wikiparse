@@ -106,42 +106,87 @@ class StanfordParserSentenceFormatter(SentenceFormatter):
     def format(self, inputString):
         inputTrees = self.parser.raw_parse(inputString)
 
-        result = []
-
         for treeSet in inputTrees:
             formatted_string = self.pformat(treeSet[0], margin=70, indent=0, nodesep='', parens='()')
-            string_fragments = formatted_string.split('\n')
-            clean_fragments = []
-            for string_fragment in string_fragments:
-                if len(string_fragment.strip()) == 0:
-                    continue
-                clean_fragments.append(string_fragment)
+            fragments = []
+            for string_fragment in formatted_string.split('\n'):
+                fragments.append(SentenceFragment(indent=self.getIndent(string_fragment),
+                                                  tokens=self.getTokens(string_fragment),
+                                                  text=self.getText(string_fragment)))
 
-            clean_fragments2 = []
-            for i in range(len(clean_fragments)):
-                string_fragment = clean_fragments[i]
-                last_fragment_index = len(clean_fragments2) - 1
-                if re.match("^[.,]", string_fragment.lstrip()) and last_fragment_index >= 0:
-                    clean_fragments2[last_fragment_index] += string_fragment.lstrip()
+            # first pass - eliminate empty rows
+            clean_fragments = self.eliminateEmptyRows(fragments)
+
+            # second pass - clean up individual fragments
+            clean_fragments = self.cleanIndividualFragments(clean_fragments)
+
+            # third pass - connect fragments
+            clean_fragments = self.connectFragments(clean_fragments)
+
+            return clean_fragments
+
+    def eliminateEmptyRows(self, fragment_list):
+        clean_fragments = []
+        for fragment in fragment_list:
+            if not fragment.text:
+                continue
+            clean_fragments.append(fragment)
+        return clean_fragments
+
+    def cleanIndividualFragments(self, fragment_list):
+        clean_fragments = []
+        for fragment in fragment_list:
+            new_text = fragment.text.replace("-LRB- ", "(").replace(" -RRB-", ")")
+            new_text = new_text.replace("``", "\"").replace("''", "\"")
+            for quoted_part in re.findall(r'\".+?\"', new_text):
+                new_text = new_text.replace(quoted_part, quoted_part.replace('\" ', '\"').replace(' \"', '\"'))
+            new_fragment = SentenceFragment(indent=fragment.indent,
+                                            tokens=self.getTokens(new_text),
+                                            text=new_text)
+            clean_fragments.append(new_fragment)
+        return clean_fragments
+
+    def connectFragments(self, fragment_list):
+        temp = []
+        open_quote = False
+        connected_fragment = []
+        for fragment in fragment_list:
+            if re.match("[.,]", fragment.text):
+                connected_fragment.append(fragment)
+                temp.append(connected_fragment)
+                connected_fragment = []
+            elif re.match("\"", fragment.text):
+                if open_quote:
+                    connected_fragment.append(fragment)
+                    temp.append(connected_fragment)
+                    connected_fragment = []
+                    open_quote = False
                 else:
-                    clean_fragments2.append(string_fragment)
-
-            for string_fragment in clean_fragments2:
-                text = " ".join(self.getTokens(string_fragment))
-                newtext = text.replace("-LRB-", "(").replace("-RRB-", ")")
-                newtext = re.sub(r'\s([?.!",\'](?:\s|$))', r'\1', newtext)  # eliminates spaces before punctuation
-                newtext = re.sub("\\s+(?=[^()]*\\))", "", newtext)  # removes spaces within parentheses
-                frag = SentenceFragment(indent=self.getIndent(string_fragment),
-                                        tokens=self.getTokens(string_fragment), text=newtext)
-                result.append(frag)
-
-        return result
+                    if len(connected_fragment) > 0:
+                        temp.append(connected_fragment)
+                    connected_fragment = [fragment]
+                    open_quote = True
+            else:
+                if len(connected_fragment) > 0 and not open_quote:
+                    temp.append(connected_fragment)
+                    connected_fragment = [fragment]
+                else:
+                    connected_fragment.append(fragment)
+        clean_fragments = []
+        for c in temp:
+            clean_fragments.append(SentenceFragment(indent=max([f.indent for f in c]),
+                                                    tokens=[t for f in c for t in f.tokens],
+                                                    text="".join([f.text for f in c])))
+        return clean_fragments
 
     def getIndent(self, a):
         return len(a) - len(a.lstrip(' '))
 
     def getTokens(self, a):
         return [e for e in a.split()]
+
+    def getText(self, a):
+        return a.lstrip()
 
     # stolen from NLTK tree pformat
     def pformat(self, tree, margin=70, indent=0, nodesep='', parens='()'):
