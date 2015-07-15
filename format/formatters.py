@@ -151,7 +151,7 @@ class StanfordParserSentenceFormatter(SentenceFormatter):
         open_quote = False
         connected_fragment = []
         for fragment in fragment_list:
-            if re.match("[.,]", fragment.text):
+            if re.match("[.,;:]", fragment.text):
                 connected_fragment.append(fragment)
                 temp.append(connected_fragment)
                 connected_fragment = []
