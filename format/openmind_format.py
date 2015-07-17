@@ -1,6 +1,5 @@
 from json import JSONEncoder
 import json
-import string
 
 __author__ = 'beth'
 
@@ -39,11 +38,11 @@ class Section:
 
     @staticmethod
     def fromDict(dict_object):
-        return Section(header=dict_object["header"] if "header" in dict_object else "",
+        return Section(header=dict_object["header"] if "header" in dict_object else None,
                        paragraphs=[Paragraph.fromDict(paragraph) for paragraph in dict_object["paragraphs"]]
-                       if "paragraphs" in dict_object else [],
-                       subsections=[Section.fromDict(s) for s in dict_object["section"]]
-                       if "section" in dict_object else None)
+                       if "paragraphs" in dict_object else None,
+                       subsections=[Section.fromDict(s) for s in dict_object["subsections"]]
+                       if "subsections" in dict_object else None)
 
     def __eq__(self, other):
         if isinstance(other, self.__class__):
@@ -56,49 +55,17 @@ class Section:
 
 
 class Paragraph:
-    def __init__(self, sentences=None):
+    def __init__(self, sentences, position):
         self.sentences = sentences
+        self.position = position
 
     def __repr__(self):
         return json.dumps(self, cls=ParagraphJSONEncoder, indent=4)
 
     @staticmethod
     def fromDict(dict_object):
-        return Paragraph(sentences=[Sentence.from_dict(sentence) for sentence in dict_object["sentences"]])
-
-    def __eq__(self, other):
-        if isinstance(other, self.__class__):
-            return self.__dict__ == other.__dict__
-        else:
-            return False
-
-    def __ne__(self, other):
-        return not self.__eq__(other)
-
-
-class SentenceFragment:
-    def __init__(self, indent=0, tokens=None, text=None):
-        self.tokens = list() if tokens is None else tokens
-        self.indent = indent
-        self.text = text if text else None
-
-    def __repr__(self):
-        return json.dumps(self, cls=SentenceFragmentJSONEncoder, indent=4)
-
-    def append(self, token):
-        if token in string.punctuation and self.len() > 0:
-            self.tokens[self.len() - 1] += token
-        else:
-            self.tokens.append(token)
-
-    def len(self):
-        return len(self.tokens)
-
-    @staticmethod
-    def fromDict(dict_object):
-        return SentenceFragment(indent=dict_object["indent"],
-                                tokens=dict_object["tokens"] if "tokens" in dict_object else None,
-                                text=dict_object["text"] if "text" in dict_object else None)
+        return Paragraph(sentences=[Sentence.from_dict(sentence) for sentence in dict_object["sentences"]],
+                         position=dict_object["position"])
 
     def __eq__(self, other):
         if isinstance(other, self.__class__):
@@ -111,22 +78,16 @@ class SentenceFragment:
 
 
 class Sentence:
-    def __init__(self, numwords=0, sentence_parts=None):
-        self.numwords = numwords
-        if not sentence_parts:
-            self.sentence_parts = []
-        for part in sentence_parts:
-            if not isinstance(part, SentenceFragment):
-                raise Exception("This thing is not a sentence fragment: " + str(part))
-        self.sentence_parts = sentence_parts
+    def __init__(self, text, position):
+        self.text = text
+        self.position = position
 
     def __repr__(self):
         return json.dumps(self, cls=SentenceJSONEncoder, indent=4)
 
     @staticmethod
     def from_dict(dict_object):
-        return Sentence(numwords=dict_object["num_words"],
-                        sentence_parts=[SentenceFragment.fromDict(part) for part in dict_object["sentence_parts"]])
+        return Sentence(text=dict_object["text"], position=dict_object["position"])
 
     def __eq__(self, other):
         if isinstance(other, self.__class__):
@@ -140,28 +101,12 @@ class Sentence:
 
 # JSON encoding #######################################################################################################
 
-class SentenceFragmentJSONEncoder(JSONEncoder):
-    def default(self, obj):
-        if not isinstance(obj, SentenceFragment):
-            raise Exception("Cannot use this encoder to encode non-SentenceFragment class.")
-        serialized_fragment = {}
-        if obj.tokens:
-            serialized_fragment["tokens"] = obj.tokens
-        serialized_fragment["indent"] = obj.indent
-        if obj.text:
-            serialized_fragment["text"] = obj.text
-        return serialized_fragment
-
 
 class SentenceJSONEncoder(JSONEncoder):
     def default(self, obj):
         if not isinstance(obj, Sentence):
             raise Exception("Cannot use this encoder to encode non-Sentence class.")
-        serialized_sentence = {}
-        if obj.sentence_parts:
-            sf_encoder = SentenceFragmentJSONEncoder()  # for serializing individual sentence fragments
-            serialized_sentence["sentence_parts"] = [sf_encoder.default(fragment) for fragment in obj.sentence_parts]
-        serialized_sentence["numwords"] = obj.numwords
+        serialized_sentence = {"text": obj.text, "position": obj.position}
         return serialized_sentence
 
 
@@ -173,6 +118,7 @@ class ParagraphJSONEncoder(JSONEncoder):
         if obj.sentences:
             sentence_encoder = SentenceJSONEncoder()  # for serializing individual sentences
             serialized_paragraph["sentences"] = [sentence_encoder.default(sentence) for sentence in obj.sentences]
+        serialized_paragraph["position"] = obj.position
         return serialized_paragraph
 
 
@@ -185,10 +131,12 @@ class SectionJSONEncoder(JSONEncoder):
             serialized_section["header"] = obj.header
         if obj.paragraphs:
             paragraph_encoder = ParagraphJSONEncoder()
-            serialized_section["paragraphs"] = [paragraph_encoder.default(paragraph) for paragraph in obj.paragraphs]
+            serialized_section["paragraphs"] = [paragraph_encoder.default(paragraph)
+                                                for paragraph in obj.paragraphs]
         if obj.subsections:
             subsection_encoder = SectionJSONEncoder()
-            serialized_section["section"] = [subsection_encoder.default(subsection) for subsection in obj.subsections]
+            serialized_section["subsections"] = [subsection_encoder.default(subsection)
+                                                 for subsection in obj.subsections]
         return serialized_section
 
 

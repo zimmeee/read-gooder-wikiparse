@@ -1,86 +1,36 @@
 """
+RawConverters convert raw input documents into the OpenMind Document format
 created by beth on 6/15/15
+edited on 7/16/15
 """
 import abc
 from xml.etree import ElementTree
 import re
-import logging
 
 from bs4 import BeautifulSoup
-from lxml import etree
 from nltk import sent_tokenize
 
-from formatters import SentenceFormatter
-from openmind_format import Document, Sentence, Paragraph, Section
+from openmind_format import Document, Paragraph, Section, Sentence
 
 
 class RawConverter:
-    def __init__(self, sentence_formatter):
-        if not isinstance(sentence_formatter, SentenceFormatter):
-            raise Exception("RawConverter: this is not a Formatter")
-        self.formatter = sentence_formatter
-
-    def processRawSentences(self, raw_sentences):
-        sentences = []
-        for raw_sentence in raw_sentences:
-            logging.debug(raw_sentence)
-            # print(raw_sentence)
-
-            if len(raw_sentence) <= 1:
-                continue  # mistake - empty sentence
-            sentence_fragments = self.formatter.format(raw_sentence)  # formatter can be of any recognized kind
-            total_words_this_sentence = 0
-            for fragment in sentence_fragments:
-                total_words_this_sentence += fragment.len()
-            sentence = Sentence(sentence_parts=sentence_fragments, numwords=total_words_this_sentence)
-            sentences.append(sentence)
-        return sentences
-
     @abc.abstractmethod
     def convertToDocument(self, source, doc_title):
         return
 
 
 class BasicTextFileRawConverter(RawConverter):
-    def __init__(self, sentence_formatter):
-        super().__init__(sentence_formatter)
-
     def convertToDocument(self, rawText, doc_title):
-        raw_sentences = sent_tokenize(rawText, language='english')
-        sentences = self.processRawSentences(raw_sentences)
-        section = Section(paragraphs=[Paragraph(sentences=sentences)])
-        return Document(header=doc_title, section=section)
-
-
-class GibbonHtmlFileRawConverter(RawConverter):
-    def __init__(self, sentence_formatter, htmlParser):
-        super().__init__(sentence_formatter)
-        self.htmlParser = htmlParser
-
-    def convertToDocument(self, rawHtml, doc_title):
-        tree = etree.fromstring(rawHtml, parser=self.htmlParser)
-        root = tree.getroot()
-
-        text = []
-        for child in root.iter('p', 'i', 'h2'):
-            # TODO: this is extremely ghetto - need to make better, like wiki file converter
-            if not child.text:
-                continue
-            text.append(child.text)
-
-        full_text = " ".join(text)
-
-        raw_sentences = sent_tokenize(full_text, language='english')
-
-        sentences = self.processRawSentences(raw_sentences)
-        section = Section(paragraphs=[Paragraph(sentences=sentences)])
+        sentence_strings = sent_tokenize(rawText, language='english')
+        sentences = []
+        for i in range(len(sentence_strings)):
+            sentences.append(Sentence(text=sentence_strings[i], position=i))
+        section = Section(paragraphs=[Paragraph(sentences=sentences, position=0)])
         return Document(header=doc_title, section=section)
 
 
 class WikiHtmlFileRawConverter(RawConverter):
-    def __init__(self, sentence_formatter):
-        super().__init__(sentence_formatter)
-
+    def __init__(self):
         self.HTML_SECTION_HEADERS = ["h2", "h3", "h4", "h5"]
         self.HTML_PARAGRAPH = 'p'
         self.HTML_TITLE = 'title'
@@ -160,7 +110,6 @@ class WikiHtmlFileRawConverter(RawConverter):
                 current_section.append(new_paragraph_section)
         return root_element
 
-    # TODO: need to call this somewhere
     def tidyText(self, text):
         tidy = text
 
@@ -173,30 +122,31 @@ class WikiHtmlFileRawConverter(RawConverter):
 
         return tidy
 
-    def parseParagraph(self, paragraph_element):
-        paragraph = Paragraph()
-        paragraph.sentences = list()
+    def parseParagraph(self, paragraph_element, count):
+        sentences = list()
 
-        if paragraph_element.text is not None:
-            # sentences = sent_tokenize(paragraph_element.text)
-            # Tidy up the wikipedia sentences
-            sentences = [self.tidyText(sentence) for sentence in sent_tokenize(paragraph_element.text)]
-            paragraph.sentences = self.processRawSentences(sentences)  # uses formatter to process sentences
+        sentence_count = 0
+        if paragraph_element.text:
+            for sentence in sent_tokenize(paragraph_element.text):
+                sentences.append(Sentence(text=self.tidyText(sentence), position=sentence_count))
+                sentence_count += 1
 
-        return paragraph
+        return Paragraph(sentences, count)
 
     def processSection(self, element, section):
+        paragraph_count = 0
         for child in element:
             if child.tag == self.HTML_PARAGRAPH:
-                paragraph = self.parseParagraph(child)
+                paragraph = self.parseParagraph(child, paragraph_count)
+                paragraph_count += 1
                 if not section.paragraphs:
                     section.paragraphs = list()
                 section.paragraphs.append(paragraph)
             elif child.tag == self.SECTION:
                 section_title = child.get(self.HTML_TITLE)
                 new_section = Section()
-                new_section.header = section_title
                 new_section = self.processSection(child, new_section)
+                new_section.header = section_title
 
                 if not section.subsections:
                     section.subsections = list()

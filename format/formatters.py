@@ -7,10 +7,19 @@ import abc
 from math import ceil
 import re
 
-from nltk import WhitespaceTokenizer, Tree
+from nltk import WhitespaceTokenizer, Tree, Text, wordpunct_tokenize, pos_tag
 from nltk.parse.stanford import StanfordParser
 
 from openmind_format import SentenceFragment
+
+
+class DocumentFormatter(object):
+    @abc.abstractmethod
+    # returns a list of SentenceFragment objects
+    def format(self, inputString):
+        if not isinstance(inputString, str):
+            raise Exception("Yo, this is not a document string: " + str(inputString))
+        return
 
 
 class SentenceFormatter(object):
@@ -30,7 +39,7 @@ class DefaultSentenceFormatter(SentenceFormatter):
     def format(self, inputString):
         result = []
         tokens = WhitespaceTokenizer().tokenize(inputString)
-        result.append(SentenceFragment(indent=0, tokens=tokens, text=inputString))
+        result.append(SentenceFragment(importance=0, tokens=tokens, text=inputString))
         return result
 
 
@@ -52,7 +61,7 @@ class LineLengthSentenceFormatter(SentenceFormatter):
             for i in range(0, num_sentence_parts):
                 start = i * self.desired_line_length
                 end = start + self.desired_line_length if start + self.desired_line_length < num_words else num_words
-                result.append(SentenceFragment(indent=0, text=' '.join(words[start:end]), tokens=words[start:end]))
+                result.append(SentenceFragment(importance=0, text=' '.join(words[start:end]), tokens=words[start:end]))
         return result
 
 
@@ -73,7 +82,7 @@ class StupidVstfSentenceFormatter(SentenceFormatter):
         for treeSet in inputTrees:
             for tree in treeSet:
                 depth = 0
-                part = SentenceFragment(indent=depth * 2)
+                part = SentenceFragment(importance=depth * 2)
 
                 # the "flattened" tree is just a list of the tokens, in order
                 for string_token in tree.flatten():
@@ -82,12 +91,12 @@ class StupidVstfSentenceFormatter(SentenceFormatter):
                         part.text = ' '.join(part.tokens)
                         result.append(part)
                         depth = 1  # only the very first line in the sentence is flush left; the rest are at depth = 1
-                        part = SentenceFragment(indent=depth * 2)
+                        part = SentenceFragment(importance=depth * 2)
                     elif part.len() >= self.max_words_per_part:
                         part.text = ' '.join(part.tokens)
                         result.append(part)
                         depth += 1
-                        part = SentenceFragment(indent=depth * 2)
+                        part = SentenceFragment(importance=depth * 2)
                         part.append(string_token)
                     else:
                         part.append(string_token)
@@ -95,12 +104,46 @@ class StupidVstfSentenceFormatter(SentenceFormatter):
         return result
 
 
+# format according to term frequency
+class TermFrequencySentenceFormatter(SentenceFormatter):
+    def format(self, inputString):
+        tokens = wordpunct_tokenize(inputString)
+        tags = pos_tag(tokens)
+        text = Text(tokens)
+        result = []
+
+        last_token_count = 0
+        part = []
+        for i in range(len(tags)):
+            word = tags[i][0]
+            tag = tags[i][1]
+            token_count = text.count(word)
+            if word[0] in string.punctuation:
+                part.append((word, tag, token_count))
+                self.appendToResult(part, result)
+                part = []
+            elif token_count > last_token_count:
+                self.appendToResult(part, result)
+                part = [(word, tag, token_count)]
+            else:
+                part.append((word, tag, token_count))
+            last_token_count = token_count
+        self.appendToResult(part, result)
+        return result
+
+    def appendToResult(self, part, result):
+        if len(part) > 0:
+            result.append(SentenceFragment(importance=part[0][2],
+                                           tokens=[e[0] for e in part],
+                                           text=" ".join([e[0] for e in part])))
+
+
 # print tokens as they emerge from Stanford Parser's formatting (pformat)
 class StanfordParserSentenceFormatter(SentenceFormatter):
     def __init__(self, max_words_per_part, parser):
         self.max_words_per_part = max_words_per_part
         if not isinstance(parser, StanfordParser):
-            raise Exception("VstfSentenceFormatter: Argument for parser is not a StanfordParser object.")
+            raise Exception("StanfordParserSentenceFormatter: Argument for parser is not a StanfordParser object.")
         self.parser = parser  # converts string to tree
 
     def format(self, inputString):
@@ -110,7 +153,7 @@ class StanfordParserSentenceFormatter(SentenceFormatter):
             formatted_string = self.pformat(treeSet[0], margin=70, indent=0, nodesep='', parens='()')
             fragments = []
             for string_fragment in formatted_string.split('\n'):
-                fragments.append(SentenceFragment(indent=self.getIndent(string_fragment),
+                fragments.append(SentenceFragment(importance=self.getIndent(string_fragment),
                                                   tokens=self.getTokens(string_fragment),
                                                   text=self.getText(string_fragment)))
 
@@ -140,7 +183,7 @@ class StanfordParserSentenceFormatter(SentenceFormatter):
             new_text = new_text.replace("``", "\"").replace("''", "\"")
             for quoted_part in re.findall(r'\".+?\"', new_text):
                 new_text = new_text.replace(quoted_part, quoted_part.replace('\" ', '\"').replace(' \"', '\"'))
-            new_fragment = SentenceFragment(indent=fragment.indent,
+            new_fragment = SentenceFragment(importance=fragment.indent,
                                             tokens=self.getTokens(new_text),
                                             text=new_text)
             clean_fragments.append(new_fragment)
@@ -174,7 +217,7 @@ class StanfordParserSentenceFormatter(SentenceFormatter):
                     connected_fragment.append(fragment)
         clean_fragments = []
         for c in temp:
-            clean_fragments.append(SentenceFragment(indent=max([f.indent for f in c]),
+            clean_fragments.append(SentenceFragment(importance=max([f.indent for f in c]),
                                                     tokens=[t for f in c for t in f.tokens],
                                                     text="".join([f.text for f in c])))
         return clean_fragments
@@ -241,11 +284,11 @@ class ConstituentHeightSentenceFormatter(SentenceFormatter):
                             max_height = subtree.height()
                     for height in range(max_height):
                         for subtree in tree.subtrees(lambda t: t.height() == height):
-                            result.append(SentenceFragment(indent=subtree.height(), tokens=subtree.leaves(),
+                            result.append(SentenceFragment(importance=subtree.height(), tokens=subtree.leaves(),
                                                            text=' '.join(subtree.leaves())))
                 else:
                     for subtree in tree.subtrees(lambda t: t.height() == self.constituent_height):
-                        result.append(SentenceFragment(indent=subtree.height(), tokens=subtree.leaves(),
+                        result.append(SentenceFragment(importance=subtree.height(), tokens=subtree.leaves(),
                                                        text=' '.join(subtree.leaves())))
         return result
 
@@ -266,6 +309,6 @@ class ConstituentTokenLengthSentenceFormatter(SentenceFormatter):
         for treeSet in inputTrees:
             for tree in treeSet:
                 for subtree in tree.subtrees(lambda t: self.min_length <= len(t.leaves()) <= self.max_length):
-                    result.append(SentenceFragment(indent=len(subtree.leaves()), tokens=subtree.leaves(),
+                    result.append(SentenceFragment(importance=len(subtree.leaves()), tokens=subtree.leaves(),
                                                    text=' '.join(subtree.leaves())))
         return result

@@ -21,7 +21,7 @@ def demo_stanford_parser(formatter):
     # take all parsed sentences and format them according to the desired formatter
     for sentence in sentences:
         result = formatter.format(sentence)
-        sentence = Sentence(sentence_parts=result, numwords=sum([len(frag.tokens) for frag in result]))
+        sentence = Sentence(sentence_parts=result)
         print(json.dumps(sentence, cls=SentenceJSONEncoder, indent=4))
 
 

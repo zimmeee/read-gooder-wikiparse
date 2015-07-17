@@ -16,7 +16,7 @@ from nltk.parse import stanford
 from formatters import LineLengthSentenceFormatter, StupidVstfSentenceFormatter, DefaultSentenceFormatter, \
     ConstituentHeightSentenceFormatter, ConstituentTokenLengthSentenceFormatter, StanfordParserSentenceFormatter
 from openmind_format import DocumentJSONEncoder
-from raw_converters import WikiHtmlFileRawConverter, BasicTextFileRawConverter, GibbonHtmlFileRawConverter
+from raw_converters import WikiHtmlFileRawConverter, BasicTextFileRawConverter
 
 
 def sentenceformatter_factory(formatter_name, parser, ntokens=None, ntokensmin=None, ntokensmax=None):
@@ -46,15 +46,13 @@ def sentenceformatter_factory(formatter_name, parser, ntokens=None, ntokensmin=N
     return formatter
 
 
-def converter_factory(converter_type, formatter):
+def converter_factory(converter_type):
     raw_converter = None
 
     if converter_type == "Basic":
-        raw_converter = BasicTextFileRawConverter(formatter)
-    elif converter_type == "Gibbon":
-        raw_converter = GibbonHtmlFileRawConverter(formatter, htmlParser=None)  # TODO: fix
+        raw_converter = BasicTextFileRawConverter()
     elif converter_type == "Wiki":
-        raw_converter = WikiHtmlFileRawConverter(formatter)
+        raw_converter = WikiHtmlFileRawConverter()
     else:
         logging.error("Unknown converter type " + converter_type)
 
@@ -88,8 +86,10 @@ def setup_logging(logging_conf):
 
 
 def do_conversion(formatter, raw_converter_type, document_source, document_title, output_file):
-    raw_converter = converter_factory(raw_converter_type, formatter)
+    raw_converter = converter_factory(raw_converter_type)
     document = raw_converter.convertToDocument(document_source, document_title)
+
+    # TODO: formatter enters here
 
     if not document:  # if document could not be converted
         return
