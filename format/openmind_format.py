@@ -9,6 +9,9 @@ class Document:
         self.header = header
         self.section = section
 
+    def sentences(self):
+        return self.section.sentences()
+
     def __repr__(self):
         return json.dumps(self, cls=DocumentJSONEncoder, indent=4)
 
@@ -43,6 +46,18 @@ class Section:
                        if "paragraphs" in dict_object else None,
                        subsections=[Section.fromDict(s) for s in dict_object["subsections"]]
                        if "subsections" in dict_object else None)
+
+    def sentences(self):
+        all_sentences = []
+        if self.paragraphs:
+            for paragraph in self.paragraphs:
+                for sentence in paragraph.sentences:
+                    all_sentences.append(sentence)
+        if self.subsections:
+            for subsection in self.subsections:
+                for sentence in subsection.sentences():
+                    all_sentences.append(sentence)
+        return all_sentences
 
     def __eq__(self, other):
         if isinstance(other, self.__class__):
@@ -102,24 +117,17 @@ class Sentence:
 # JSON encoding #######################################################################################################
 
 
-class SentenceJSONEncoder(JSONEncoder):
+class DocumentJSONEncoder(JSONEncoder):
     def default(self, obj):
-        if not isinstance(obj, Sentence):
-            raise Exception("Cannot use this encoder to encode non-Sentence class.")
-        serialized_sentence = {"text": obj.text, "position": obj.position}
-        return serialized_sentence
-
-
-class ParagraphJSONEncoder(JSONEncoder):
-    def default(self, obj):
-        if not isinstance(obj, Paragraph):
-            raise Exception("Cannot use this encoder to encode non-Paragraph class.")
-        serialized_paragraph = {}
-        if obj.sentences:
-            sentence_encoder = SentenceJSONEncoder()  # for serializing individual sentences
-            serialized_paragraph["sentences"] = [sentence_encoder.default(sentence) for sentence in obj.sentences]
-        serialized_paragraph["position"] = obj.position
-        return serialized_paragraph
+        if not isinstance(obj, Document):
+            raise Exception("Cannot use this encoder to encode non-Document class.")
+        serialized_document = {}
+        if obj.header:
+            serialized_document["header"] = obj.header
+        if obj.section:
+            sect_encoder = SectionJSONEncoder()  # for serializing individual sections
+            serialized_document["section"] = sect_encoder.default(obj.section)
+        return serialized_document
 
 
 class SectionJSONEncoder(JSONEncoder):
@@ -140,14 +148,21 @@ class SectionJSONEncoder(JSONEncoder):
         return serialized_section
 
 
-class DocumentJSONEncoder(JSONEncoder):
+class ParagraphJSONEncoder(JSONEncoder):
     def default(self, obj):
-        if not isinstance(obj, Document):
-            raise Exception("Cannot use this encoder to encode non-Document class.")
-        serialized_document = {}
-        if obj.header:
-            serialized_document["header"] = obj.header
-        if obj.section:
-            sect_encoder = SectionJSONEncoder()  # for serializing individual sections
-            serialized_document["section"] = sect_encoder.default(obj.section)
-        return serialized_document
+        if not isinstance(obj, Paragraph):
+            raise Exception("Cannot use this encoder to encode non-Paragraph class.")
+        serialized_paragraph = {}
+        if obj.sentences:
+            sentence_encoder = SentenceJSONEncoder()  # for serializing individual sentences
+            serialized_paragraph["sentences"] = [sentence_encoder.default(sentence) for sentence in obj.sentences]
+        serialized_paragraph["position"] = obj.position
+        return serialized_paragraph
+
+
+class SentenceJSONEncoder(JSONEncoder):
+    def default(self, obj):
+        if not isinstance(obj, Sentence):
+            raise Exception("Cannot use this encoder to encode non-Sentence class.")
+        serialized_sentence = {"text": obj.text, "position": obj.position}
+        return serialized_sentence

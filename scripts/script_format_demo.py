@@ -8,7 +8,7 @@ import os
 
 from nltk.parse import stanford
 
-from formatters import StupidVstfSentenceFormatter
+from document_converters import StupidVstfSentenceFormatter
 from openmind_format import Sentence, SentenceJSONEncoder
 
 

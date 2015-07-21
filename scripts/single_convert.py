@@ -13,7 +13,7 @@ from urllib.request import urlopen
 import yaml
 from nltk.parse import stanford
 
-from formatters import LineLengthSentenceFormatter, StupidVstfSentenceFormatter, DefaultSentenceFormatter, \
+from document_converters import LineLengthDocumentConverter, StupidVstfSentenceFormatter, BasicDocumentConverter, \
     ConstituentHeightSentenceFormatter, ConstituentTokenLengthSentenceFormatter, StanfordParserSentenceFormatter
 from openmind_format import DocumentJSONEncoder
 from raw_converters import WikiHtmlFileRawConverter, BasicTextFileRawConverter
@@ -21,7 +21,7 @@ from raw_converters import WikiHtmlFileRawConverter, BasicTextFileRawConverter
 
 def sentenceformatter_factory(formatter_name, parser, ntokens=None, ntokensmin=None, ntokensmax=None):
     if formatter_name == "linelength":
-        formatter = LineLengthSentenceFormatter(ntokens)
+        formatter = LineLengthDocumentConverter(ntokens)
         logging.info("Using LineLengthSentenceFormatter sentence formatter with " + str(ntokens) + " tokens")
     elif formatter_name == "stupidvstf":
         formatter = StupidVstfSentenceFormatter(ntokens, parser)
@@ -41,7 +41,7 @@ def sentenceformatter_factory(formatter_name, parser, ntokens=None, ntokensmin=N
         formatter = StanfordParserSentenceFormatter(ntokens, parser)
         logging.info("Using StanfordParserSentenceFormatter sentence formatter with " + str(ntokens) + " tokens")
     else:
-        formatter = DefaultSentenceFormatter()
+        formatter = BasicDocumentConverter()
         logging.info("Using DefaultSentenceFormatter sentence formatter")
     return formatter
 
