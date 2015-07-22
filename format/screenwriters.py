@@ -1,177 +1,47 @@
 """
-created by beth on 6/11/15
+Screenwriters turn Document objects into Screenplays
+created by beth on 7/22/15
 """
-from json import JSONEncoder
 import abc
 
-from openmind_format import Document
+from document import Document
+from screenplay import Screenplay, Scene, SceneElement
 
 
-class DisplayFrame(object):
-    def __init__(self):
-        self.text_components = []
-        self.display_hold_distance = 0.0
-
-    def __eq__(self, other):
-        if isinstance(other, self.__class__):
-            return self.__dict__ == other.__dict__
-        else:
-            return False
-
-    def __ne__(self, other):
-        return not self.__eq__(other)
-
-    @staticmethod
-    def fromDict(dict_object):
-        display_frame = DisplayFrame()
-        display_frame.text_components = [TextComponent.fromDict(cp) for cp in dict_object["text_components"]]
-        display_frame.display_hold_distance = float(dict_object["display_hold_distance"])
-        return display_frame
-
-
-class TextComponent(object):
-    def __init__(self):
-        self.alignment = "Left"
-        # can be TopLeft, Top, TopRight, TopJustified, Left, Center, Right, Justified,
-        # BottomLeft, Bottom, BottomRight, BottomJustified, BaselineLeft, Baseline,
-        # BaselineRight, BaselineJustified, MidlineLeft, Midline, MidlineRight, MidlineJustified
-
-        self.color = "white"
-        self.font_name = "ARIAL SDF"
-        self.font_size = 100.0
-        self.font_style = "Normal"
-        # can be Normal, Bold, Italic, Underline, LowerCase, UpperCase, SmallCaps, or any combination
-        # such as BoldUnderline
-
-        self.height = 100.0
-        self.kerning = True
-        self.line_spacing = 0.0
-        self.outline_color = "gray"
-        self.outline_width = 0.2
-        self.overflow_mode = "Overflow"
-        # can be Overflow, Ellipsis, Masking, Truncate, ScrollRect, Page
-
-        self.rotation_x = 0.0
-        self.rotation_y = 0.0
-        self.rotation_z = 0.0
-        self.rotation_w = 1.0
-        self.text_string = ""
-        self.width = 100.0
-        self.word_wrapping = True
-        self.relative_x_position = 0.0
-        self.relative_y_position = 0.0
-        self.relative_z_position = 100.0
-        self.identifier = "Text"
-
-    @staticmethod
-    def fromDict(dict_object):
-        text_component = TextComponent()
-        text_component.alignment = dict_object["alignment"]
-        text_component.color = dict_object["color"]
-        text_component.font_name = dict_object["font_name"]
-        text_component.font_size = float(dict_object["font_size"])
-        text_component.font_style = dict_object["font_style"]
-        text_component.height = float(dict_object["height"])
-        text_component.kerning = bool(dict_object["kerning"])
-        text_component.line_spacing = float(dict_object["line_spacing"])
-        text_component.outline_color = dict_object["outline_color"]
-        text_component.outline_width = float(dict_object["outline_width"])
-        text_component.overflow_mode = dict_object["overflow_mode"]
-        text_component.rotation_x = float(dict_object["rotation_x"])
-        text_component.rotation_y = float(dict_object["rotation_y"])
-        text_component.rotation_z = float(dict_object["rotation_z"])
-        text_component.rotation_w = float(dict_object["rotation_w"])
-        text_component.text_string = dict_object["text_string"]
-        text_component.width = float(dict_object["width"])
-        text_component.word_wrapping = bool(dict_object["word_wrapping"])
-        text_component.relative_x_position = dict_object["relative_x_position"]
-        text_component.relative_y_position = dict_object["relative_y_position"]
-        text_component.relative_z_position = dict_object["relative_z_position"]
-        text_component.identifier = dict_object["identifier"]
-        return text_component
-
-    def __eq__(self, other):
-        if isinstance(other, self.__class__):
-            return self.__dict__ == other.__dict__
-        else:
-            return False
-
-    def __ne__(self, other):
-        return not self.__eq__(other)
-
-
-class DisplayFrameJSONEncoder(JSONEncoder):
-    def default(self, obj):
-        if not isinstance(obj, DisplayFrame):
-            print("Cannot use this class to serialize: " + str(type(obj)))
-        serialized_df = {}
-        if obj.display_hold_distance:
-            serialized_df["display_hold_distance"] = obj.display_hold_distance
-        if obj.text_components:
-            text_component_encoder = TextComponentJSONEncoder()  # for serializing the text components
-            serialized_df["text_components"] = [text_component_encoder.default(comp) for comp in obj.text_components]
-        return serialized_df
-
-
-class TextComponentJSONEncoder(JSONEncoder):
-    def default(self, obj):
-        serialized_component = {"alignment": obj.alignment, "color": obj.color, "font_name": obj.font_name,
-                                "font_size": obj.font_size, "font_style": obj.font_style, "height": obj.height,
-                                "kerning": obj.kerning, "line_spacing": obj.line_spacing,
-                                "outline_color": obj.outline_color, "outline_width": obj.outline_width,
-                                "overflow_mode": obj.overflow_mode, "rotation_x": obj.rotation_x,
-                                "rotation_y": obj.rotation_y, "rotation_z": obj.rotation_z,
-                                "rotation_w": obj.rotation_w, "text_string": obj.text_string, "width": obj.width,
-                                "word_wrapping": obj.word_wrapping, "relative_x_position": obj.relative_x_position,
-                                "relative_y_position": obj.relative_y_position,
-                                "relative_z_position": obj.relative_z_position, "identifier": obj.identifier}
-        return serialized_component
-
-
-class DocumentConverter(object):
+class Screenwriter(object):
     @abc.abstractmethod
     # returns a list of DisplayFrame objects
-    def format(self, document):
+    def write_screenplay(self, document):
         if not isinstance(document, Document):
             raise Exception("Yo, this is not a document: " + str(document))
         return
 
 
-# most basic formatter - there is just one part, and it is the entire sentence
-class BasicDocumentConverter(DocumentConverter):
+# most basic converter - one sentence per scene, all scenes shown for the same time
+class BasicScreenwriter(Screenwriter):
     def __init__(self):
         return
 
-    def format(self, document):
-        display_frames = []
+    def write_screenplay(self, document):
+        screenplay = Screenplay()
+        scenes = []
+
+        sentence_count = 0
         for sentence in document.sentences():
-            display_frame = DisplayFrame()
-            display_frame.display_hold_distance = 0.1
+            scene = Scene()
+            scene.duration = 1.0
 
-            text_component = TextComponent()
-            text_component.alignment = "TopLeft"
-            text_component.color = "white"
-            text_component.kerning = True
-            text_component.font_name = "ARIAL SDF"
-            text_component.font_size = 100.0
-            text_component.font_style = "Normal"
-            text_component.height = 100.0
-            text_component.line_spacing = 0.0
-            text_component.outline_color = "gray"
-            text_component.outline_width = 0.2
-            text_component.overflow_mode = "Overflow"
-            text_component.rotation_x = 0.0
-            text_component.rotation_y = 0.0
-            text_component.rotation_z = 0.0
-            text_component.rotation_w = 1.0
-            text_component.width = 100.0
-            text_component.word_wrapping = True
+            scene_element = SceneElement()
+            scene_element.content = sentence.text
+            scene_element.identifier = "Sentence " + str(sentence_count)
+            sentence_count += 1
 
-            text_component.text_string = sentence.text
+            scene.elements = [scene_element]
+            scenes.append(scene)
 
-            display_frame.text_components = [text_component]
-            display_frames.append(display_frame)
-        return display_frames
+        screenplay.title = document.header
+        screenplay.scenes = scenes
+        return screenplay
 
 
         # # line length formatter
@@ -183,7 +53,7 @@ class BasicDocumentConverter(DocumentConverter):
         # def format(self, inputString):
         # result = []
         #
-        #         words = wordpunct_tokenize(inputString)
+        # words = wordpunct_tokenize(inputString)
         #         num_words = len(words)
         #
         #         if num_words > 0:

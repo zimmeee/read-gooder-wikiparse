@@ -1,7 +1,9 @@
 """
-
+Script for converting a single file to Screenplay format
 created by noah on 6/29/15
+updated by beth on 7/22/15 to reflect new Screenplay format
 """
+
 import json
 import sys
 import os
@@ -11,42 +13,25 @@ import logging.config
 from urllib.request import urlopen
 
 import yaml
+
 from nltk.parse import stanford
 
-from document_converters import LineLengthDocumentConverter, StupidVstfSentenceFormatter, BasicDocumentConverter, \
-    ConstituentHeightSentenceFormatter, ConstituentTokenLengthSentenceFormatter, StanfordParserSentenceFormatter
-from openmind_format import DocumentJSONEncoder
+from screenplay import ScreenplayJSONEncoder
+from screenwriters import BasicScreenwriter
 from raw_converters import WikiHtmlFileRawConverter, BasicTextFileRawConverter
 
 
-def sentenceformatter_factory(formatter_name, parser, ntokens=None, ntokensmin=None, ntokensmax=None):
-    if formatter_name == "linelength":
-        formatter = LineLengthDocumentConverter(ntokens)
-        logging.info("Using LineLengthSentenceFormatter sentence formatter with " + str(ntokens) + " tokens")
-    elif formatter_name == "stupidvstf":
-        formatter = StupidVstfSentenceFormatter(ntokens, parser)
-        logging.info("Using StupidVstfSentenceFormatter sentence formatter with " + str(ntokens) + " tokens")
-    elif formatter_name == "constituentheight":
-        if ntokens:
-            formatter = ConstituentHeightSentenceFormatter(parser, constituent_height=ntokens)
-            logging.info("Using ConstituentHeightSentenceFormatter sentence formatter with " + str(ntokens) + " tokens")
-        else:
-            formatter = ConstituentHeightSentenceFormatter(parser)
-            logging.info("Using ConstituentHeightSentenceFormatter sentence formatter")
-    elif formatter_name == "constituentlength":
-        formatter = ConstituentTokenLengthSentenceFormatter(parser, ntokensmin, ntokensmax)
-        logging.info("Using ConstituentTokenLengthSentenceFormatter sentence formatter with ntokensmin=" +
-                     str(ntokensmin) + " and ntokensmax=" + str(ntokensmax))
-    elif formatter_name == "stanfordparser":
-        formatter = StanfordParserSentenceFormatter(ntokens, parser)
-        logging.info("Using StanfordParserSentenceFormatter sentence formatter with " + str(ntokens) + " tokens")
+def screenwriter_factory(screenwriter_name):
+    if screenwriter_name == "basic":
+        screenwriter = BasicScreenwriter()
+        logging.info("Using BasicScreenwriter")
     else:
-        formatter = BasicDocumentConverter()
-        logging.info("Using DefaultSentenceFormatter sentence formatter")
-    return formatter
+        screenwriter = BasicScreenwriter()
+        logging.info("No recognized screenwriter name")
+    return screenwriter
 
 
-def converter_factory(converter_type):
+def raw_converter_factory(converter_type):
     raw_converter = None
 
     if converter_type == "Basic":
@@ -85,23 +70,24 @@ def setup_logging(logging_conf):
         logging.basicConfig(level=logging.INFO)
 
 
-def do_conversion(formatter, raw_converter_type, document_source, document_title, output_file):
-    raw_converter = converter_factory(raw_converter_type)
+def do_conversion(screenwriter_type, raw_converter_type, document_source, document_title, output_file):
+    raw_converter = raw_converter_factory(raw_converter_type)
     document = raw_converter.convertToDocument(document_source, document_title)
-
-    # TODO: formatter enters here
 
     if not document:  # if document could not be converted
         return
 
+    screenwriter = screenwriter_factory(screenwriter_type)
+
     with open(output_file, "w") as output:
         output.write(
-            json.dumps(document, cls=DocumentJSONEncoder, indent=4, sort_keys=True, ensure_ascii=False))
+            json.dumps(screenwriter.write_screenplay(document), cls=ScreenplayJSONEncoder,
+                       indent=4, sort_keys=True, ensure_ascii=False))
         logging.info("Wrote output to: " + os.path.abspath(output_file))
 
 
 def main():
-    arg_parser = argparse.ArgumentParser(description="Convert a text document into OpenMind JSON format")
+    arg_parser = argparse.ArgumentParser(description="Convert a text document into OpenMind Screenplay format")
     arg_parser.add_argument("-c", "--config", required=True, help="Configuration file containing runtime parameters")
     arg_parser.add_argument("-l", "--logging", required=False, help="Configuration file for runtime logging parameters")
 
@@ -112,7 +98,7 @@ def main():
     logging.info("Starting conversion with " + str(vars(args)))
 
     with open(args.config, 'r') as config_file:
-        config = yaml.load(config_file)["Document"]
+        config = yaml.load(config_file)["Screenplay"]
 
         # get text document
         if config["wiki_rest_endpoint"] and config["wiki_article_title"]:
@@ -133,14 +119,8 @@ def main():
         if not stanfordParser:
             raise Exception("Stanford Parser instance needed for document conversion.")
 
-        # get formatter
-        formatter = sentenceformatter_factory(config["sentence_formatter"], stanfordParser,
-                                              ntokens=int(config["ntokens"]) if "ntokens" in config else 0,
-                                              ntokensmin=int(config["ntokensmin"]) if "ntokensmin" in config else 0,
-                                              ntokensmax=int(config["ntokensmax"]) if "ntokensmax" in config else 0)
-
         # convert the document
-        do_conversion(formatter, config["raw_converter"], document_source, document_title,
+        do_conversion(config["screenwriter"], config["raw_converter"], document_source, document_title,
                       os.path.abspath(config["output_file"]))
 
 

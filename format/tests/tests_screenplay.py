@@ -1,40 +1,12 @@
 import json
 import unittest
 
-
-# class ConstituentFormatterTestCase(unittest.TestCase):
-# def setUp(self):
-# os.environ['STANFORD_PARSER'] = "/Users/beth/Documents/openmind/stanford-parser-3.5.2"
-#         os.environ['STANFORD_MODELS'] = "/Users/beth/Documents/openmind/stanford-parser-3.5.2"
-#
-#         self.stanfordParser = stanford.StanfordParser()
-#
-#     def runTest(self):
-#         formatter = ConstituentHeightSentenceFormatter(self.stanfordParser, constituent_height=2)
-#         sentence_fragments = formatter.format("This is a sentence.")
-#         self.assertEquals(len(sentence_fragments), 5)
-#         formatter = ConstituentHeightSentenceFormatter(self.stanfordParser, constituent_height=3)
-#         sentence_fragments = formatter.format("This is a sentence.")
-#         self.assertEquals(len(sentence_fragments), 2)
-#
-#
-# class StanfordParserFormatterTestCase(unittest.TestCase):
-#     def setUp(self):
-#         os.environ['STANFORD_PARSER'] = "/Users/beth/Documents/openmind/stanford-parser-3.5.2"
-#         os.environ['STANFORD_MODELS'] = "/Users/beth/Documents/openmind/stanford-parser-3.5.2"
-#
-#         self.stanfordParser = stanford.StanfordParser()
-#
-#     def runTest(self):
-#         sp_formatter = StanfordParserSentenceFormatter(4, self.stanfordParser)
-#         sentence_fragments = sp_formatter.format("Nearly a century ago, \"biologists\" found that if they separated an "
-#                                                  "invertebrate animal embryo into two parts at an early stage of its "
-#                                                  "life (early), it would survive and develop as \"two normal embryos\".")
-from document_converters import BasicDocumentConverter, DisplayFrameJSONEncoder, DisplayFrame
+from screenplay import ScreenplayJSONEncoder, Screenplay
+from screenwriters import BasicScreenwriter
 from raw_converters import BasicTextFileRawConverter
 
 
-class TermFrequencyFormatterTestCase(unittest.TestCase):
+class ScreenplaySerializationTestCase(unittest.TestCase):
     def setUp(self):
         doc_source = "Supernovas are among the most energetic events in the universe and result in the " \
                      "complete disruption of stars at the end of their lives. Originally, the distinction " \
@@ -61,8 +33,8 @@ class TermFrequencyFormatterTestCase(unittest.TestCase):
         self.document = BasicTextFileRawConverter().convertToDocument(doc_source, doc_title)
 
     def runTest(self):
-        converter = BasicDocumentConverter()
-        display_frame_list = converter.format(self.document)
-        serialized_json = json.dumps(display_frame_list, cls=DisplayFrameJSONEncoder, sort_keys=True)
-        deserialized_object = [DisplayFrame.fromDict(df) for df in json.loads(serialized_json)]
-        self.assertEquals(display_frame_list, deserialized_object)
+        converter = BasicScreenwriter()
+        screenplay = converter.write_screenplay(self.document)
+        serialized_json = json.dumps(screenplay, cls=ScreenplayJSONEncoder, sort_keys=True)
+        deserialized_screenplay = Screenplay.fromDict(json.loads(serialized_json))
+        self.assertEquals(screenplay, deserialized_screenplay)

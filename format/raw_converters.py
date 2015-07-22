@@ -10,7 +10,7 @@ import re
 from bs4 import BeautifulSoup
 from nltk import sent_tokenize
 
-from openmind_format import Document, Paragraph, Section, Sentence
+from document import Document, Paragraph, Section, Sentence
 
 
 class RawConverter:

@@ -7,7 +7,7 @@ import os
 import sys
 import datetime
 
-from single_convert import sentenceformatter_factory, stanfordparser_factory, do_conversion
+from single_convert import screenwriter_factory, stanfordparser_factory, do_conversion
 
 
 if __name__ == "__main__":
@@ -19,7 +19,7 @@ if __name__ == "__main__":
     transcripts = json.loads(open(transcription_results_file, "r").read())
 
     for formatter_name in ["default", "stanfordparser"]:
-        formatter = sentenceformatter_factory(formatter_name, stanfordparser_factory(stanford_parser_directory,
+        formatter = screenwriter_factory(formatter_name, stanfordparser_factory(stanford_parser_directory,
                                                                                      stanford_parser_models_directory))
         for transcript in transcripts:
             document_text = transcript["passageText"]

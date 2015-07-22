@@ -1,13 +1,9 @@
-Document:
+Screenplay:
   raw_converter: Wiki
-  sentence_formatter: linelength
+  screenwriter: basic
   file:
   wiki_rest_endpoint: http://rest.wikimedia.org:80/en.wikipedia.org/v1/page/html/
   wiki_article_title: Taylor_Swift
-  ntokens: 4
-  ntokensmin: 2
-  ntokensmax: 5
   stanford_parser_directory: ../resources
   stanford_parser_models_directory: ../resources
-  output_file: ../output/Taylor_Swift.json
-
+  output_file: ../output/Taylor_Swift-basic.json

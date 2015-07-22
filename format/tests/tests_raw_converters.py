@@ -2,7 +2,7 @@ import json
 import unittest
 from urllib.request import urlopen
 
-from openmind_format import DocumentJSONEncoder, Document
+from document import DocumentJSONEncoder, Document
 from raw_converters import BasicTextFileRawConverter, WikiHtmlFileRawConverter
 
 

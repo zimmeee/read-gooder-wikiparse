@@ -1,7 +1,11 @@
+"""
+OpenMind Document format - any raw text format is converted to this first
+created by beth on 6/15/15
+edited 7/22/15
+"""
+
 from json import JSONEncoder
 import json
-
-__author__ = 'beth'
 
 
 class Document:

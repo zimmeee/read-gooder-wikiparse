@@ -8,8 +8,8 @@ import os
 
 from nltk.parse import stanford
 
-from document_converters import StupidVstfSentenceFormatter
-from openmind_format import Sentence, SentenceJSONEncoder
+from screenwriters import StupidVstfSentenceFormatter
+from document import Sentence, SentenceJSONEncoder
 
 
 def demo_stanford_parser(formatter):
@@ -20,7 +20,7 @@ def demo_stanford_parser(formatter):
 
     # take all parsed sentences and format them according to the desired formatter
     for sentence in sentences:
-        result = formatter.format(sentence)
+        result = formatter.write_screenplay(sentence)
         sentence = Sentence(sentence_parts=result)
         print(json.dumps(sentence, cls=SentenceJSONEncoder, indent=4))
 
