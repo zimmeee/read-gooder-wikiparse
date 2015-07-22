@@ -1,10 +1,9 @@
 Screenplay:
   raw_converter: Basic
-  screenwriter: basic
+  screenwriter: constituent_height
   file: ../static/mcat-beth-pt7-1.txt
   wiki_rest_endpoint:
   wiki_article_title:
   stanford_parser_directory: ../resources
   stanford_parser_models_directory: ../resources
   output_file: ../output/mcat-beth-pt7-1-basic.json
-

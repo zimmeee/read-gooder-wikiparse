@@ -17,14 +17,17 @@ import yaml
 from nltk.parse import stanford
 
 from screenplay import ScreenplayJSONEncoder
-from screenwriters import BasicScreenwriter
+from screenwriters import BasicScreenwriter, ConstituentHeightScreenwriter
 from raw_converters import WikiHtmlFileRawConverter, BasicTextFileRawConverter
 
 
-def screenwriter_factory(screenwriter_name):
+def screenwriter_factory(screenwriter_name, parser=None):
     if screenwriter_name == "basic":
         screenwriter = BasicScreenwriter()
         logging.info("Using BasicScreenwriter")
+    elif screenwriter_name == "constituent_height":
+        screenwriter = ConstituentHeightScreenwriter(parser, 3)  # todo: fix parameters in config
+        logging.info("Using ConstituentHeightScreenwriter")
     else:
         screenwriter = BasicScreenwriter()
         logging.info("No recognized screenwriter name")
@@ -70,14 +73,14 @@ def setup_logging(logging_conf):
         logging.basicConfig(level=logging.INFO)
 
 
-def do_conversion(screenwriter_type, raw_converter_type, document_source, document_title, output_file):
+def do_conversion(screenwriter_type, raw_converter_type, document_source, document_title, output_file, stanford_parser):
     raw_converter = raw_converter_factory(raw_converter_type)
     document = raw_converter.convertToDocument(document_source, document_title)
 
     if not document:  # if document could not be converted
         return
 
-    screenwriter = screenwriter_factory(screenwriter_type)
+    screenwriter = screenwriter_factory(screenwriter_type, parser=stanford_parser)
 
     with open(output_file, "w") as output:
         output.write(
@@ -121,7 +124,7 @@ def main():
 
         # convert the document
         do_conversion(config["screenwriter"], config["raw_converter"], document_source, document_title,
-                      os.path.abspath(config["output_file"]))
+                      os.path.abspath(config["output_file"]), stanfordParser)
 
 
 if __name__ == '__main__':

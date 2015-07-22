@@ -17,6 +17,11 @@ class Screenplay(object):
         screenplay.title = dict_object["title"]
         return screenplay
 
+    def addScene(self, scene):
+        if not self.scenes:
+            self.scenes = []
+        self.scenes.append(scene)
+
     def __eq__(self, other):
         if isinstance(other, self.__class__):
             return self.__dict__ == other.__dict__
@@ -38,6 +43,11 @@ class Scene(object):
         scene.elements = [SceneElement.fromDict(cp) for cp in dict_object["elements"]]
         scene.duration = float(dict_object["duration"])
         return scene
+
+    def addElement(self, element):
+        if not self.elements:
+            self.elements = []
+        self.elements.append(element)
 
     def __eq__(self, other):
         if isinstance(other, self.__class__):

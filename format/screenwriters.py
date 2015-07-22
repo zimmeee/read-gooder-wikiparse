@@ -4,6 +4,8 @@ created by beth on 7/22/15
 """
 import abc
 
+from nltk.parse.stanford import StanfordParser
+
 from document import Document
 from screenplay import Screenplay, Scene, SceneElement
 
@@ -44,28 +46,51 @@ class BasicScreenwriter(Screenwriter):
         return screenplay
 
 
-        # # line length formatter
-        # # taken from Noah's original line_length_converter method in simplify_wiki_html
-        # class LineLengthDocumentConverter(DocumentConverter):
-        # def __init__(self, line_length):
-        # self.desired_line_length = line_length
-        #
-        # def format(self, inputString):
-        # result = []
-        #
-        # words = wordpunct_tokenize(inputString)
-        #         num_words = len(words)
-        #
-        #         if num_words > 0:
-        #             num_sentence_parts = ceil(num_words / self.desired_line_length)
-        #
-        #             for i in range(0, num_sentence_parts):
-        #                 start = i * self.desired_line_length
-        #                 end = start + self.desired_line_length if start + self.desired_line_length < num_words else num_words
-        #                 result.append(SentenceFragment(importance=0, text=' '.join(words[start:end]), tokens=words[start:end]))
-        #         return result
-        #
-        #
+# only constituents of a certain length in tokens are returned
+class ConstituentHeightScreenwriter(Screenwriter):
+    def __init__(self, parser, height=0):
+        if not isinstance(parser, StanfordParser):
+            raise Exception("ConstituentTokenLengthScreenwriter: Argument for parser is not a StanfordParser object.")
+        self.parser = parser
+        self.constituent_height = height
+
+    def write_screenplay(self, document):
+        screenplay = Screenplay()
+        screenplay.title = document.header
+
+        inputTrees = self.parser.raw_parse_sents([sentence.text for sentence in document.sentences()])
+
+        element_count = 0
+        for treeSet in inputTrees:
+            for tree in treeSet:
+                scene = Scene()
+                scene.duration = 1.0
+
+                # if no constituent height set, take all constituents in order of height
+                if not self.constituent_height:
+                    max_height = 0
+                    for subtree in tree.subtrees():
+                        if subtree.height() > max_height:
+                            max_height = subtree.height()
+                    for height in range(max_height):
+                        for subtree in tree.subtrees(lambda t: t.height() == height):
+                            scene_element = SceneElement()
+                            scene_element.identifier = "Element " + str(element_count)
+                            scene_element.content = ' '.join(subtree.leaves())
+                            scene.addElement(scene_element)
+                            element_count += 1
+                else:
+                    for subtree in tree.subtrees(lambda t: t.height() == self.constituent_height):
+                        scene_element = SceneElement()
+                        scene_element.identifier = "Element " + str(element_count)
+                        scene_element.content = ' '.join(subtree.leaves())
+                        scene.addElement(scene_element)
+                        element_count += 1
+
+                screenplay.addScene(scene)
+        return screenplay
+
+
         # # naive implementation of vstf: trees are flattened and returned as lists of SentenceFragment objects
         # class StupidVstfSentenceFormatter(SentenceFormatter):
         #     def __init__(self, max_words_per_part, parser):
@@ -294,22 +319,3 @@ class BasicScreenwriter(Screenwriter):
         #         return result
         #
         #
-        # # only constituents of a certain length in tokens are returned
-        # class ConstituentTokenLengthSentenceFormatter(SentenceFormatter):
-        #     def __init__(self, parser, min_length=0, max_length=20):
-        #         if not isinstance(parser, StanfordParser):
-        #             raise Exception("ConstituentSentenceFormatter: Argument for parser is not a StanfordParser object.")
-        #         self.parser = parser  # converts string to tree
-        #         self.min_length = min_length
-        #         self.max_length = max_length
-        #
-        #     def format(self, inputString):
-        #         inputTrees = self.parser.raw_parse(inputString)
-        #         result = []
-        #
-        #         for treeSet in inputTrees:
-        #             for tree in treeSet:
-        #                 for subtree in tree.subtrees(lambda t: self.min_length <= len(t.leaves()) <= self.max_length):
-        #                     result.append(SentenceFragment(importance=len(subtree.leaves()), tokens=subtree.leaves(),
-        #                                                    text=' '.join(subtree.leaves())))
-        #         return result
