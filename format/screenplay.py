@@ -60,9 +60,10 @@ class Scene(object):
 
 
 class SceneElement(object):
-    def __init__(self, content=None, identifier=None):
+    def __init__(self, content=None, identifier=None, priority=0):
         self.content = content
         self.identifier = identifier
+        self.priority = priority
         # can be other qualities here, representing different properties of the element (strength, importance, etc.)
 
     @staticmethod
@@ -70,6 +71,7 @@ class SceneElement(object):
         element = SceneElement()
         element.content = dict_object["content"]
         element.identifier = dict_object["identifier"]
+        element.priority = dict_object["priority"]
         return element
 
     def __eq__(self, other):
@@ -94,6 +96,7 @@ class SceneElementJSONEncoder(JSONEncoder):
             serialized_scene_element["content"] = obj.content
         if obj.identifier:
             serialized_scene_element["identifier"] = obj.identifier
+        serialized_scene_element["priority"] = obj.priority
         return serialized_scene_element
 
 

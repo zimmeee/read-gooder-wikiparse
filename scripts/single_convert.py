@@ -17,7 +17,8 @@ import yaml
 from nltk.parse import stanford
 
 from screenplay import ScreenplayJSONEncoder
-from screenwriters import BasicScreenwriter, ConstituentHeightScreenwriter
+from screenwriters import BasicScreenwriter, ConstituentHeightScreenwriter, StanfordParserScreenwriter, \
+    PartOfSpeechSplitScreenwriter
 from raw_converters import WikiHtmlFileRawConverter, BasicTextFileRawConverter
 
 
@@ -28,6 +29,12 @@ def screenwriter_factory(screenwriter_name, parser=None):
     elif screenwriter_name == "constituent_height":
         screenwriter = ConstituentHeightScreenwriter(parser, 3)  # todo: fix parameters in config
         logging.info("Using ConstituentHeightScreenwriter")
+    elif screenwriter_name == "stanford_parser":
+        screenwriter = StanfordParserScreenwriter(parser)
+        logging.info("Using StanfordParserScreenwriter")
+    elif screenwriter_name == "pos":
+        screenwriter = PartOfSpeechSplitScreenwriter(parser)
+        logging.info("Using PartOfSpeechSplitScreenwriter")
     else:
         screenwriter = BasicScreenwriter()
         logging.info("No recognized screenwriter name")
