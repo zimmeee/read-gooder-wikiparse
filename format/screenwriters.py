@@ -158,7 +158,8 @@ class PartOfSpeechSplitScreenwriter(Screenwriter):
         if not isinstance(parser, StanfordParser):
             raise Exception("StanfordParserScreenwriter: Argument for parser is not a StanfordParser object.")
         self.parser = parser  # converts string to tree
-        self.breaklabels = set(["PP"])
+        self.breaklabels = {"PP", "VP"}
+        self.label_blacklist = {"ROOT"}
 
     def write_screenplay(self, document):
         screenplay = Screenplay()
@@ -174,30 +175,32 @@ class PartOfSpeechSplitScreenwriter(Screenwriter):
 
                 prefix_blacklist = set()
                 for s in tree.treepositions():
+                    if len(s) == 0:  # root of tree
+                        continue
                     if not isinstance(tree[s], Tree):
                         continue
                     has_child_pp = False
                     for t in tree[s].subtrees():
-                        if t.label() in self.breaklabels:
+                        if t == tree[s]:
+                            continue
+                        if t.label() in self.breaklabels and len(t.leaves()) > 1:
                             has_child_pp = True
                     # if it has a PP child, can't print it so continue
+                    printed = False
                     if not has_child_pp:
                         in_blacklist = False
                         for n in range(len(s)):
                             if tuple(s[:len(s) - n]) in prefix_blacklist:
                                 in_blacklist = True
-                        if not in_blacklist:
+                        if not in_blacklist: # and tree[s].label() not in self.label_blacklist:
                             scene.addElement(SceneElement(" ".join(tree[s].leaves()),
                                                           tree[s].label(),
                                                           len(s)))
-                            print(s, tree[s].label(), tree[s].leaves())
+                            printed = True
                             prefix_blacklist.add(s)
-                    elif tree[s].label() in self.breaklabels:
-                        scene.addElement(SceneElement(" ".join(tree[s].leaves()),
-                                                      tree[s].label(),
-                                                      len(s)))
-                        print(s, tree[s].label(), tree[s].leaves())
-                        prefix_blacklist.add(s)
+                    if not printed:
+                        print("\t", end="")
+                    print(s, tree[s].label(), tree[s].leaves(), end="\n")
 
                 element_count += 1
 
