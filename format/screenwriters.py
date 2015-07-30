@@ -158,7 +158,7 @@ class PartOfSpeechSplitScreenwriter(Screenwriter):
         if not isinstance(parser, StanfordParser):
             raise Exception("StanfordParserScreenwriter: Argument for parser is not a StanfordParser object.")
         self.parser = parser  # converts string to tree
-        self.breaklabels = {"PP", "VP"}
+        self.breaklabels = {"PP", "VP", "IN", "ADVP"}
         self.label_blacklist = {"ROOT"}
 
     def write_screenplay(self, document):
@@ -192,10 +192,15 @@ class PartOfSpeechSplitScreenwriter(Screenwriter):
                         for n in range(len(s)):
                             if tuple(s[:len(s) - n]) in prefix_blacklist:
                                 in_blacklist = True
-                        if not in_blacklist: # and tree[s].label() not in self.label_blacklist:
-                            scene.addElement(SceneElement(" ".join(tree[s].leaves()),
-                                                          tree[s].label(),
-                                                          len(s)))
+                        if not in_blacklist:  # and tree[s].label() not in self.label_blacklist:
+                            if len(tree[s].leaves()) == 1 and tree[s].leaves()[0] == ",":
+                                screenplay.addScene(scene)
+                                scene = Scene()
+                                scene.duration = 1.0
+                            else:
+                                scene.addElement(SceneElement(" ".join(tree[s].leaves()),
+                                                              tree[s].label(),
+                                                              len(s)))
                             printed = True
                             prefix_blacklist.add(s)
                     if not printed:
