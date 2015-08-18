@@ -33,10 +33,11 @@ class BasicScreenwriter(Screenwriter):
         for sentence in document.sentences():
             scene = Scene()
             scene.duration = 1.0
+            scene.identifier = sentence_count
 
             scene_element = SceneElement()
             scene_element.content = sentence.text
-            scene_element.identifier = "Sentence " + str(sentence_count)
+            scene_element.name = "S" + str(sentence_count)
             sentence_count += 1
 
             scene.elements = [scene_element]
@@ -51,7 +52,7 @@ class BasicScreenwriter(Screenwriter):
 class ConstituentHeightScreenwriter(Screenwriter):
     def __init__(self, parser, height=0):
         if not isinstance(parser, StanfordParser):
-            raise Exception("ConstituentTokenLengthScreenwriter: Argument for parser is not a StanfordParser object.")
+            raise Exception("ConstituentHeightScreenwriter: Argument for parser is not a StanfordParser object.")
         self.parser = parser
         self.constituent_height = height
 
@@ -76,14 +77,14 @@ class ConstituentHeightScreenwriter(Screenwriter):
                     for height in range(max_height):
                         for subtree in tree.subtrees(lambda t: t.height() == height):
                             scene_element = SceneElement()
-                            scene_element.identifier = "Element " + str(element_count)
+                            scene_element.name = "Element " + str(element_count)
                             scene_element.content = ' '.join(subtree.leaves())
                             scene.addElement(scene_element)
                             element_count += 1
                 else:
                     for subtree in tree.subtrees(lambda t: t.height() == self.constituent_height):
                         scene_element = SceneElement()
-                        scene_element.identifier = "Element " + str(element_count)
+                        scene_element.name = "Element " + str(element_count)
                         scene_element.content = ' '.join(subtree.leaves())
                         scene.addElement(scene_element)
                         element_count += 1
@@ -113,7 +114,7 @@ class StanfordParserScreenwriter(Screenwriter):
 
                 formatted_string = self.pformat(tree, margin=70, indent=0, nodesep='', parens='()')
                 scene_element = SceneElement()
-                scene_element.identifier = "Element " + str(element_count)
+                scene_element.name = "Element " + str(element_count)
                 scene_element.content = formatted_string
                 scene.addElement(scene_element)
                 element_count += 1

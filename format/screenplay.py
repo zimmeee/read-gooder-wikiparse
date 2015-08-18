@@ -3,18 +3,21 @@ OpenMind Screenplay format - Documents are converted to this format prior to ent
 created by beth on 7/22/15
 """
 from json import JSONEncoder
+import uuid
 
 
 class Screenplay(object):
     def __init__(self, scenes=None, title=None):
         self.scenes = scenes
         self.title = title
+        self.uuid = uuid.uuid1()  # randomly generated uuid for this screenplay
 
     @staticmethod
     def fromDict(dict_object):
         screenplay = Screenplay()
         screenplay.scenes = [Scene.fromDict(scene) for scene in dict_object["scenes"]]
         screenplay.title = dict_object["title"]
+        screenplay.uuid = uuid.UUID(dict_object["uuid"])
         return screenplay
 
     def addScene(self, scene):
@@ -33,15 +36,17 @@ class Screenplay(object):
 
 
 class Scene(object):
-    def __init__(self, elements=None, duration=0.0):
+    def __init__(self, elements=None, duration=0.0, identifier=0):
         self.elements = elements
         self.duration = duration
+        self.identifier = identifier
 
     @staticmethod
     def fromDict(dict_object):
         scene = Scene()
         scene.elements = [SceneElement.fromDict(cp) for cp in dict_object["elements"]]
         scene.duration = float(dict_object["duration"])
+        scene.identifier = int(dict_object["identifier"])
         return scene
 
     def addElement(self, element):
@@ -60,9 +65,9 @@ class Scene(object):
 
 
 class SceneElement(object):
-    def __init__(self, content=None, identifier=None, priority=0):
+    def __init__(self, content=None, name=None, priority=0):
         self.content = content
-        self.identifier = identifier
+        self.name = name
         self.priority = priority
         # can be other qualities here, representing different properties of the element (strength, importance, etc.)
 
@@ -70,7 +75,7 @@ class SceneElement(object):
     def fromDict(dict_object):
         element = SceneElement()
         element.content = dict_object["content"]
-        element.identifier = dict_object["identifier"]
+        element.name = dict_object["name"]
         element.priority = dict_object["priority"]
         return element
 
@@ -91,12 +96,9 @@ class SceneElementJSONEncoder(JSONEncoder):
     def default(self, obj):
         if not isinstance(obj, SceneElement):
             raise Exception("Cannot use this encoder to encode non-Scene-Element class.")
-        serialized_scene_element = {}
-        if obj.content:
-            serialized_scene_element["content"] = obj.content
-        if obj.identifier:
-            serialized_scene_element["identifier"] = obj.identifier
-        serialized_scene_element["priority"] = obj.priority
+        serialized_scene_element = {"content": obj.content,
+                                    "name": obj.name,
+                                    "priority": obj.priority}
         return serialized_scene_element
 
 
@@ -104,12 +106,10 @@ class SceneJSONEncoder(JSONEncoder):
     def default(self, obj):
         if not isinstance(obj, Scene):
             raise Exception("Cannot use this encoder to encode non-Scene class.")
-        serialized_scene = {}
-        if obj.duration:
-            serialized_scene["duration"] = obj.duration
-        if obj.elements:
-            scene_element_encoder = SceneElementJSONEncoder()  # for serializing individual scene elements
-            serialized_scene["elements"] = [scene_element_encoder.default(e) for e in obj.elements]
+        scene_element_encoder = SceneElementJSONEncoder()  # for serializing individual scene elements
+        serialized_scene = {"duration": obj.duration,
+                            "elements": [scene_element_encoder.default(e) for e in obj.elements],
+                            "identifier": obj.identifier}
         return serialized_scene
 
 
@@ -117,10 +117,8 @@ class ScreenplayJSONEncoder(JSONEncoder):
     def default(self, obj):
         if not isinstance(obj, Screenplay):
             raise Exception("Cannot use this encoder to encode non-Screenplay class.")
-        serialized_screenplay = {}
-        if obj.title:
-            serialized_screenplay["title"] = obj.title
-        if obj.scenes:
-            scene_encoder = SceneJSONEncoder()  # for serializing individual scenes
-            serialized_screenplay["scenes"] = [scene_encoder.default(scene) for scene in obj.scenes]
+        scene_encoder = SceneJSONEncoder()  # for serializing individual scenes
+        serialized_screenplay = {"title": obj.title,
+                                 "scenes": [scene_encoder.default(scene) for scene in obj.scenes],
+                                 "uuid": str(obj.uuid)}
         return serialized_screenplay

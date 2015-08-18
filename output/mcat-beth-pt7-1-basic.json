@@ -5,241 +5,266 @@
             "elements": [
                 {
                     "content": "Students of evolution have shown that species death, or extinction, is going on all the time and that it is an essential feature of life history.",
-                    "identifier": "Sentence 0",
+                    "name": "S0",
                     "priority": 0
                 }
-            ]
+            ],
+            "identifier": 0
         },
         {
             "duration": 1.0,
             "elements": [
                 {
                     "content": "What alarms so many life historians is not that extinctions are occurring but that they appear to be occurring at a greater rate than they have at all but a few times in the past, raising the specter of the sort of wholesale die-offs that ended the reign of the dinosaurs.",
-                    "identifier": "Sentence 1",
+                    "name": "S1",
                     "priority": 0
                 }
-            ]
+            ],
+            "identifier": 1
         },
         {
             "duration": 1.0,
             "elements": [
                 {
                     "content": "A new word has been coined to define the value most threatened by these overheated rates: biodiversity.",
-                    "identifier": "Sentence 2",
+                    "name": "S2",
                     "priority": 0
                 }
-            ]
+            ],
+            "identifier": 2
         },
         {
             "duration": 1.0,
             "elements": [
                 {
                     "content": "Since extinction is a particularly final and comprehensive form of death, species preservation and its corollary, habitat protection, are now seen as the most important means available to stem the erosion of biodiversity, but I wonder if these ideas, which emphasize diversity at the species level, give an adequate picture of recent biological history.",
-                    "identifier": "Sentence 3",
+                    "name": "S3",
                     "priority": 0
                 }
-            ]
+            ],
+            "identifier": 3
         },
         {
             "duration": 1.0,
             "elements": [
                 {
                     "content": "If we believe that all life shares a certain quality of sensitivity, or self-awareness, then Homo sapiens was an astonishing and wholly unpredictable leap forward in this respect, because human beings manifested an idea of personhood never before achieved.",
-                    "identifier": "Sentence 4",
+                    "name": "S4",
                     "priority": 0
                 }
-            ]
+            ],
+            "identifier": 4
         },
         {
             "duration": 1.0,
             "elements": [
                 {
                     "content": "Consciousness.",
-                    "identifier": "Sentence 5",
+                    "name": "S5",
                     "priority": 0
                 }
-            ]
+            ],
+            "identifier": 5
         },
         {
             "duration": 1.0,
             "elements": [
                 {
                     "content": "Mind.",
-                    "identifier": "Sentence 6",
+                    "name": "S6",
                     "priority": 0
                 }
-            ]
+            ],
+            "identifier": 6
         },
         {
             "duration": 1.0,
             "elements": [
                 {
                     "content": "Insight.",
-                    "identifier": "Sentence 7",
+                    "name": "S7",
                     "priority": 0
                 }
-            ]
+            ],
+            "identifier": 7
         },
         {
             "duration": 1.0,
             "elements": [
                 {
                     "content": "Here are qualities that, if not exclusively human, seem appallingly rudimentary elsewhere.",
-                    "identifier": "Sentence 8",
+                    "name": "S8",
                     "priority": 0
                 }
-            ]
+            ],
+            "identifier": 8
         },
         {
             "duration": 1.0,
             "elements": [
                 {
                     "content": "Plainly, our planet contained vast opportunities for creatures willing to shape it consciously toward their ends.",
-                    "identifier": "Sentence 9",
+                    "name": "S9",
                     "priority": 0
                 }
-            ]
+            ],
+            "identifier": 9
         },
         {
             "duration": 1.0,
             "elements": [
                 {
                     "content": "The way was clear; we know of no other species that has divined what we’ve been up to or has a mind to object.",
-                    "identifier": "Sentence 10",
+                    "name": "S10",
                     "priority": 0
                 }
-            ]
+            ],
+            "identifier": 10
         },
         {
             "duration": 1.0,
             "elements": [
                 {
                     "content": "What seems simple to us is far beyond them; it’s almost as if we move so fast that we are invisible, and they are still trying to pretend that the world is the same as it was before we arrived.",
-                    "identifier": "Sentence 11",
+                    "name": "S11",
                     "priority": 0
                 }
-            ]
+            ],
+            "identifier": 11
         },
         {
             "duration": 1.0,
             "elements": [
                 {
                     "content": "This speed on the uptake appears to be the chief advantage that cultural adaptation has over genetic.",
-                    "identifier": "Sentence 12",
+                    "name": "S12",
                     "priority": 0
                 }
-            ]
+            ],
+            "identifier": 12
         },
         {
             "duration": 1.0,
             "elements": [
                 {
                     "content": "When human beings encounter new circumstances, adaptation rarely depends on which individuals are genetically best suited to adjust, passing on their abilities more successfully than others and producing subsequent generations better adapted to the new order.",
-                    "identifier": "Sentence 13",
+                    "name": "S13",
                     "priority": 0
                 }
-            ]
+            ],
+            "identifier": 13
         },
         {
             "duration": 1.0,
             "elements": [
                 {
                     "content": "No, human beings tend to cut the loop short by noticing the new, puzzling over it, telling their friends, and attempting to find out immediately whether it is edible, combustible, domesticable, or whatever.",
-                    "identifier": "Sentence 14",
+                    "name": "S14",
                     "priority": 0
                 }
-            ]
+            ],
+            "identifier": 14
         },
         {
             "duration": 1.0,
             "elements": [
                 {
                     "content": "I am concerned with an image of our species as a vast, featureless mob of Yahoos mindlessly trampling this planet’s most ancient and delicate harmonies.",
-                    "identifier": "Sentence 15",
+                    "name": "S15",
                     "priority": 0
                 }
-            ]
+            ],
+            "identifier": 15
         },
         {
             "duration": 1.0,
             "elements": [
                 {
                     "content": "This image is not a completely inaccurate description of present conditions in some parts of the world, but it portrays the human presence as a sort of monolithic disaster, when in fact Homo sapiens is the crown of creation.",
-                    "identifier": "Sentence 16",
+                    "name": "S16",
                     "priority": 0
                 }
-            ]
+            ],
+            "identifier": 16
         },
         {
             "duration": 1.0,
             "elements": [
                 {
                     "content": "Change is one of the most reliable constants of this story.",
-                    "identifier": "Sentence 17",
+                    "name": "S17",
                     "priority": 0
                 }
-            ]
+            ],
+            "identifier": 17
         },
         {
             "duration": 1.0,
             "elements": [
                 {
                     "content": "To say that the changes we have brought, and will continue to bring, are somehow alien to the world and are within a half inch of making its “natural” continuance impossible displays some contempt for the forces at work.",
-                    "identifier": "Sentence 18",
+                    "name": "S18",
                     "priority": 0
                 }
-            ]
+            ],
+            "identifier": 18
         },
         {
             "duration": 1.0,
             "elements": [
                 {
                     "content": "Today, many believe that these changes are often for the worse.",
-                    "identifier": "Sentence 19",
+                    "name": "S19",
                     "priority": 0
                 }
-            ]
+            ],
+            "identifier": 19
         },
         {
             "duration": 1.0,
             "elements": [
                 {
                     "content": "We look back with longing to a time at which the human presence barely dimpled the landscape.",
-                    "identifier": "Sentence 20",
+                    "name": "S20",
                     "priority": 0
                 }
-            ]
+            ],
+            "identifier": 20
         },
         {
             "duration": 1.0,
             "elements": [
                 {
                     "content": "I’m not persuaded by this picture.",
-                    "identifier": "Sentence 21",
+                    "name": "S21",
                     "priority": 0
                 }
-            ]
+            ],
+            "identifier": 21
         },
         {
             "duration": 1.0,
             "elements": [
                 {
                     "content": "I can easily imagine arguments that would have required the interior of North America to remain empty of cities⎯and yet I don’t think this continent is a poorer place now than it was twenty thousand years ago.",
-                    "identifier": "Sentence 22",
+                    "name": "S22",
                     "priority": 0
                 }
-            ]
+            ],
+            "identifier": 22
         },
         {
             "duration": 1.0,
             "elements": [
                 {
                     "content": "The more convinced we are that our species is a plague, the more we are obliged to yearn for disasters.",
-                    "identifier": "Sentence 23",
+                    "name": "S23",
                     "priority": 0
                 }
-            ]
+            ],
+            "identifier": 23
         }
     ],
-    "title": "mcat-beth-pt7-1.txt"
+    "title": "mcat-beth-pt7-1.txt",
+    "uuid": "518c8dfa-45d4-11e5-b02a-60f81dd05dfe"
 }
