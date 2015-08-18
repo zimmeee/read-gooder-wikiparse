@@ -1,6 +1,6 @@
 Screenplay:
   raw_converter: Basic
-  screenwriter: pos
+  screenwriter: basic
   file: ../static/mcat-beth-pt7-1.txt
   wiki_rest_endpoint:
   wiki_article_title:
