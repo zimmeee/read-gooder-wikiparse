@@ -17,7 +17,7 @@ class Screenplay(object):
         screenplay = Screenplay()
         screenplay.scenes = [Scene.fromDict(scene) for scene in dict_object["scenes"]]
         screenplay.title = dict_object["title"]
-        screenplay.uuid = uuid.UUID(dict_object["uuid"])
+        screenplay.uuid = uuid.UUID(dict_object["screenplay_id"])
         return screenplay
 
     def addScene(self, scene):
@@ -120,5 +120,5 @@ class ScreenplayJSONEncoder(JSONEncoder):
         scene_encoder = SceneJSONEncoder()  # for serializing individual scenes
         serialized_screenplay = {"title": obj.title,
                                  "scenes": [scene_encoder.default(scene) for scene in obj.scenes],
-                                 "uuid": str(obj.uuid)}
+                                 "screenplay_id": str(obj.uuid)}
         return serialized_screenplay

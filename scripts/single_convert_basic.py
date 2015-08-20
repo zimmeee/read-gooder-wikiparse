@@ -39,5 +39,5 @@ with open(output_screenplay_file, "w") as output_file:
     output_file.write(json.dumps(screenplay, cls=ScreenplayJSONEncoder, indent=4))
 
 with open(output_features_file, "w") as output_file:
-    output_file.write(json.dumps({"id": str(screenplay.uuid),
+    output_file.write(json.dumps({"screenplay_id": str(screenplay.uuid),
                                   "features": features}, indent=4))
