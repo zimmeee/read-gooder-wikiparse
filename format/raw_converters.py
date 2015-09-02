@@ -29,6 +29,19 @@ class BasicTextFileRawConverter(RawConverter):
         return Document(header=doc_title, section=section)
 
 
+# many free ebooks have newlines in unfortunate places, breaking up sentences
+# this raw converter eliminates newlines
+class BookNewlineFileRawConverter(RawConverter):
+    def convertToDocument(self, source, doc_title):
+        rawText = source.replace("\n", " ")
+        sentence_strings = sent_tokenize(rawText, language='english')
+        sentences = []
+        for i in range(len(sentence_strings)):
+            sentences.append(Sentence(text=sentence_strings[i], position=i))
+        section = Section(paragraphs=[Paragraph(sentences=sentences, position=0)])
+        return Document(header=doc_title, section=section)
+
+
 class WikiHtmlFileRawConverter(RawConverter):
     def __init__(self):
         self.HTML_SECTION_HEADERS = ["h2", "h3", "h4", "h5"]

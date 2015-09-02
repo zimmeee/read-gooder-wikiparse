@@ -8,6 +8,9 @@ from screenplay import Screenplay
 
 
 class FeatureExtractor:
+    def __init__(self):
+        self.features = defaultdict(dict)
+
     @abc.abstractmethod
     # returns an array of features
     def get_features(self, screenplay):
@@ -18,27 +21,29 @@ class FeatureExtractor:
 
 class DocumentPositionFeatureExtractor(FeatureExtractor):
     def get_features(self, screenplay):
-        features = []
+        super(DocumentPositionFeatureExtractor, self).get_features(screenplay)
+        position = 0
         for scene in screenplay.scenes:
-            features.append({"position": scene.identifier})
-        return features
+            self.features[scene.identifier] = {"position": position}
+            position += 1
+            print("DocumentPositionFeatureExtractor scene ", scene.identifier)
+        return self.features
 
 
 class OverallLengthFeatureExtractor(FeatureExtractor):
     def get_features(self, screenplay):
-        features = []
         for scene in screenplay.scenes:
             scene_length = 0
             for element in scene.elements:
                 words = wordpunct_tokenize(element.content)
                 scene_length += len(words)
-            features.append({"overall_length": scene_length})
-        return features
+            self.features[scene.identifier] = {"overall_length": scene_length}
+            print("OverallLengthFeatureExtractor scene ", scene.identifier)
+        return self.features
 
 
 class AverageWordLengthFeatureExtractor(FeatureExtractor):
     def get_features(self, screenplay):
-        features = []
         for scene in screenplay.scenes:
             total_word_length = 0
             total_num_words = 0
@@ -47,8 +52,9 @@ class AverageWordLengthFeatureExtractor(FeatureExtractor):
                 for word in words:
                     total_word_length += len(word)
                     total_num_words += 1
-            features.append({"avg_word_length": float(total_word_length) / total_num_words})
-        return features
+            self.features[scene.identifier] = {"avg_word_length": float(total_word_length) / total_num_words}
+            print("AverageWordLengthFeatureExtractor scene ", scene.identifier)
+        return self.features
 
 
 class LeastCommonWordFeatureExtractor(FeatureExtractor):
@@ -62,7 +68,6 @@ class LeastCommonWordFeatureExtractor(FeatureExtractor):
                     word_frequencies[word] += 1
 
         # extract features
-        features = []
         for scene in screenplay.scenes:
             least_common_word = "bob"
             least_common_wordfreq = 1000
@@ -72,19 +77,22 @@ class LeastCommonWordFeatureExtractor(FeatureExtractor):
                     if word_frequencies[word] < least_common_wordfreq:
                         least_common_wordfreq = word_frequencies[word]
                         least_common_word = word
-            features.append({"least_common_word_freq": least_common_wordfreq,
-                             "least_common_word_length": len(least_common_word)})
-        return features
+            self.features[scene.identifier] = {"least_common_word_freq": least_common_wordfreq,
+                                               "least_common_word_length": len(least_common_word),
+                                               "identifier": scene.identifier}
+            print("LeastCommonWordFeatureExtractor scene ", scene.identifier)
+
+        return self.features
 
 
 class ParseTreeFeatureExtractor(FeatureExtractor):
     def __init__(self, parser):
+        super().__init__()
         if not isinstance(parser, StanfordParser):
             raise Exception("Argument for parser is not a StanfordParser object.")
         self.parser = parser  # converts string to tree
 
     def get_features(self, screenplay):
-        features = []
         for scene in screenplay.scenes:
             max_tree_len = 0
             max_tree_height = 0
@@ -93,17 +101,21 @@ class ParseTreeFeatureExtractor(FeatureExtractor):
                 for tree_set in input_trees:
                     for tree in tree_set:
                         if len(tree) > max_tree_len:
-                            max_tree_len = len(tree)
+                            max_tree_len = len(tree)  # The length of a tree is the number of children it has.
                         if tree.height() > max_tree_height:
-                            max_tree_height = tree.height()
-            features.append({"max_tree_length": max_tree_len,
-                             "max_tree_height": max_tree_height})
-        return features
+                            max_tree_height = tree.height()  # The height of a tree
+                            # containing no children is 1; the height of a tree
+                            # containing only leaves is 2; and the height of any other
+                            # tree is one plus the maximum of its children's
+                            # heights.
+            self.features[scene.identifier] = {"max_tree_length": max_tree_len,
+                                               "max_tree_height": max_tree_height}
+            print("ParseTreeFeatureExtractor scene ", scene.identifier)
+        return self.features
 
 
 class PartsOfSpeechFeatureExtractor(FeatureExtractor):
     def get_features(self, screenplay):
-        features = []
         for scene in screenplay.scenes:
             pos_tag_features = defaultdict(int)
             for element in scene.elements:
@@ -111,25 +123,27 @@ class PartsOfSpeechFeatureExtractor(FeatureExtractor):
                 pos_tags = pos_tag(words)
                 for tag in pos_tags:
                     pos_tag_features[tag[1]] += 1
-            features.append(pos_tag_features)
-        return features
+            self.features[scene.identifier] = pos_tag_features
+            print("PartsOfSpeechFeatureExtractor scene ", scene.identifier)
+        return self.features
 
 
 class MultiFeatureExtractor(FeatureExtractor):
     def __init__(self, list_of_feature_extractors):
+        super().__init__()
         self.extractors = list_of_feature_extractors
 
     def get_features(self, screenplay):
-        all_features = []
+        features_by_id_combined = defaultdict(dict)
         for extractor in self.extractors:
-            all_features.append(extractor.get_features(screenplay))
+            features_by_id = extractor.get_features(screenplay)  # dict of dicts scene_id:{features}
+            for id in features_by_id:
+                features_by_id_combined[id].update(features_by_id[id])
 
         # make combined feature set
         features_combined = []
-        for scene_id in range(len(all_features[0])):
-            features = {}
-            for featureset_id in range(len(all_features)):
-                for key in all_features[featureset_id][scene_id]:
-                    features[key] = all_features[featureset_id][scene_id][key]
+        for scene_id in features_by_id_combined:
+            features = features_by_id_combined[scene_id]
+            features["identifier"] = scene_id
             features_combined.append(features)
         return features_combined

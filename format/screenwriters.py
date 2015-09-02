@@ -3,6 +3,7 @@ Screenwriters turn Document objects into Screenplays
 created by beth on 7/22/15
 """
 import abc
+from random import shuffle
 
 from nltk import Tree
 from nltk.parse.stanford import StanfordParser
@@ -42,6 +43,38 @@ class BasicScreenwriter(Screenwriter):
 
             scene.elements = [scene_element]
             scenes.append(scene)
+
+        screenplay.title = document.header
+        screenplay.scenes = scenes
+        return screenplay
+
+
+# randomized screenwriter - takes all sentences from the document and randomizes their order
+# all are shown for the same amount of time
+class RandomizedScreenwriter(Screenwriter):
+    def __init__(self):
+        return
+
+    def write_screenplay(self, document):
+        screenplay = Screenplay()
+        scenes = []
+
+        sentence_count = 0
+        for sentence in document.sentences():
+            scene = Scene()
+            scene.duration = 1.0
+            scene.identifier = sentence_count
+
+            scene_element = SceneElement()
+            scene_element.content = sentence.text
+            scene_element.name = "S" + str(sentence_count)
+            sentence_count += 1
+
+            scene.elements = [scene_element]
+            scenes.append(scene)
+
+        # only difference between this and the basic screenwriter
+        shuffle(scenes)
 
         screenplay.title = document.header
         screenplay.scenes = scenes
