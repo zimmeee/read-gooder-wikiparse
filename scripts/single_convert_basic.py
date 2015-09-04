@@ -41,11 +41,14 @@ os.environ['STANFORD_MODELS'] = stanford_parser_models_directory
 # extract features from screenplay
 f1 = DocumentPositionFeatureExtractor()
 f2 = OverallLengthFeatureExtractor()
-f3 = LeastCommonWordFeatureExtractor()
+f3 = WordEntropyFeatureExtractor()
 f4 = AverageWordLengthFeatureExtractor()
 f5 = ParseTreeFeatureExtractor(StanfordParser())
 f6 = PartsOfSpeechFeatureExtractor()
-features = MultiFeatureExtractor([f1, f2, f3, f4, f5, f6]).get_features(screenplay)
+f7 = POSEntropyFeatureExtractor()
+f8 = NeighboringSceneFeatureExtractor(-1, OverallLengthFeatureExtractor())
+f9 = NeighboringSceneFeatureExtractor(-1, POSEntropyFeatureExtractor())
+features = MultiFeatureExtractor([f1, f2, f3, f4, f5, f6, f7, f8, f9]).get_features(screenplay)
 
 print("Extracted features from screenplay...")
 

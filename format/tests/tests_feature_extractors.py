@@ -4,7 +4,7 @@ import unittest
 from nltk.parse import stanford
 
 from feature_extractors import DocumentPositionFeatureExtractor, OverallLengthFeatureExtractor, \
-    AverageWordLengthFeatureExtractor, LeastCommonWordFeatureExtractor, ParseTreeFeatureExtractor, \
+    AverageWordLengthFeatureExtractor, WordEntropyFeatureExtractor, ParseTreeFeatureExtractor, \
     PartsOfSpeechFeatureExtractor, MultiFeatureExtractor
 from screenwriters import BasicScreenwriter
 from raw_converters import BasicTextFileRawConverter
@@ -86,7 +86,7 @@ class AverageWordLengthFeatureExtractorTests(FeatureExtractorTestCase):
 
 class LeastCommonWordFeatureExtractorTests(FeatureExtractorTestCase):
     def testExtractFeatures(self):
-        self.feature_extractor = LeastCommonWordFeatureExtractor()
+        self.feature_extractor = WordEntropyFeatureExtractor()
         features = self.feature_extractor.get_features(self.screenplay)
         self.assertEquals(features, [{'least_common_word_freq': 1, 'least_common_word_length': 3},
                                      {'least_common_word_freq': 1, 'least_common_word_length': 10},
@@ -140,7 +140,7 @@ class MultiFeatureExtractorTests(FeatureExtractorTestCase):
     def testExtractFeatures(self):
         f1 = DocumentPositionFeatureExtractor()
         f2 = OverallLengthFeatureExtractor()
-        f3 = LeastCommonWordFeatureExtractor()
+        f3 = WordEntropyFeatureExtractor()
         self.feature_extractor = MultiFeatureExtractor([f1, f2, f3])
         features = self.feature_extractor.get_features(self.screenplay)
         self.assertEquals(features, [{'position': 0, 'least_common_word_length': 3,

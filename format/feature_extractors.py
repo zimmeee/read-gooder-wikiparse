@@ -1,5 +1,6 @@
 import abc
 from collections import defaultdict
+from math import log
 
 from nltk import wordpunct_tokenize, word_tokenize, pos_tag
 from nltk.parse.stanford import StanfordParser
@@ -57,30 +58,23 @@ class AverageWordLengthFeatureExtractor(FeatureExtractor):
         return self.features
 
 
-class LeastCommonWordFeatureExtractor(FeatureExtractor):
+class WordEntropyFeatureExtractor(FeatureExtractor):
     def get_features(self, screenplay):
-        # calculate document-level word frequencies
-        word_frequencies = defaultdict(int)
+        # extract features
         for scene in screenplay.scenes:
+            word_frequencies = defaultdict(int)
+            total_words = 0
             for element in scene.elements:
                 words = wordpunct_tokenize(element.content)
                 for word in words:
                     word_frequencies[word] += 1
-
-        # extract features
-        for scene in screenplay.scenes:
-            least_common_word = "bob"
-            least_common_wordfreq = 1000
-            for element in scene.elements:
-                words = wordpunct_tokenize(element.content)
-                for word in words:
-                    if word_frequencies[word] < least_common_wordfreq:
-                        least_common_wordfreq = word_frequencies[word]
-                        least_common_word = word
-            self.features[scene.identifier] = {"least_common_word_freq": least_common_wordfreq,
-                                               "least_common_word_length": len(least_common_word),
-                                               "identifier": scene.identifier}
-            print("LeastCommonWordFeatureExtractor scene ", scene.identifier)
+                    total_words += 1
+            entropy = 0.0
+            for word in word_frequencies:
+                p = float(word_frequencies[word]) / total_words
+                entropy += p * log(p)
+            self.features[scene.identifier] = {"word_entropy": -1.0 * entropy}
+            print("WordEntropyFeatureExtractor scene ", scene.identifier)
 
         return self.features
 
@@ -128,6 +122,44 @@ class PartsOfSpeechFeatureExtractor(FeatureExtractor):
         return self.features
 
 
+class POSEntropyFeatureExtractor(FeatureExtractor):
+    def get_features(self, screenplay):
+        for scene in screenplay.scenes:
+            pos_tag_features = defaultdict(int)
+            total_features = 0
+            for element in scene.elements:
+                words = word_tokenize(element.content)
+                pos_tags = pos_tag(words)
+                for tag in pos_tags:
+                    pos_tag_features[tag[1]] += 1
+                    total_features += 1
+            # calculate entropy
+            entropy = 0.0
+            for tag in pos_tag_features:
+                p = float(pos_tag_features[tag]) / total_features
+                entropy += p * log(p)
+            self.features[scene.identifier] = {"pos_entropy": -1.0 * entropy}
+            print("POSEntropyFeatureExtractor scene ", scene.identifier)
+        return self.features
+
+
+class NeighboringSceneFeatureExtractor(FeatureExtractor):
+    def __init__(self, relative_position, base_feature_extractor):
+        super().__init__()
+        self.relative_position = relative_position
+        self.base_feature_extractor = base_feature_extractor
+
+    def get_features(self, screenplay):
+        features = self.base_feature_extractor.get_features(screenplay)
+        shifted_features = defaultdict(lambda: defaultdict())
+        for identifier in features:
+            shifted_identifier = identifier - self.relative_position
+            for key in features[identifier]:
+                shifted_key = key + "_" + str(self.relative_position)
+                shifted_features[shifted_identifier][shifted_key] = features[identifier][key]
+        return shifted_features
+
+
 class MultiFeatureExtractor(FeatureExtractor):
     def __init__(self, list_of_feature_extractors):
         super().__init__()
@@ -137,8 +169,8 @@ class MultiFeatureExtractor(FeatureExtractor):
         features_by_id_combined = defaultdict(dict)
         for extractor in self.extractors:
             features_by_id = extractor.get_features(screenplay)  # dict of dicts scene_id:{features}
-            for id in features_by_id:
-                features_by_id_combined[id].update(features_by_id[id])
+            for feature_id in features_by_id:
+                features_by_id_combined[feature_id].update(features_by_id[feature_id])
 
         # make combined feature set
         features_combined = []
