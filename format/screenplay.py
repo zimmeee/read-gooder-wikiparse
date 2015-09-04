@@ -34,7 +34,10 @@ class Screenplay(object):
     def __ne__(self, other):
         return not self.__eq__(other)
 
-
+"""
+A scene is the unit of display: something that gets displayed for a fixed amount of time
+It is made up of SceneElements
+"""
 class Scene(object):
     def __init__(self, elements=None, duration=0.0, identifier=0):
         self.elements = elements
@@ -63,7 +66,10 @@ class Scene(object):
     def __ne__(self, other):
         return not self.__eq__(other)
 
-
+"""
+The components that make up a Scene (e.g. sentence chunks).
+Priority gives an indication to the Blocker class of how to display this SceneElement
+"""
 class SceneElement(object):
     def __init__(self, content=None, name=None, priority=0):
         self.content = content

@@ -127,6 +127,7 @@ class ConstituentHeightScreenwriter(Screenwriter):
 
 
 # print tokens as they emerge from Stanford Parser's formatting (pformat)
+# This is an example of how NOT to do it
 class StanfordParserScreenwriter(Screenwriter):
     def __init__(self, parser):
         if not isinstance(parser, StanfordParser):
