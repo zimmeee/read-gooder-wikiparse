@@ -10,14 +10,14 @@ class Screenplay(object):
     def __init__(self, scenes=None, title=None):
         self.scenes = scenes
         self.title = title
-        self.uuid = uuid.uuid1()  # randomly generated uuid for this screenplay
+        self.screenplay_uuid = uuid.uuid1()  # randomly generated uuid for this screenplay
 
     @staticmethod
     def fromDict(dict_object):
         screenplay = Screenplay()
         screenplay.scenes = [Scene.fromDict(scene) for scene in dict_object["scenes"]]
         screenplay.title = dict_object["title"]
-        screenplay.uuid = uuid.UUID(dict_object["screenplay_id"])
+        screenplay.screenplay_uuid = uuid.UUID(dict_object["screenplay_id"])
         return screenplay
 
     def addScene(self, scene):
@@ -34,10 +34,13 @@ class Screenplay(object):
     def __ne__(self, other):
         return not self.__eq__(other)
 
+
 """
 A scene is the unit of display: something that gets displayed for a fixed amount of time
 It is made up of SceneElements
 """
+
+
 class Scene(object):
     def __init__(self, elements=None, duration=0.0, identifier=0):
         self.elements = elements
@@ -66,10 +69,13 @@ class Scene(object):
     def __ne__(self, other):
         return not self.__eq__(other)
 
+
 """
 The components that make up a Scene (e.g. sentence chunks).
 Priority gives an indication to the Blocker class of how to display this SceneElement
 """
+
+
 class SceneElement(object):
     def __init__(self, content=None, name=None, priority=0):
         self.content = content
@@ -126,5 +132,5 @@ class ScreenplayJSONEncoder(JSONEncoder):
         scene_encoder = SceneJSONEncoder()  # for serializing individual scenes
         serialized_screenplay = {"title": obj.title,
                                  "scenes": [scene_encoder.default(scene) for scene in obj.scenes],
-                                 "screenplay_id": str(obj.uuid)}
+                                 "screenplay_id": str(obj.screenplay_uuid)}
         return serialized_screenplay
