@@ -3,10 +3,12 @@
 created by noah on 9/8/15
 """
 import json
-import os
 import sys
+import Configurator
+Configurator.runnable_from_command_line()
 
 from feature_extractors import *
+
 
 def main():
     movie_file = sys.argv[1]
@@ -15,11 +17,7 @@ def main():
     with open(movie_file) as movie_json:
         movie = Movie.fromDict(json.load(movie_json))
 
-    # get Stanford Parser
-    stanford_parser_directory = "../resources"
-    stanford_parser_models_directory = "../resources"
-    os.environ['STANFORD_PARSER'] = stanford_parser_directory
-    os.environ['STANFORD_MODELS'] = stanford_parser_models_directory
+    Configurator.configure_stanford_parser("../resources")
 
     # extract features from screenplay
     f1 = DocumentPositionFeatureExtractor()
@@ -31,7 +29,8 @@ def main():
     f7 = POSEntropyFeatureExtractor()
     f8 = NeighboringSceneFeatureExtractor(-1, OverallLengthFeatureExtractor())
     f9 = NeighboringSceneFeatureExtractor(-1, POSEntropyFeatureExtractor())
-    features = MultiFeatureExtractor([f1, f2, f3, f4, f5, f6, f7, f8, f9]).get_features(movie)
+    f10 = SceneWidthFeatureExtractor()
+    features = MultiFeatureExtractor([f1, f2, f3, f4, f5, f6, f7, f8, f9, f10]).get_features(movie)
 
     print("Extracted features from movie...")
 

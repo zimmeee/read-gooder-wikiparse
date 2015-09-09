@@ -4,12 +4,14 @@ created by noah on 9/4/15
 """
 import json
 import sys
-import os
 
+from nltk.parse.stanford import StanfordParser
+
+from scripts.Configurator import configure_stanford_parser
 from raw_converters import BookNewlineFileRawConverter
 from screenplay import ScreenplayJSONEncoder
-from screenwriters import BasicScreenwriter, PartOfSpeechSplitScreenwriter
-from nltk.parse.stanford import StanfordParser
+from screenwriters import PartOfSpeechSplitScreenwriter
+
 
 def main():
     text_file = sys.argv[1]
@@ -21,10 +23,7 @@ def main():
                                                                document_title)
     print("Converted to document...")
 
-    stanford_parser_directory = "../resources"
-    stanford_parser_models_directory = "../resources"
-    os.environ['STANFORD_PARSER'] = stanford_parser_directory
-    os.environ['STANFORD_MODELS'] = stanford_parser_models_directory
+    configure_stanford_parser()
 
     # convert document to screenplay format
     # screenplay = BasicScreenwriter().write_screenplay(document)

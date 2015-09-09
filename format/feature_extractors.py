@@ -192,3 +192,18 @@ class MultiFeatureExtractor(FeatureExtractor):
             features["identifier"] = scene_id
             features_combined.append(features)
         return features_combined
+
+class SceneWidthFeatureExtractor(FeatureExtractor):
+    def get_features(self, movie):
+        super(SceneWidthFeatureExtractor, self).get_features(movie)
+
+        for visual_scene in movie.visual_scenes:
+            sum_of_scene_widths = 0
+            for visual_scene_element in visual_scene.visual_scene_elements:
+                sum_of_scene_widths += visual_scene_element.width
+
+            self.features[visual_scene.identifier] = {"avg_visual_scene_element_width": float(sum_of_scene_widths) / len(visual_scene.visual_scene_elements) }
+            print("SceneWidthFeatureExtractor scene ", visual_scene.identifier)
+
+        return self.features
+
