@@ -6,6 +6,7 @@ from nltk import wordpunct_tokenize, word_tokenize, pos_tag
 from nltk.parse.stanford import StanfordParser
 
 from screenplay import Screenplay
+from movie import Movie
 
 
 class FeatureExtractor:
@@ -14,58 +15,62 @@ class FeatureExtractor:
 
     @abc.abstractmethod
     # returns an array of features
-    def get_features(self, screenplay):
-        if not isinstance(screenplay, Screenplay):
-            raise Exception("Cannot extract features from non-screenplay object: " + str(screenplay))
+    def get_features(self, movie):
+        if not isinstance(movie, Movie):
+            raise Exception("Cannot extract features from non-movie object: " + str(movie))
         return
 
 
 class DocumentPositionFeatureExtractor(FeatureExtractor):
-    def get_features(self, screenplay):
-        super(DocumentPositionFeatureExtractor, self).get_features(screenplay)
+    def get_features(self, movie):
+        super(DocumentPositionFeatureExtractor, self).get_features(movie)
         position = 0
-        for scene in screenplay.scenes:
-            self.features[scene.identifier] = {"position": position}
+        for visual_scene in movie.visual_scenes:
+            self.features[visual_scene.identifier] = {"position": position}
             position += 1
-            print("DocumentPositionFeatureExtractor scene ", scene.identifier)
+            print("DocumentPositionFeatureExtractor scene ", visual_scene.identifier)
         return self.features
 
 
 class OverallLengthFeatureExtractor(FeatureExtractor):
-    def get_features(self, screenplay):
-        for scene in screenplay.scenes:
+    def get_features(self, movie):
+        super(OverallLengthFeatureExtractor, self).get_features(movie)
+        for visual_scene in movie.visual_scenes:
             scene_length = 0
-            for element in scene.elements:
-                words = wordpunct_tokenize(element.content)
+            for visual_scene_element in visual_scene.visual_scene_elements:
+                words = wordpunct_tokenize(visual_scene_element.text_string)
                 scene_length += len(words)
-            self.features[scene.identifier] = {"overall_length": scene_length}
-            print("OverallLengthFeatureExtractor scene ", scene.identifier)
+            self.features[visual_scene.identifier] = {"overall_length": scene_length}
+            print("OverallLengthFeatureExtractor scene ", visual_scene.identifier)
         return self.features
 
 
+
 class AverageWordLengthFeatureExtractor(FeatureExtractor):
-    def get_features(self, screenplay):
-        for scene in screenplay.scenes:
+    def get_features(self, movie):
+        super(AverageWordLengthFeatureExtractor, self).get_features(movie)
+        for visual_scene in movie.visual_scenes:
             total_word_length = 0
             total_num_words = 0
-            for element in scene.elements:
-                words = wordpunct_tokenize(element.content)
+            for visual_scene_element in visual_scene.visual_scene_elements:
+                words = wordpunct_tokenize(visual_scene_element.text_string)
                 for word in words:
                     total_word_length += len(word)
                     total_num_words += 1
-            self.features[scene.identifier] = {"avg_word_length": float(total_word_length) / total_num_words}
-            print("AverageWordLengthFeatureExtractor scene ", scene.identifier)
+            self.features[visual_scene.identifier] = {"avg_word_length": float(total_word_length) / total_num_words}
+            print("AverageWordLengthFeatureExtractor scene ", visual_scene.identifier)
         return self.features
 
 
 class WordEntropyFeatureExtractor(FeatureExtractor):
-    def get_features(self, screenplay):
-        # extract features
-        for scene in screenplay.scenes:
+    def get_features(self, movie):
+        super(WordEntropyFeatureExtractor, self).get_features(movie)
+
+        for visual_scene in movie.visual_scenes:
             word_frequencies = defaultdict(int)
             total_words = 0
-            for element in scene.elements:
-                words = wordpunct_tokenize(element.content)
+            for visual_scene_element in visual_scene.visual_scene_elements:
+                words = wordpunct_tokenize(visual_scene_element.text_string)
                 for word in words:
                     word_frequencies[word] += 1
                     total_words += 1
@@ -73,8 +78,8 @@ class WordEntropyFeatureExtractor(FeatureExtractor):
             for word in word_frequencies:
                 p = float(word_frequencies[word]) / total_words
                 entropy += p * log(p)
-            self.features[scene.identifier] = {"word_entropy": -1.0 * entropy}
-            print("WordEntropyFeatureExtractor scene ", scene.identifier)
+            self.features[visual_scene.identifier] = {"word_entropy": -1.0 * entropy}
+            print("WordEntropyFeatureExtractor scene ", visual_scene.identifier)
 
         return self.features
 
@@ -86,12 +91,14 @@ class ParseTreeFeatureExtractor(FeatureExtractor):
             raise Exception("Argument for parser is not a StanfordParser object.")
         self.parser = parser  # converts string to tree
 
-    def get_features(self, screenplay):
-        for scene in screenplay.scenes:
+    def get_features(self, movie):
+        super(ParseTreeFeatureExtractor, self).get_features(movie)
+
+        for visual_scene in movie.visual_scenes:
             max_tree_len = 0
             max_tree_height = 0
-            for element in scene.elements:
-                input_trees = self.parser.raw_parse(element.content)
+            for visual_scene_element in visual_scene.visual_scene_elements:
+                input_trees = self.parser.raw_parse(visual_scene_element.text_string)
                 for tree_set in input_trees:
                     for tree in tree_set:
                         if len(tree) > max_tree_len:
@@ -102,33 +109,37 @@ class ParseTreeFeatureExtractor(FeatureExtractor):
                             # containing only leaves is 2; and the height of any other
                             # tree is one plus the maximum of its children's
                             # heights.
-            self.features[scene.identifier] = {"max_tree_length": max_tree_len,
-                                               "max_tree_height": max_tree_height}
-            print("ParseTreeFeatureExtractor scene ", scene.identifier)
+            self.features[visual_scene.identifier] = {"max_tree_length": max_tree_len,
+                                                      "max_tree_height": max_tree_height}
+            print("ParseTreeFeatureExtractor scene ", visual_scene.identifier)
         return self.features
 
 
 class PartsOfSpeechFeatureExtractor(FeatureExtractor):
-    def get_features(self, screenplay):
-        for scene in screenplay.scenes:
+    def get_features(self, movie):
+        super(PartsOfSpeechFeatureExtractor, self).get_features(movie)
+
+        for visual_scene in movie.visual_scenes:
             pos_tag_features = defaultdict(int)
-            for element in scene.elements:
-                words = word_tokenize(element.content)
+            for visual_scene_element in visual_scene.visual_scene_elements:
+                words = word_tokenize(visual_scene_element.text_string)
                 pos_tags = pos_tag(words)
                 for tag in pos_tags:
                     pos_tag_features[tag[1]] += 1
-            self.features[scene.identifier] = pos_tag_features
-            print("PartsOfSpeechFeatureExtractor scene ", scene.identifier)
+            self.features[visual_scene.identifier] = pos_tag_features
+            print("PartsOfSpeechFeatureExtractor scene ", visual_scene.identifier)
         return self.features
 
 
 class POSEntropyFeatureExtractor(FeatureExtractor):
-    def get_features(self, screenplay):
-        for scene in screenplay.scenes:
+    def get_features(self, movie):
+        super(POSEntropyFeatureExtractor, self).get_features(movie)
+
+        for visual_scene in movie.visual_scenes:
             pos_tag_features = defaultdict(int)
             total_features = 0
-            for element in scene.elements:
-                words = word_tokenize(element.content)
+            for visual_scene_element in visual_scene.visual_scene_elements:
+                words = word_tokenize(visual_scene_element.text_string)
                 pos_tags = pos_tag(words)
                 for tag in pos_tags:
                     pos_tag_features[tag[1]] += 1
@@ -138,8 +149,8 @@ class POSEntropyFeatureExtractor(FeatureExtractor):
             for tag in pos_tag_features:
                 p = float(pos_tag_features[tag]) / total_features
                 entropy += p * log(p)
-            self.features[scene.identifier] = {"pos_entropy": -1.0 * entropy}
-            print("POSEntropyFeatureExtractor scene ", scene.identifier)
+            self.features[visual_scene.identifier] = {"pos_entropy": -1.0 * entropy}
+            print("POSEntropyFeatureExtractor scene ", visual_scene.identifier)
         return self.features
 
 
@@ -149,8 +160,9 @@ class NeighboringSceneFeatureExtractor(FeatureExtractor):
         self.relative_position = relative_position
         self.base_feature_extractor = base_feature_extractor
 
-    def get_features(self, screenplay):
-        features = self.base_feature_extractor.get_features(screenplay)
+    def get_features(self, movie):
+        super(NeighboringSceneFeatureExtractor, self).get_features(movie)
+        features = self.base_feature_extractor.get_features(movie)
         shifted_features = defaultdict(lambda: defaultdict())
         for identifier in features:
             shifted_identifier = identifier - self.relative_position
@@ -165,10 +177,11 @@ class MultiFeatureExtractor(FeatureExtractor):
         super().__init__()
         self.extractors = list_of_feature_extractors
 
-    def get_features(self, screenplay):
+    def get_features(self, movie):
+        super(MultiFeatureExtractor, self).get_features(movie)
         features_by_id_combined = defaultdict(dict)
         for extractor in self.extractors:
-            features_by_id = extractor.get_features(screenplay)  # dict of dicts scene_id:{features}
+            features_by_id = extractor.get_features(movie)  # dict of dicts scene_id:{features}
             for feature_id in features_by_id:
                 features_by_id_combined[feature_id].update(features_by_id[feature_id])
 

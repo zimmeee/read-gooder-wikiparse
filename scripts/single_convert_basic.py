@@ -27,10 +27,10 @@ with open(output_screenplay_file_stem + ".json", "w") as output_file:
 print("Converted to screenplay...")
 
 # randomized versions of screenplay
-for i in range(5):
-    randomized_screenplay = RandomizedScreenwriter().write_screenplay(document)
-    with open(output_screenplay_file_stem + "r" + str(i) + ".json", "w") as output_file:
-        output_file.write(json.dumps(randomized_screenplay, cls=ScreenplayJSONEncoder, indent=4))
+#for i in range(5):
+#    randomized_screenplay = RandomizedScreenwriter().write_screenplay(document)
+#    with open(output_screenplay_file_stem + "r" + str(i) + ".json", "w") as output_file:
+#        output_file.write(json.dumps(randomized_screenplay, cls=ScreenplayJSONEncoder, indent=4))
 
 # get Stanford Parser
 stanford_parser_directory = "/Users/beth/Documents/openmind/read-gooder-wikiparse/resources"
