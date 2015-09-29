@@ -2,7 +2,7 @@ import json
 import unittest
 
 from screenplay import ScreenplayJSONEncoder, Screenplay
-from screenwriters import BasicScreenwriter
+from screenwriters import BasicScreenwriter, Screenwriter, FixedDimensionScreenwriter
 from raw_converters import BasicTextFileRawConverter
 
 
@@ -32,9 +32,15 @@ class ScreenplaySerializationTestCase(unittest.TestCase):
         doc_title = "Supernova"
         self.document = BasicTextFileRawConverter().convertToDocument(doc_source, doc_title)
 
-    def runTest(self):
-        converter = BasicScreenwriter()
-        screenplay = converter.write_screenplay(self.document)
+    def testRunBasic(self):
+        screenwriter = BasicScreenwriter()
+        screenplay = screenwriter.write_screenplay(self.document)
         serialized_json = json.dumps(screenplay, cls=ScreenplayJSONEncoder, sort_keys=True)
         deserialized_screenplay = Screenplay.fromDict(json.loads(serialized_json))
         self.assertEquals(screenplay, deserialized_screenplay)
+
+    def testRunFixedDimension(self):
+        screenwriter = FixedDimensionScreenwriter(height_in_lines=5, width_in_chars=70)
+        screenplay = screenwriter.write_screenplay(self.document)
+        serialized_json = json.dumps(screenplay, cls=ScreenplayJSONEncoder, sort_keys=True, indent=4)
+        print(serialized_json)

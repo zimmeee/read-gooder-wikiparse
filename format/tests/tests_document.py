@@ -12,7 +12,7 @@ class TestSection(TestCase):
         self.document = WikiHtmlFileRawConverter().convertToDocument(doc_source, doc_title)
 
     def testGetSentences(self):
-        self.assertEquals(len(self.document.section.sentences()), 354)
+        self.assertEquals(len(self.document.section.sentences()), 358)
         self.assertEquals(self.document.section.sentences()[0].text, "A supernova is a stellar "
                                                                      "explosion that briefly outshines "
                                                                      "an entire galaxy, radiating as much "
@@ -20,4 +20,3 @@ class TestSection(TestCase):
                                                                      "is expected to emit over its entire "
                                                                      "life span, before fading from view over "
                                                                      "several weeks or months.")
-        self.assertEquals(self.document.section.sentences()[353].text, "\n")

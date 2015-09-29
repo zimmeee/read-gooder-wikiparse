@@ -6,12 +6,14 @@ edited 7/22/15
 
 from json import JSONEncoder
 import json
+import uuid
 
 
 class Document:
     def __init__(self, header=None, section=None):
         self.header = header
         self.section = section
+        self.doc_id = uuid.uuid1()  # randomly generated uuid for this document
 
     def sentences(self):
         return self.section.sentences()
@@ -21,8 +23,11 @@ class Document:
 
     @staticmethod
     def fromDict(dict_object):
-        return Document(header=dict_object["header"] if "header" in dict_object else "",
-                        section=Section.fromDict(dict_object["section"]) if "section" in dict_object else None)
+        document = Document()
+        document.header = dict_object["header"]
+        document.section = Section.fromDict(dict_object["section"])
+        document.doc_id = uuid.UUID(dict_object["doc_id"])
+        return document
 
     def __eq__(self, other):
         if isinstance(other, self.__class__):
@@ -45,11 +50,11 @@ class Section:
 
     @staticmethod
     def fromDict(dict_object):
-        return Section(header=dict_object["header"] if "header" in dict_object else None,
-                       paragraphs=[Paragraph.fromDict(paragraph) for paragraph in dict_object["paragraphs"]]
-                       if "paragraphs" in dict_object else None,
-                       subsections=[Section.fromDict(s) for s in dict_object["subsections"]]
-                       if "subsections" in dict_object else None)
+        section = Section()
+        section.header = dict_object["header"]
+        section.paragraphs = [Paragraph.fromDict(paragraph) for paragraph in dict_object["paragraphs"]]
+        section.subsections = [Section.fromDict(sect) for sect in dict_object["subsections"]]
+        return section
 
     def sentences(self):
         all_sentences = []
@@ -74,7 +79,7 @@ class Section:
 
 
 class Paragraph:
-    def __init__(self, sentences, position):
+    def __init__(self, sentences=None, position=None):
         self.sentences = sentences
         self.position = position
 
@@ -83,8 +88,10 @@ class Paragraph:
 
     @staticmethod
     def fromDict(dict_object):
-        return Paragraph(sentences=[Sentence.from_dict(sentence) for sentence in dict_object["sentences"]],
-                         position=dict_object["position"])
+        paragraph = Paragraph()
+        paragraph.sentences = [Sentence.from_dict(sentence) for sentence in dict_object["sentences"]]
+        paragraph.position = dict_object["position"]
+        return paragraph
 
     def __eq__(self, other):
         if isinstance(other, self.__class__):
@@ -97,7 +104,7 @@ class Paragraph:
 
 
 class Sentence:
-    def __init__(self, text, position):
+    def __init__(self, text=None, position=None):
         self.text = text
         self.position = position
 
@@ -106,7 +113,10 @@ class Sentence:
 
     @staticmethod
     def from_dict(dict_object):
-        return Sentence(text=dict_object["text"], position=dict_object["position"])
+        sentence = Sentence()
+        sentence.text = dict_object["text"]
+        sentence.position = dict_object["position"]
+        return sentence
 
     def __eq__(self, other):
         if isinstance(other, self.__class__):
@@ -131,6 +141,7 @@ class DocumentJSONEncoder(JSONEncoder):
         if obj.section:
             sect_encoder = SectionJSONEncoder()  # for serializing individual sections
             serialized_document["section"] = sect_encoder.default(obj.section)
+        serialized_document["doc_id"] = str(obj.doc_id)
         return serialized_document
 
 

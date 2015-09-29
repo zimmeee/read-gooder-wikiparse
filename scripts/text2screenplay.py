@@ -27,7 +27,7 @@ def main():
 
     # convert document to screenplay format
     # screenplay = BasicScreenwriter().write_screenplay(document)
-    screenplay = PartOfSpeechSplitScreenwriter(StanfordParser()).write_screenplay(document)
+    screenplay = PartOfSpeechSplitScreenwriter().write_screenplay(document)
 
     # output screenplay to file
     with open(output_screenplay_file_stem + ".json", "w") as output_file:

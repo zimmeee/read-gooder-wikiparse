@@ -3,21 +3,22 @@ OpenMind Screenplay format - Documents are converted to this format prior to ent
 created by beth on 7/22/15
 """
 from json import JSONEncoder
+import json
 import uuid
 
 
 class Screenplay(object):
-    def __init__(self, scenes=None, title=None):
+    def __init__(self, scenes=None, title=None, doc_id=None):
         self.scenes = scenes
         self.title = title
-        self.screenplay_uuid = uuid.uuid1()  # randomly generated uuid for this screenplay
+        self.doc_id = doc_id
 
     @staticmethod
     def fromDict(dict_object):
         screenplay = Screenplay()
         screenplay.scenes = [Scene.fromDict(scene) for scene in dict_object["scenes"]]
         screenplay.title = dict_object["title"]
-        screenplay.screenplay_uuid = uuid.UUID(dict_object["screenplay_id"])
+        screenplay.doc_id = uuid.UUID(dict_object["doc_id"])
         return screenplay
 
     def addScene(self, scene):
@@ -33,6 +34,9 @@ class Screenplay(object):
 
     def __ne__(self, other):
         return not self.__eq__(other)
+
+    def __str__(self):
+        return json.dumps(self, cls=ScreenplayJSONEncoder, indent=4)
 
 
 """
@@ -132,5 +136,5 @@ class ScreenplayJSONEncoder(JSONEncoder):
         scene_encoder = SceneJSONEncoder()  # for serializing individual scenes
         serialized_screenplay = {"title": obj.title,
                                  "scenes": [scene_encoder.default(scene) for scene in obj.scenes],
-                                 "screenplay_id": str(obj.screenplay_uuid)}
+                                 "doc_id": str(obj.doc_id)}
         return serialized_screenplay

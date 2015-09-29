@@ -2,15 +2,18 @@ import json
 import os
 import sys
 
+from blockers import BasicBlocker
 from feature_extractors import *
+from movie import MovieJSONEncoder
 from raw_converters import BookNewlineFileRawConverter
-from screenplay import ScreenplayJSONEncoder
-from screenwriters import BasicScreenwriter, RandomizedScreenwriter
+from screenwriters import FixedDimensionScreenwriter
 
 text_file = sys.argv[1]
 document_title = sys.argv[2]
-output_screenplay_file_stem = sys.argv[3]
+output_movie_file = sys.argv[3]
 output_features_file = sys.argv[4]
+height_in_lines = int(sys.argv[5])
+width_in_chars = int(sys.argv[6])
 
 # convert raw text to document format
 document = BookNewlineFileRawConverter().convertToDocument(open(text_file, "r").read(),
@@ -18,19 +21,18 @@ document = BookNewlineFileRawConverter().convertToDocument(open(text_file, "r").
 print("Converted to document...")
 
 # convert document to screenplay format
-screenplay = BasicScreenwriter().write_screenplay(document)
-
-# output screenplay to file
-with open(output_screenplay_file_stem + ".json", "w") as output_file:
-    output_file.write(json.dumps(screenplay, cls=ScreenplayJSONEncoder, indent=4))
+screenplay = FixedDimensionScreenwriter(height_in_lines, width_in_chars).write_screenplay(document)
 
 print("Converted to screenplay...")
 
-# randomized versions of screenplay
-#for i in range(5):
-#    randomized_screenplay = RandomizedScreenwriter().write_screenplay(document)
-#    with open(output_screenplay_file_stem + "r" + str(i) + ".json", "w") as output_file:
-#        output_file.write(json.dumps(randomized_screenplay, cls=ScreenplayJSONEncoder, indent=4))
+# convert screenplay to a movie
+blocker = BasicBlocker()
+
+movie = blocker.block_screenplay(screenplay)
+
+# output movie to file
+with open(output_movie_file, "w") as output_file:
+    output_file.write(json.dumps(movie, cls=MovieJSONEncoder, indent=4))
 
 # get Stanford Parser
 stanford_parser_directory = "/Users/beth/Documents/openmind/read-gooder-wikiparse/resources"
@@ -38,21 +40,20 @@ stanford_parser_models_directory = "/Users/beth/Documents/openmind/read-gooder-w
 os.environ['STANFORD_PARSER'] = stanford_parser_directory
 os.environ['STANFORD_MODELS'] = stanford_parser_models_directory
 
-# extract features from screenplay
+# extract features from movie
 f1 = DocumentPositionFeatureExtractor()
 f2 = OverallLengthFeatureExtractor()
 f3 = WordEntropyFeatureExtractor()
 f4 = AverageWordLengthFeatureExtractor()
-f5 = ParseTreeFeatureExtractor(StanfordParser())
+# f5 = ParseTreeFeatureExtractor(StanfordParser())
 f6 = PartsOfSpeechFeatureExtractor()
 f7 = POSEntropyFeatureExtractor()
 f8 = NeighboringSceneFeatureExtractor(-1, OverallLengthFeatureExtractor())
 f9 = NeighboringSceneFeatureExtractor(-1, POSEntropyFeatureExtractor())
-features = MultiFeatureExtractor([f1, f2, f3, f4, f5, f6, f7, f8, f9]).get_features(screenplay)
+features = MultiFeatureExtractor([f1, f2, f3, f4, f6, f7, f8, f9]).get_features(movie)
 
-print("Extracted features from screenplay...")
+print("Extracted features from movie...")
 
 # output features to file
 with open(output_features_file, "w") as output_file:
-    output_file.write(json.dumps({"screenplay_id": str(screenplay.uuid),
-                                  "features": features}, indent=4))
+    output_file.write(json.dumps({"screenplay_id": str(screenplay.doc_id), "features": features}, indent=4))

@@ -19,7 +19,6 @@ class Blocker(object):
 
 
 class BasicBlocker(Blocker):
-
     # Valid overflow_modes: [Overflow, Ellipsis, Masking, Truncate, ScrollRect, Page]
     def __init__(self, width=250, overflow_mode="Overflow"):
         self.width = width
@@ -45,7 +44,7 @@ class BasicBlocker(Blocker):
             visual_scene_element.outline_color = (0.5, 0.5, 0.5, 1.0)
             visual_scene_element.outline_width = 0.2
             visual_scene_element.rotation = (0.0, 0.0, 0.0, 1.0)
-            visual_scene_element.word_wrapping = True
+            visual_scene_element.word_wrapping = False
 
             visual_scene_element.relative_X_position = 0.0
             visual_scene_element.relative_Y_position = 0.0
@@ -65,4 +64,4 @@ class BasicBlocker(Blocker):
 
             visual_scenes.append(visual_scene)
 
-        return Movie(visual_scenes, screenplay.screenplay_uuid)
+        return Movie(visual_scenes, screenplay.doc_id)

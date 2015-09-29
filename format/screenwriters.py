@@ -2,10 +2,15 @@
 Screenwriters turn Document objects into Screenplays
 created by beth on 7/22/15
 """
-import abc
+from abc import ABCMeta, abstractmethod
+from json import JSONEncoder, JSONDecoder
+import json
+from json.decoder import WHITESPACE
 from random import shuffle
+import textwrap
 
 from nltk import Tree
+
 from nltk.parse.stanford import StanfordParser
 
 from document import Document
@@ -13,21 +18,29 @@ from screenplay import Screenplay, Scene, SceneElement
 
 
 class Screenwriter(object):
-    @abc.abstractmethod
+    __metaclass__ = ABCMeta
+
+    def __init__(self):
+        self.screenwriter_class = type(self).__name__
+
+    @abstractmethod
     # returns a list of DisplayFrame objects
     def write_screenplay(self, document):
         if not isinstance(document, Document):
             raise Exception("Yo, this is not a document: " + str(document))
-        return
+        screenplay = Screenplay()
+        screenplay.doc_id = document.doc_id
+        screenplay.title = document.header
+        return screenplay
+
+    def __str__(self):
+        return json.dumps(self, cls=ScreenwriterJsonEncoder, indent=4)
 
 
 # most basic converter - one sentence per scene, all scenes shown for the same time
 class BasicScreenwriter(Screenwriter):
-    def __init__(self):
-        return
-
     def write_screenplay(self, document):
-        screenplay = Screenplay()
+        screenplay = super(BasicScreenwriter, self).write_screenplay(document)
         scenes = []
 
         sentence_count = 0
@@ -44,19 +57,63 @@ class BasicScreenwriter(Screenwriter):
             scene.elements = [scene_element]
             scenes.append(scene)
 
-        screenplay.title = document.header
         screenplay.scenes = scenes
         return screenplay
+
+    def __eq__(self, other):
+        if isinstance(other, self.__class__):
+            return self.__dict__ == other.__dict__
+        else:
+            return False
+
+    def __ne__(self, other):
+        return not self.__eq__(other)
+
+
+# fixed dimension screenwriter - you decide how many lines, how wide in characters
+class FixedDimensionScreenwriter(Screenwriter):
+    def __init__(self, height_in_lines=5, width_in_chars=70):
+        super().__init__()
+        self.height = height_in_lines
+        self.width = width_in_chars
+
+    def write_screenplay(self, document):
+        screenplay = super(FixedDimensionScreenwriter, self).write_screenplay(document)
+        scenes = []
+
+        full_text = " ".join([s.text for s in document.sentences()])
+        wrapped_text = textwrap.wrap(full_text, self.width)
+
+        for i in range(0, len(wrapped_text), self.height):
+            scene = Scene()
+            scene.duration = 1.0
+            scene.identifier = i
+
+            scene_element = SceneElement()
+            scene_element.content = "\n".join(wrapped_text[i: (i + self.height)])
+            scene_element.name = "S" + str(i)
+
+            scene.elements = [scene_element]
+            scenes.append(scene)
+
+        screenplay.scenes = scenes
+        return screenplay
+
+    def __eq__(self, other):
+        if isinstance(other, self.__class__):
+            return self.__dict__ == other.__dict__
+        else:
+            return False
+
+    def __ne__(self, other):
+        return not self.__eq__(other)
 
 
 # randomized screenwriter - takes all sentences from the document and randomizes their order
 # all are shown for the same amount of time
 class RandomizedScreenwriter(Screenwriter):
-    def __init__(self):
-        return
-
     def write_screenplay(self, document):
-        screenplay = Screenplay()
+        screenplay = super(RandomizedScreenwriter, self).write_screenplay(document)
         scenes = []
 
         sentence_count = 0
@@ -76,22 +133,28 @@ class RandomizedScreenwriter(Screenwriter):
         # only difference between this and the basic screenwriter
         shuffle(scenes)
 
-        screenplay.title = document.header
         screenplay.scenes = scenes
         return screenplay
+
+    def __eq__(self, other):
+        if isinstance(other, self.__class__):
+            return self.__dict__ == other.__dict__
+        else:
+            return False
+
+    def __ne__(self, other):
+        return not self.__eq__(other)
 
 
 # only constituents of a certain height in the parse tree are returned
 class ConstituentHeightScreenwriter(Screenwriter):
-    def __init__(self, parser, height=0):
-        if not isinstance(parser, StanfordParser):
-            raise Exception("ConstituentHeightScreenwriter: Argument for parser is not a StanfordParser object.")
-        self.parser = parser
+    def __init__(self, height=0):
+        super().__init__()
+        self.parser = StanfordParser()
         self.constituent_height = height
 
     def write_screenplay(self, document):
-        screenplay = Screenplay()
-        screenplay.title = document.header
+        screenplay = super(ConstituentHeightScreenwriter, self).write_screenplay(document)
 
         inputTrees = self.parser.raw_parse_sents([sentence.text for sentence in document.sentences()])
 
@@ -125,18 +188,26 @@ class ConstituentHeightScreenwriter(Screenwriter):
                 screenplay.addScene(scene)
         return screenplay
 
+    def __eq__(self, other):
+        if isinstance(other, self.__class__):
+            return self.screenwriter_class == other.screenwriter_class \
+                   and self.constituent_height == other.constituent_height
+        else:
+            return False
+
+    def __ne__(self, other):
+        return not self.__eq__(other)
+
 
 # print tokens as they emerge from Stanford Parser's formatting (pformat)
 # This is an example of how NOT to do it
 class StanfordParserScreenwriter(Screenwriter):
-    def __init__(self, parser):
-        if not isinstance(parser, StanfordParser):
-            raise Exception("StanfordParserScreenwriter: Argument for parser is not a StanfordParser object.")
-        self.parser = parser  # converts string to tree
+    def __init__(self):
+        super().__init__()
+        self.parser = StanfordParser()
 
     def write_screenplay(self, document):
-        screenplay = Screenplay()
-        screenplay.title = document.header
+        screenplay = super(StanfordParserScreenwriter, self).write_screenplay(document)
 
         inputTrees = self.parser.raw_parse_sents([sentence.text for sentence in document.sentences()])
 
@@ -186,19 +257,26 @@ class StanfordParserScreenwriter(Screenwriter):
                 childstrs.append('%s' % child)
         return " ".join(childstrs)
 
+    def __eq__(self, other):
+        if isinstance(other, self.__class__):
+            return self.screenwriter_class == other.screenwriter_class
+        else:
+            return False
+
+    def __ne__(self, other):
+        return not self.__eq__(other)
+
 
 # part-of-speech screenwriter: splits on certain POS patterns
 class PartOfSpeechSplitScreenwriter(Screenwriter):
-    def __init__(self, parser):
-        if not isinstance(parser, StanfordParser):
-            raise Exception("StanfordParserScreenwriter: Argument for parser is not a StanfordParser object.")
-        self.parser = parser  # converts string to tree
+    def __init__(self):
+        super().__init__()
+        self.parser = StanfordParser()  # converts string to tree
         self.breaklabels = {"PP", "VP", "IN", "ADVP"}
         self.label_blacklist = {"ROOT"}
 
     def write_screenplay(self, document):
-        screenplay = Screenplay()
-        screenplay.title = document.header
+        screenplay = super(PartOfSpeechSplitScreenwriter, self).write_screenplay(document)
 
         inputTrees = self.parser.raw_parse_sents([sentence.text for sentence in document.sentences()])
 
@@ -246,3 +324,47 @@ class PartOfSpeechSplitScreenwriter(Screenwriter):
 
                 screenplay.addScene(scene)
         return screenplay
+
+    def __eq__(self, other):
+        if isinstance(other, self.__class__):
+            return self.screenwriter_class == other.screenwriter_class
+        else:
+            return False
+
+    def __ne__(self, other):
+        return not self.__eq__(other)
+
+
+# JSON encoding and decoding
+
+class ScreenwriterJsonEncoder(JSONEncoder):
+    def default(self, obj):
+        if isinstance(obj, BasicScreenwriter):
+            return {"screenwriter_class": "Basic"}
+        if isinstance(obj, RandomizedScreenwriter):
+            return {"screenwriter_class": "Randomized"}
+        if isinstance(obj, ConstituentHeightScreenwriter):
+            return {"screenwriter_class": "ConstituentHeight",
+                    "constituent_height": obj.constituent_height}
+        if isinstance(obj, StanfordParserScreenwriter):
+            return {"screenwriter_class": "StanfordParser"}
+        if isinstance(obj, PartOfSpeechSplitScreenwriter):
+            return {"screenwriter_class": "PartOfSpeechSplit"}
+        return None
+
+
+class ScreenwriterJsonDecoder(JSONDecoder):
+    def decode(self, json_string, _w=WHITESPACE.match):
+        dict_obj = super(ScreenwriterJsonDecoder, self).decode(json_string)
+        screenwriter_type = dict_obj["screenwriter_class"]
+        if screenwriter_type == "Basic":
+            return BasicScreenwriter()
+        if screenwriter_type == "Randomized":
+            return RandomizedScreenwriter()
+        if screenwriter_type == "ConstituentHeight":
+            return ConstituentHeightScreenwriter(height=dict_obj["constituent_height"])
+        if screenwriter_type == "StanfordParser":
+            return StanfordParserScreenwriter()
+        if screenwriter_type == "PartOfSpeechSplit":
+            return PartOfSpeechSplitScreenwriter()
+        return None
