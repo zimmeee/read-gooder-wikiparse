@@ -3,9 +3,10 @@ import os
 import sys
 
 from blockers import BasicBlocker
+from decorators import FirstLastSceneAddDecorator
 from feature_extractors import *
 from movie import MovieJSONEncoder
-from raw_converters import BookNewlineFileRawConverter
+from raw_converters import BasicTextFileRawConverter
 from screenwriters import FixedDimensionScreenwriter
 
 text_file = sys.argv[1]
@@ -16,14 +17,18 @@ height_in_lines = int(sys.argv[5])
 width_in_chars = int(sys.argv[6])
 
 # convert raw text to document format
-document = BookNewlineFileRawConverter().convertToDocument(open(text_file, "r").read(),
-                                                           document_title)
+document = BasicTextFileRawConverter().convertToDocument(open(text_file, "r").read(),
+                                                         document_title)
 print("Converted to document...")
 
 # convert document to screenplay format
 screenplay = FixedDimensionScreenwriter(height_in_lines, width_in_chars).write_screenplay(document)
 
 print("Converted to screenplay...")
+
+# add duplicate first and last scenes
+decorator = FirstLastSceneAddDecorator()
+screenplay = decorator.decorate_screenplay(screenplay)
 
 # convert screenplay to a movie
 blocker = BasicBlocker()

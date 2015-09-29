@@ -5,7 +5,6 @@ from math import log
 from nltk import wordpunct_tokenize, word_tokenize, pos_tag
 from nltk.parse.stanford import StanfordParser
 
-from screenplay import Screenplay
 from movie import Movie
 
 
@@ -43,7 +42,6 @@ class OverallLengthFeatureExtractor(FeatureExtractor):
             self.features[visual_scene.identifier] = {"overall_length": scene_length}
             print("OverallLengthFeatureExtractor scene ", visual_scene.identifier)
         return self.features
-
 
 
 class AverageWordLengthFeatureExtractor(FeatureExtractor):
@@ -193,6 +191,7 @@ class MultiFeatureExtractor(FeatureExtractor):
             features_combined.append(features)
         return features_combined
 
+
 class SceneWidthFeatureExtractor(FeatureExtractor):
     def get_features(self, movie):
         super(SceneWidthFeatureExtractor, self).get_features(movie)
@@ -202,8 +201,8 @@ class SceneWidthFeatureExtractor(FeatureExtractor):
             for visual_scene_element in visual_scene.visual_scene_elements:
                 sum_of_scene_widths += visual_scene_element.width
 
-            self.features[visual_scene.identifier] = {"avg_visual_scene_element_width": float(sum_of_scene_widths) / len(visual_scene.visual_scene_elements) }
+            self.features[visual_scene.identifier] = {
+                "avg_visual_scene_element_width": float(sum_of_scene_widths) / len(visual_scene.visual_scene_elements)}
             print("SceneWidthFeatureExtractor scene ", visual_scene.identifier)
 
         return self.features
-

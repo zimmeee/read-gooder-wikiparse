@@ -84,10 +84,12 @@ class FixedDimensionScreenwriter(Screenwriter):
         full_text = " ".join([s.text for s in document.sentences()])
         wrapped_text = textwrap.wrap(full_text, self.width)
 
+        scene_id = 0
         for i in range(0, len(wrapped_text), self.height):
             scene = Scene()
             scene.duration = 1.0
-            scene.identifier = i
+            scene.identifier = scene_id
+            scene_id += 1
 
             scene_element = SceneElement()
             scene_element.content = "\n".join(wrapped_text[i: (i + self.height)])
