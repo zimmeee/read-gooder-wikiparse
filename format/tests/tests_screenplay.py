@@ -2,8 +2,8 @@ import json
 import unittest
 
 from screenplay import ScreenplayJSONEncoder, Screenplay
-from screenwriters import BasicScreenwriter, Screenwriter, FixedDimensionScreenwriter
-from raw_converters import BasicTextFileRawConverter
+from screenwriters import BasicScreenwriter, Screenwriter, FixedDimensionScreenwriter, LineByLineScreenwriter
+from raw_converters import BasicTextFileRawConverter, LineByLineRawConverter
 
 
 class ScreenplaySerializationTestCase(unittest.TestCase):
@@ -42,5 +42,15 @@ class ScreenplaySerializationTestCase(unittest.TestCase):
     def testRunFixedDimension(self):
         screenwriter = FixedDimensionScreenwriter(height_in_lines=5, width_in_chars=70)
         screenplay = screenwriter.write_screenplay(self.document)
+        serialized_json = json.dumps(screenplay, cls=ScreenplayJSONEncoder, sort_keys=True, indent=4)
+        print(serialized_json)
+
+    def testLineByLine(self):
+        doc_source = "Hi I'm a document formatted like VSTF\n  VSTF is awesome\n    Love VSTF\n\nThis is " \
+                     "another sentence\n  formatted like VSTF\n    VSTF is awesome"
+        doc_title = "Ode to VSTF"
+        doc = LineByLineRawConverter().convertToDocument(doc_source, doc_title)
+        screenwriter = LineByLineScreenwriter()
+        screenplay = screenwriter.write_screenplay(doc)
         serialized_json = json.dumps(screenplay, cls=ScreenplayJSONEncoder, sort_keys=True, indent=4)
         print(serialized_json)

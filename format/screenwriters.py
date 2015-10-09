@@ -39,6 +39,10 @@ class Screenwriter(object):
 
 # most basic converter - one sentence per scene, all scenes shown for the same time
 class BasicScreenwriter(Screenwriter):
+    def __init__(self, width_in_chars=None):
+        super().__init__()
+        self.width = width_in_chars
+
     def write_screenplay(self, document):
         screenplay = super(BasicScreenwriter, self).write_screenplay(document)
         scenes = []
@@ -50,7 +54,10 @@ class BasicScreenwriter(Screenwriter):
             scene.identifier = sentence_count
 
             scene_element = SceneElement()
-            scene_element.content = sentence.text
+            if self.width:
+                scene_element.content = "\n".join(textwrap.wrap(sentence.text, self.width))
+            else:
+                scene_element.content = sentence.text
             scene_element.name = "S" + str(sentence_count)
             sentence_count += 1
 
@@ -68,6 +75,48 @@ class BasicScreenwriter(Screenwriter):
 
     def __ne__(self, other):
         return not self.__eq__(other)
+
+
+# take sentence by sentence and put directly on screen, breaking scenes at empty lines
+class LineByLineScreenwriter(Screenwriter):
+    def write_screenplay(self, document):
+        screenplay = super(LineByLineScreenwriter, self).write_screenplay(document)
+        scenes = []
+
+        sentence_count = 0
+
+        scene = Scene()
+        text_lines = []
+        scene.duration = 1.0
+        scene.identifier = sentence_count
+
+        for sentence in document.sentences():
+            if sentence.text == "":
+                # finish current scene
+                scene_element = SceneElement()
+                scene_element.content = "\n".join(text_lines)
+                scene_element.name = "S" + str(sentence_count)
+
+                scene.elements = [scene_element]
+                scenes.append(scene)
+
+                # start new scene
+                scene = Scene()
+                text_lines = []
+                scene.duration = 1.0
+                sentence_count += 1
+                scene.identifier = sentence_count
+            else:
+                text_lines.append(sentence.text)
+        # be sure to get the last block!
+        scene_element = SceneElement()
+        scene_element.content = "\n".join(text_lines)
+        scene_element.name = "S" + str(sentence_count)
+        scene.elements = [scene_element]
+        scenes.append(scene)
+
+        screenplay.scenes = scenes
+        return screenplay
 
 
 # fixed dimension screenwriter - you decide how many lines, how wide in characters

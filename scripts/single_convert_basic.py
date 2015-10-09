@@ -32,6 +32,7 @@ screenplay = decorator.decorate_screenplay(screenplay)
 
 # convert screenplay to a movie
 blocker = BasicBlocker()
+blocker.font_name = "Geometria-Light SDF"
 
 movie = blocker.block_screenplay(screenplay)
 

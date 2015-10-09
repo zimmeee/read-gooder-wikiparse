@@ -14,7 +14,7 @@ class Decorator(object):
 
 class FirstLastSceneAddDecorator(Decorator):
     def decorate_screenplay(self, screenplay):
-        first_scene = copy(screenplay.scenes[0])
+        first_scene = copy(screenplay.scenes[len(screenplay.scenes) - 2]) # add second to last scene as placeholder
         last_scene = copy(screenplay.scenes[len(screenplay.scenes) - 1])
         screenplay.scenes.insert(0, first_scene)
         screenplay.scenes.append(last_scene)
